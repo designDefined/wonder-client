@@ -1,14 +1,12 @@
 {
   "extends": [
     "plugin:react/recommended",
-    "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "rules": {
     "react/function-component-definition": "error",
-    "react/react-in-jsx-scope": "off",
-    "import/order": "warn"
+    "react/react-in-jsx-scope": "off"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
