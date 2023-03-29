@@ -4,17 +4,19 @@
   font-family: "Pretendard", sans-serif;
   font-style: normal;
   font-size: $size;
-  color: black;
+  color: defaultTheme.$black;
+  letter-spacing: -0.41px;
+  line-height: 22px;
 }
 
 @mixin label {
+  @include default(18px);
   font-weight: 700;
 }
 
 @mixin textInput() {
   @include default(15px);
   font-weight: 600;
-  color: defaultTheme.$black;
 }
 
 @mixin textInput_placeHolder() {
