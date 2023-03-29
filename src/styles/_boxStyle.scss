@@ -1,0 +1,7 @@
+@use "./src/styles/colors/defaultTheme";
+@use "./src/styles/fontStyle";
+
+@mixin textInput {
+  border: 1px solid defaultTheme.$gray;
+  border-radius: 5px;
+}

@@ -1,0 +1,24 @@
+@use "./src/styles/colors/defaultTheme";
+
+@mixin default($size: 16px) {
+  font-family: "Pretendard", sans-serif;
+  font-style: normal;
+  font-size: $size;
+  color: black;
+}
+
+@mixin label {
+  font-weight: 700;
+}
+
+@mixin textInput() {
+  @include default(15px);
+  font-weight: 600;
+  color: defaultTheme.$black;
+}
+
+@mixin textInput_placeHolder() {
+  font: inherit;
+  font-weight: 600;
+  color: defaultTheme.$gray;
+}

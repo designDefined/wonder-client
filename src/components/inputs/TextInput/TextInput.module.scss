@@ -1,0 +1,15 @@
+@use "./src/styles/position";
+@use "./src/styles/inside";
+@use "./src/styles/boxStyle";
+@use "./src/styles/fontStyle";
+@use "./src/styles/colors/defaultTheme";
+
+.TextInput {
+  @include position.stretchWidth;
+  @include inside.textInput;
+  @include boxStyle.textInput;
+  @include fontStyle.textInput;
+  &::placeholder {
+    @include fontStyle.textInput_placeHolder;
+  }
+}
