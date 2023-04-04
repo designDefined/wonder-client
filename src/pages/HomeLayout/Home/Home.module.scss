@@ -4,17 +4,6 @@
 @use "./src/styles/fontStyle";
 @use "./src/styles/colors/defaultTheme";
 
-.HomeHeader {
+.Home {
   @include position.stretchWidth;
-  @include inside.homeHeader;
-  height: 54px;
-}
-
-.logo {
-}
-
-.tools {
-  background: red;
-  width: 50px;
-  height: 20px;
 }

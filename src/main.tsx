@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Dev from "./pages/NoLayout/Dev/Dev";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
+import Home from "./pages/HomeLayout/Home/Home";
 import New from "./pages/HomeLayout/New/New";
+import Dev from "./pages/NoLayout/Dev/Dev";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "home",
-        element: <div>home</div>,
+        element: <Home />,
         index: true,
       },
       { path: "new", element: <New /> },
