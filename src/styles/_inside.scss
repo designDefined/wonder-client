@@ -1,0 +1,15 @@
+@mixin flexBetween($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin textInput {
+  padding: 13px 16px;
+}
+
+@mixin homeHeader {
+  @include flexBetween;
+  padding: 0 20px;
+}

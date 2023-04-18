@@ -1,0 +1,9 @@
+@use "./src/styles/position";
+@use "./src/styles/inside";
+@use "./src/styles/boxStyle";
+@use "./src/styles/fontStyle";
+@use "./src/styles/colors/defaultTheme";
+
+.Home {
+  @include position.stretchWidth;
+}
