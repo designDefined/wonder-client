@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 import SearchBar from "../SearchBar/SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Profile from "../Profile/Profile";
 
 const cx = classNames.bind(styles);
 
@@ -29,14 +30,18 @@ export default function HomeHeader() {
         <button className={styles.shuffle}>
           <img src={shuffleIcon} />
         </button>
-        <button
-          className={styles.login}
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          로그인
-        </button>
+        {isLoggedIn ? (
+          <Profile />
+        ) : (
+          <button
+            className={styles.login}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </button>
+        )}
       </div>
       <div className={cx("LoginHeader")}>Login</div>
     </header>

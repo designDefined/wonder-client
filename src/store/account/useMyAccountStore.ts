@@ -18,6 +18,7 @@ type MyAccountStore = Fetchable<AdoptedUser> & {
   actions: {
     login: (name: string) => Promise<void>;
     logout: () => void;
+    setUser: (user: AdoptedUser) => void;
   };
 };
 
@@ -32,5 +33,6 @@ export const useMyAccountStore = create<MyAccountStore>()((set, get, a) => ({
       set({ isLoaded: true, data: res });
     },
     logout: () => set({ isLoaded: false, isPending: false, data: null }),
+    setUser: (user) => set({ data: user, isLoaded: true }),
   },
 }));

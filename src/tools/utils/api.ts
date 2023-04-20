@@ -10,4 +10,18 @@ export const getJSON = async <T>(url: string) => {
   const parsed = (await response.json()) as T;
   return parsed;
 };
-export const postJSONtoJSON = async () => {};
+export const postJSONtoJSON = async <T>(
+  url: string,
+  body: Record<string, any>,
+) => {
+  const response = await fetch(baseURL + url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const parsed = (await response.json()) as T;
+  return parsed;
+};

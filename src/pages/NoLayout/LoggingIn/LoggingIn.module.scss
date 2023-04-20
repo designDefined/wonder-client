@@ -1,0 +1,62 @@
+@use "src/styles/reset";
+@use "src/styles/fontStyle";
+@use "src/styles/colors/defaultTheme";
+
+$kakao-color: #ffeb3b;
+$naver-color: #71c75c;
+
+.LoggingIn {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  padding: 0 5%;
+}
+
+.title {
+  @include fontStyle.default(24px);
+  font-weight: 700;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  margin-top: 24px;
+  line-height: 40px;
+}
+.description {
+  @include fontStyle.default(16px);
+  font-weight: 500;
+  margin-bottom: 26px;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 15px;
+  .label {
+    @include fontStyle.default(18px);
+    font-weight: 700;
+    line-height: 28px;
+  }
+  .input {
+    @include fontStyle.default(15px);
+    border: 1px solid defaultTheme.$gray;
+    padding: 12px 18px;
+  }
+}
+
+.registerButton {
+  @include reset.button;
+  @include fontStyle.default(18px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 58px;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-top: 48px;
+  background-color: defaultTheme.$key-purple;
+  color: white;
+}

@@ -7,6 +7,7 @@ import Home from "./pages/HomeLayout/Home/Home";
 import New from "./pages/HomeLayout/New/New";
 import Dev from "./pages/NoLayout/Dev/Dev";
 import Login from "./pages/HomeLayout/Login/Login";
+import LoggingIn from "./pages/NoLayout/LoggingIn/LoggingIn";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
   },
   { path: "register", element: <div>register</div> },
   { path: "dev", element: <Dev /> },
+  { path: "naver", element: <LoggingIn provider={"naver"} /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
