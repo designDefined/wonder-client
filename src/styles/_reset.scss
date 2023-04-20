@@ -1,0 +1,11 @@
+@mixin button {
+  font: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+@mixin inputText {
+  border: none;
+  background: none;
+}
