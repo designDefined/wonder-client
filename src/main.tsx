@@ -6,6 +6,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Home from "./pages/HomeLayout/Home/Home";
 import New from "./pages/HomeLayout/New/New";
 import Dev from "./pages/NoLayout/Dev/Dev";
+import Login from "./pages/HomeLayout/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -19,9 +20,9 @@ const router = createBrowserRouter([
         index: true,
       },
       { path: "new", element: <New /> },
+      { path: "login", element: <Login /> },
     ],
   },
-  { path: "login", element: <div>login</div> },
   { path: "register", element: <div>register</div> },
   { path: "dev", element: <Dev /> },
 ]);
