@@ -8,6 +8,8 @@ import New from "./pages/HomeLayout/New/New";
 import Dev from "./pages/NoLayout/Dev/Dev";
 import Login from "./pages/HomeLayout/Login/Login";
 import LoggingIn from "./pages/NoLayout/LoggingIn/LoggingIn";
+import { RoutexType } from "./libs/Routex/types";
+import RoutexProvider from "./libs/Routex/components/RoutexProvider";
 
 const router = createBrowserRouter([
   {
@@ -29,8 +31,15 @@ const router = createBrowserRouter([
   { path: "naver", element: <LoggingIn provider={"naver"} /> },
 ]);
 
+const routex: RoutexType[] = [
+  {
+    path: "",
+    component: <div>home</div>,
+  },
+];
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RoutexProvider provider={routex} />
   </React.StrictMode>,
 );
