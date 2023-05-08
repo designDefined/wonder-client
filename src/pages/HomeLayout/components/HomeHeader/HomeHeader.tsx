@@ -6,24 +6,18 @@ import HeaderLogo from "../../../../components/logos/HeaderLogo/HeaderLogo";
 import { useMyAccountStore } from "../../../../store/account/useMyAccountStore";
 import classNames from "classnames/bind";
 import SearchBar from "../SearchBar/SearchBar";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 import Profile from "../Profile/Profile";
+import { useRoutex } from "../../../../libs/Routex/hooks/useRoutex";
 
 const cx = classNames.bind(styles);
 
 export default function HomeHeader() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(location.pathname === "/login");
-  useEffect(() => {
-    if (location.pathname === "/login") {
-      setIsLogin(true);
-    }
-  }, [location]);
+  const { navigate } = useRoutex((state) => state.actions);
+
   return (
-    <header className={cx("HomeHeader", { isLogin })}>
+    <header className={cx("HomeHeader")}>
       <HeaderLogo />
       <div className={styles.tools}>
         <SearchBar />
@@ -36,7 +30,7 @@ export default function HomeHeader() {
           <button
             className={styles.login}
             onClick={() => {
-              navigate("/login");
+              navigate("login");
             }}
           >
             로그인

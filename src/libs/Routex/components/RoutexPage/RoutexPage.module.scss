@@ -1,0 +1,47 @@
+.RoutexPage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  //current / sub
+  &.current {
+    &.stable {
+      display: block;
+    }
+    &.slideNext {
+      animation: 1s ease slideFromLeft;
+    }
+    &.slidePrev {
+    }
+  }
+  &.sub {
+    position: absolute;
+    left: 0;
+    top: 0;
+    &.stable {
+      visibility: hidden;
+    }
+    &.slideNext {
+      animation: 1s ease slideToRight;
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

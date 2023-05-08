@@ -9,7 +9,7 @@ import Dev from "./pages/NoLayout/Dev/Dev";
 import Login from "./pages/HomeLayout/Login/Login";
 import LoggingIn from "./pages/NoLayout/LoggingIn/LoggingIn";
 import { RoutexType } from "./libs/Routex/types";
-import RoutexProvider from "./libs/Routex/components/RoutexProvider";
+import RoutexProvider from "./libs/Routex/components/RoutexProvider/RoutexProvider";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +34,9 @@ const router = createBrowserRouter([
 const routex: RoutexType[] = [
   {
     path: "",
-    component: <div>home</div>,
+    component: <Home />,
   },
+  { path: "login", component: <Login /> },
 ];
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
