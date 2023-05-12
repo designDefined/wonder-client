@@ -2,12 +2,26 @@ import styles from "./Login.module.scss";
 import kakao_icon from "../components/assets/kakao_icon.png";
 import naver_icon from "../components/assets/naver_icon.png";
 import google_icon from "../components/assets/google_icon.png";
+import back_icon from "../components/assets/arrow_back.svg";
 import { baseURL } from "../../../tools/utils/api";
+import { useRoutex } from "../../../libs/Routex/hooks/useRoutex";
 
 export default function Login() {
+  const { navigate } = useRoutex((state) => state.actions);
   return (
     <main className={styles.Login}>
-      <h1 className={styles.title}>SNS 계정으로 간단하게 로그인하기</h1>
+      <div className={styles.header}>
+        <h2>Login</h2>
+        <button
+          className={styles.backButton}
+          onClick={() => {
+            navigate("", true);
+          }}
+        >
+          <img src={back_icon} />
+        </button>
+      </div>
+
       <div className={styles.illustration}>
         일러스트 이미지 하나 들어감...
         <br />

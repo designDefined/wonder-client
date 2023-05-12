@@ -10,10 +10,6 @@ export function RoutexPageA() {
   const currentSide = useRoutex((state) => state.currentSide);
   const targetComponent = useRoutex((state) => state.componentA);
 
-  useEffect(() => {
-    console.log(targetComponent);
-  });
-
   return (
     <div
       className={cx("RoutexPage", status, {

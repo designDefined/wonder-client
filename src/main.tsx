@@ -37,10 +37,9 @@ const routex: RoutexType[] = [
     component: <Home />,
   },
   { path: "login", component: <Login /> },
+  { path: "new", component: <New /> },
 ];
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RoutexProvider provider={routex} />
-  </React.StrictMode>,
+  <RoutexProvider provider={routex} />,
 );
