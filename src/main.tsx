@@ -10,6 +10,8 @@ import Login from "./pages/HomeLayout/Login/Login";
 import LoggingIn from "./pages/NoLayout/LoggingIn/LoggingIn";
 import { RoutexType } from "./libs/Routex/types";
 import RoutexProvider from "./libs/Routex/components/RoutexProvider/RoutexProvider";
+import { Codex } from "./libs/Codex/types";
+import CodexProvider from "./libs/Codex/components/Provider/CodexProvider";
 
 const router = createBrowserRouter([
   {
@@ -31,15 +33,14 @@ const router = createBrowserRouter([
   { path: "naver", element: <LoggingIn provider={"naver"} /> },
 ]);
 
-const routex: RoutexType[] = [
-  {
-    path: "",
-    component: <Home />,
-  },
-  { path: "login", component: <Login /> },
-  { path: "new", component: <New /> },
-];
+const codex: Codex = {
+  _index: <Home />,
+  new: <New />,
+  login: <Login />,
+  view: { _index: <div>view</div>, _params: ["wonder_id"] },
+  _error: <div>error page</div>,
+};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RoutexProvider provider={routex} />,
+  <CodexProvider provider={codex} />,
 );

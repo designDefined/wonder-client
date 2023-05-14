@@ -1,6 +1,5 @@
 import styles from "./HomeHeader.module.scss";
 import shuffleIcon from "../assets/shuffle.svg";
-import searchIcon from "../assets/search.svg";
 
 import HeaderLogo from "../../../../components/logos/HeaderLogo/HeaderLogo";
 import { useMyAccountStore } from "../../../../store/account/useMyAccountStore";
@@ -8,13 +7,12 @@ import classNames from "classnames/bind";
 import SearchBar from "../SearchBar/SearchBar";
 
 import Profile from "../Profile/Profile";
-import { useRoutex } from "../../../../libs/Routex/hooks/useRoutex";
+import { navigate } from "../../../../libs/Codex";
 
 const cx = classNames.bind(styles);
 
 export default function HomeHeader() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
-  const { navigate } = useRoutex((state) => state.actions);
 
   return (
     <header className={cx("HomeHeader")}>
@@ -30,7 +28,7 @@ export default function HomeHeader() {
           <button
             className={styles.login}
             onClick={() => {
-              navigate("login");
+              navigate("login", "slideNext");
             }}
           >
             로그인

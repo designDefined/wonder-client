@@ -3,11 +3,9 @@ import kakao_icon from "../components/assets/kakao_icon.png";
 import naver_icon from "../components/assets/naver_icon.png";
 import google_icon from "../components/assets/google_icon.png";
 import back_icon from "../components/assets/arrow_back.svg";
-import { baseURL } from "../../../tools/utils/api";
-import { useRoutex } from "../../../libs/Routex/hooks/useRoutex";
+import { navigate } from "../../../libs/Codex";
 
 export default function Login() {
-  const { navigate } = useRoutex((state) => state.actions);
   return (
     <main className={styles.Login}>
       <div className={styles.header}>
@@ -15,7 +13,7 @@ export default function Login() {
         <button
           className={styles.backButton}
           onClick={() => {
-            navigate("", true);
+            navigate("/", "slidePrevious");
           }}
         >
           <img src={back_icon} />
