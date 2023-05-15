@@ -4,7 +4,7 @@ import TextAreaWithLabel from "../WithLabel/TextAreaWithLabel";
 import {
   updateNewWonderStore,
   useNewWonderStore,
-} from "../../../../../store/new/useNewWonderStore";
+} from "../../../../store/new/useNewWonderStore";
 
 export default function ContentSection() {
   const title = useNewWonderStore((state) => state.title);

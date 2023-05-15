@@ -1,0 +1,18 @@
+@use "../../../../styles/position";
+@use "../../../../styles/inside";
+@use "../../../../styles/boxStyle";
+@use "../../../../styles/fontStyle";
+@use "../../../../styles/colors/defaultTheme";
+
+@mixin sectionWithPadding {
+  padding: 0 20px;
+}
+
+.ContentSection {
+  @include sectionWithPadding;
+  margin-top: 35px;
+}
+
+.divider {
+  border-bottom: 1px solid defaultTheme.$gray;
+}

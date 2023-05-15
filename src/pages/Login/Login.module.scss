@@ -1,6 +1,6 @@
-@use "src/styles/reset";
-@use "src/styles/fontStyle";
-@use "src/styles/colors/defaultTheme";
+@use "../../styles/reset";
+@use "../../styles/fontStyle";
+@use "../../styles/colors/defaultTheme";
 
 $kakao-color: #ffeb3b;
 $naver-color: #71c75c;

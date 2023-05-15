@@ -1,6 +1,6 @@
 import styles from "./Home.module.scss";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import HomeHeader from "../components/HomeHeader/HomeHeader";
+import { useMyAccountStore } from "../../store/account/useMyAccountStore";
+import HomeHeader from "../../components/Home/HomeHeader/HomeHeader";
 
 export default function Home() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);

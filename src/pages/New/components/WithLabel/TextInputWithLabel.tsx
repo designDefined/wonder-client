@@ -1,5 +1,5 @@
 import styles from "./WithLabel.module.scss";
-import TextInput from "../../../../../components/inputs/TextInput/TextInput";
+import TextInput from "../../../../components/inputs/TextInput/TextInput";
 import { ChangeEventHandler } from "react";
 
 type TextInputhWithLabelProps = {

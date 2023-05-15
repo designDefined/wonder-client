@@ -1,0 +1,9 @@
+@use "../../styles/position";
+@use "../../styles/inside";
+@use "../../styles/boxStyle";
+@use "../../styles/fontStyle";
+@use "../../styles/colors/defaultTheme";
+
+.New {
+  @include position.stretchWidth;
+}

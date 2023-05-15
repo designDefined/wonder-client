@@ -1,8 +1,8 @@
 import styles from "./Dev.module.scss";
-import TextInput from "../../../components/inputs/TextInput/TextInput";
+import TextInput from "../../components/inputs/TextInput/TextInput";
 import { useState } from "react";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import { useSampleAction, useSampleStore } from "../../../tools/utils/store";
+import { useMyAccountStore } from "../../store/account/useMyAccountStore";
+import { useSampleAction, useSampleStore } from "../../tools/utils/store";
 
 export default function Dev() {
   const data = useSampleStore((state) => state.data);
