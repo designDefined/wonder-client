@@ -1,15 +1,25 @@
-@use "./src/styles/position";
-@use "./src/styles/inside";
-@use "./src/styles/boxStyle";
-@use "./src/styles/fontStyle";
-@use "./src/styles/colors/defaultTheme";
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
 
 .TextInput {
-  @include position.stretchWidth;
-  @include inside.textInput;
-  @include boxStyle.textInput;
-  @include fontStyle.textInput;
-  &::placeholder {
-    @include fontStyle.textInput_placeHolder;
+  @include textStyle.description;
+  width: 100%;
+
+  .title {
+    @include textStyle.subtitle;
+  }
+  .input {
+    padding: 10px;
+    border: 1px solid color.$gray;
+    border-radius: 5px;
+    font: inherit;
+    &::placeholder {
+      font: inherit;
+      color: color.$gray;
+    }
+  }
+  .error {
+    font: inherit;
+    color: color.$red;
   }
 }

@@ -1,11 +1,5 @@
-@use "../../../../styles/position";
-@use "../../../../styles/inside";
-@use "../../../../styles/boxStyle";
-@use "../../../../styles/fontStyle";
-@use "../../../../styles/colors/defaultTheme";
-
 .label {
-  @include fontStyle.label;
+  //  @include fontStyle.label;
   margin-top: 22px;
   margin-bottom: 6px;
 }

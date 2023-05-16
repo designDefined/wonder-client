@@ -4,25 +4,31 @@ import { ChangeEventHandler } from "react";
 type TextInputProps = {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  title?: string;
   placeHolder?: string;
-  additionalClassName?: string;
+  className?: string;
+  error?: string;
 };
 
 export default function TextInput({
   value,
   onChange,
+  title,
   placeHolder,
-  additionalClassName,
+  className,
+  error,
 }: TextInputProps) {
   return (
-    <input
-      type="text"
-      className={`${styles.TextInput} ${
-        additionalClassName ?? "noAdditionalClass"
-      }`}
-      value={value}
-      onChange={onChange}
-      placeholder={placeHolder ?? ""}
-    />
+    <div className={styles.TextInput}>
+      <div className={styles.title}>{title ?? ""}</div>
+      <input
+        type="text"
+        className={`${styles.input} ${className ?? "noAdditionalClass"}`}
+        value={value}
+        onChange={onChange}
+        placeholder={placeHolder ?? ""}
+      />
+      <div className={styles.error}>{error ?? ""}</div>
+    </div>
   );
 }

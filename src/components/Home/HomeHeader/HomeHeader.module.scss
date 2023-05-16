@@ -1,7 +1,4 @@
 @use "../../../styles/reset";
-@use "../../../styles/fontStyle";
-@use "../../../styles/colors/defaultTheme";
-
 .HomeHeader {
   position: relative;
   width: 100%;
@@ -29,8 +26,8 @@
 
 .login {
   @include reset.button;
-  @include fontStyle.label;
-  color: defaultTheme.$key-purple;
+  //  @include fontStyle.label;
+  //  color: defaultTheme.$key-purple;
   margin-left: 27px;
   width: 48px;
 }
@@ -39,7 +36,7 @@
   margin-left: 15px;
 }
 .LoginHeader {
-  @include fontStyle.label;
+  //  @include fontStyle.label;
   position: absolute;
   left: 100%;
   width: 100%;

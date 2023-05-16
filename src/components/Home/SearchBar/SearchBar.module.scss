@@ -1,6 +1,5 @@
 @use "../../../styles/reset";
-@use "../../../styles/fontStyle";
-@use "../../../styles/colors/defaultTheme";
+@use "../../../styles/color";
 
 .SearchBarWrapper {
   position: relative;
@@ -22,7 +21,7 @@
   position: relative;
   width: 90%;
   height: 70%;
-  background-color: defaultTheme.$gray;
+  background-color: color.$gray;
   border-radius: 16px;
   animation: 1s ease reveal;
   padding-left: 40px;
