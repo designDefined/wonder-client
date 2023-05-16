@@ -1,11 +1,9 @@
 import styles from "./HomeHeader.module.scss";
-import shuffleIcon from "../../assets/shuffle.svg";
-
+import shuffleIcon from "../../../assets/icon/shuffle.svg";
 import HeaderLogo from "../../logos/HeaderLogo/HeaderLogo";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import classNames from "classnames/bind";
 import SearchBar from "../SearchBar/SearchBar";
-
 import Profile from "../Profile/Profile";
 import { navigate } from "../../../libs/Codex";
 

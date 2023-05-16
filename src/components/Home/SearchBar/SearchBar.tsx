@@ -1,5 +1,5 @@
 import styles from "./SearchBar.module.scss";
-import searchIcon from "../../assets/search.svg";
+import searchIcon from "../../../assets/icon/search.svg";
 import classNames from "classnames/bind";
 import { useState } from "react";
 

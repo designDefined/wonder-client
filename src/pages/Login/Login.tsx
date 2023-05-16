@@ -1,8 +1,8 @@
 import styles from "./Login.module.scss";
-import kakao_icon from "../../components/assets/kakao_icon.png";
-import naver_icon from "../../components/assets/naver_icon.png";
-import google_icon from "../../components/assets/google_icon.png";
-import back_icon from "../../components/assets/arrow_back.svg";
+import kakao_icon from "../../assets/icon/kakao_icon.png";
+import naver_icon from "../../assets/icon/naver_icon.png";
+import google_icon from "../../assets/icon/google_icon.png";
+import back_icon from "../../assets/icon/arrow_back.svg";
 import { navigate } from "../../libs/Codex";
 
 export default function Login() {
