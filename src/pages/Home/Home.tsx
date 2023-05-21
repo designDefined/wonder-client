@@ -10,6 +10,7 @@ import { homeBanner } from "../../entity/etc/homeBanner";
 import { WonderCard } from "../../entity/wonder/card";
 import creatorGuide from "../../assets/illustration/creator_guide.png";
 import instagram from "../../assets/illustration/instagram.png";
+import { useEffect } from "react";
 
 const sampleBanners: homeBanner[] = [
   { id: 0, alt: "alt", thumbnail: sampleBanner },
@@ -46,8 +47,19 @@ const sampleCards: WonderCard[] = [
   },
 ];
 
+const test = async () => {
+  const res = await fetch("/ping");
+  const json = await res.json();
+  console.log(json);
+};
+
 export default function Home() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
+
+  useEffect(() => {
+    test().then(() => {});
+  }, []);
+
   return (
     <main className={styles.Home}>
       <HomeHeader />
