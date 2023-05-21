@@ -7,6 +7,7 @@ import New from "./pages/New/New";
 import Login from "./pages/Login/Login";
 import { Codex } from "./libs/Codex/types";
 import CodexProvider from "./libs/Codex/components/Provider/CodexProvider";
+import initMocks from "./mocks";
 
 const codex: Codex = {
   _index: <Home />,
@@ -15,6 +16,10 @@ const codex: Codex = {
   view: { _index: <div>view</div>, _params: ["wonder_id"] },
   _error: <div>error page</div>,
 };
+
+if (process.env.NODE_ENV === "development") {
+  await initMocks();
+}
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <CodexProvider provider={codex} />,
