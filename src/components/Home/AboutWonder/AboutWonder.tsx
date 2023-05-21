@@ -8,6 +8,7 @@ export default function AboutWonder() {
       <div className={styles.imageWrapper}>
         <img src={sample} />
         <div>원더 장점 어필 타임</div>
+        <button className={styles.toRegister}>회원가입 하러 가기</button>
       </div>
     </section>
   );

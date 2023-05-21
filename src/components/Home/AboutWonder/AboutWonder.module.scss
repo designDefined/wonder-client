@@ -1,7 +1,9 @@
 @use "./src/styles/textStyle";
+@use "./src/styles/componentStyle";
+
 .AboutWonder {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 32px;
   padding: 0 20px;
   .title {
     @include textStyle.title;
@@ -16,5 +18,11 @@
     line-height: 22px;
   }
   .toRegister {
+    @include componentStyle.buttonDefault;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 40px;
+    margin-bottom: 29px;
   }
 }
