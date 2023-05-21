@@ -27,7 +27,7 @@ export const initialWonder: Wonder = {
   title: "",
   tags: [],
   creator: "",
-  thumgbnail: "",
+  thumbnail: "",
   summary: "",
   content: "",
   schedule: "",

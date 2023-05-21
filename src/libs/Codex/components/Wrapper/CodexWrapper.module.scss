@@ -67,3 +67,12 @@
     transform: translateX(-100%);
   }
 }
+
+@media (min-width: 500px) {
+  .CodexWrapper {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
+}

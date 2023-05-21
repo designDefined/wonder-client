@@ -15,3 +15,28 @@
   align-items: center;
   justify-content: center;
 }
+
+$figma-vw: 393px;
+$min-vw: 370px;
+$max-vw: 500px;
+
+@function pxToVw($input-px) {
+  @return $input-px / $figma-vw * 100vw;
+}
+
+@function pxToMinVw($input-px) {
+  @return $input-px / $figma-vw * $min-vw;
+}
+
+@function pxToMaxVw($input-px) {
+  @return $input-px / $figma-vw * $max-vw;
+}
+
+@mixin responsivePx($width, $height) {
+  width: pxToVw($width);
+  min-width: pxToMinVw($width);
+  max-width: pxToMaxVw($width);
+  height: pxToVw($height);
+  min-height: pxToMinVw($height);
+  max-height: pxToMaxVw($height);
+}

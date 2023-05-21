@@ -1,7 +1,9 @@
 @use "./src/styles/textStyle";
 @use "./src/styles/componentStyle";
+@use "./src/styles/utility";
 
 .RecentEvent {
+  width: 100%;
   margin-top: 44px;
   margin-bottom: 78px;
 
@@ -20,9 +22,8 @@
     padding: 0 20px;
 
     .event {
+      @include utility.responsivePx(300px, 424px);
       position: relative;
-      width: 300px;
-      height: 424px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;

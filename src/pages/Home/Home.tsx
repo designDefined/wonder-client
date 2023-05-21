@@ -8,6 +8,8 @@ import sampleBanner from "../../assets/sample/promotion_banner_sample.png";
 import sampleThumbnail from "../../assets/sample/poster_sample.png";
 import { homeBanner } from "../../entity/etc/homeBanner";
 import { WonderCard } from "../../entity/wonder/card";
+import creatorGuide from "../../assets/illustration/creator_guide.png";
+import instagram from "../../assets/illustration/instagram.png";
 
 const sampleBanners: homeBanner[] = [
   { id: 0, alt: "alt", thumbnail: sampleBanner },
@@ -52,6 +54,18 @@ export default function Home() {
       <PromotionBanner bannerData={sampleBanners} />
       {!isLoggedIn && <AboutWonder />}
       <RecentEvent eventData={sampleCards} />
+      <div className={styles.banners}>
+        <a className={styles.miniBanner}>
+          <img className={styles.background} src={instagram} />
+          원더 인스타그램 <br />
+          보러 가기
+        </a>
+        <a className={styles.miniBanner}>
+          <img className={styles.background} src={creatorGuide} />
+          원더 창작자 가이드 <br />
+          보러 가기
+        </a>
+      </div>
     </main>
   );
 }

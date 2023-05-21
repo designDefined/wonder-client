@@ -1,4 +1,35 @@
+@use "./src/styles/textStyle";
+
 .Home {
   position: relative;
   width: 100%;
+  max-width: 500px;
+  min-width: 370px;
+}
+.banners {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  .miniBanner {
+    @include textStyle.default;
+    position: relative;
+    height: 68px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      border-radius: 5px;
+    }
+  }
 }
