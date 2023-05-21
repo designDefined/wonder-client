@@ -1,32 +1,24 @@
 import styles from "./PromotionBanner.module.scss";
-import sampleBanner from "../../../assets/sample/promotion_banner_sample.png";
+import { homeBanner } from "../../../entity/etc/homeBanner";
 
-export default function PromotionBanner() {
+type Props = {
+  bannerData: homeBanner[];
+};
+
+export default function PromotionBanner({ bannerData }: Props) {
   return (
     <section className={styles.PromotionBanner}>
       <ul className={styles.bannerList}>
-        <li className={styles.banner}>
-          <img src={sampleBanner} alt="sample banner" />
-        </li>
-        <li className={styles.banner}>
-          <img src={sampleBanner} alt="sample banner" />
-        </li>
-        <li className={styles.banner}>
-          <img src={sampleBanner} alt="sample banner" />
-        </li>
-        <li className={styles.banner}>
-          <img src={sampleBanner} alt="sample banner" />
-        </li>
-        <li className={styles.banner}>
-          <img src={sampleBanner} alt="sample banner" />
-        </li>
+        {bannerData.map(({ alt, thumbnail }, index) => (
+          <li key={index} className={styles.banner}>
+            <img src={thumbnail} alt={alt} />
+          </li>
+        ))}
       </ul>
       <ul className={styles.navigator}>
-        <li className={styles.navigatorButton} />
-        <li className={styles.navigatorButton} />
-        <li className={styles.navigatorButton} />
-        <li className={styles.navigatorButton} />
-        <li className={styles.navigatorButton} />
+        {bannerData.map((value, index) => (
+          <li key={index} className={styles.navigatorButton} />
+        ))}
       </ul>
     </section>
   );

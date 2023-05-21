@@ -4,15 +4,54 @@ import HomeHeader from "../../components/Home/HomeHeader/HomeHeader";
 import PromotionBanner from "../../components/Home/PromotionBanner/PromotionBanner";
 import AboutWonder from "../../components/Home/AboutWonder/AboutWonder";
 import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
+import sampleBanner from "../../assets/sample/promotion_banner_sample.png";
+import sampleThumbnail from "../../assets/sample/poster_sample.png";
+import { homeBanner } from "../../entity/etc/homeBanner";
+import { WonderCard } from "../../entity/wonder/card";
+
+const sampleBanners: homeBanner[] = [
+  { id: 0, alt: "alt", thumbnail: sampleBanner },
+  { id: 1, alt: "alt", thumbnail: sampleBanner },
+  { id: 2, alt: "alt", thumbnail: sampleBanner },
+  { id: 3, alt: "alt", thumbnail: sampleBanner },
+  { id: 4, alt: "alt", thumbnail: sampleBanner },
+];
+
+const sampleCards: WonderCard[] = [
+  {
+    id: 0,
+    creator: "정보문화학",
+    title: "new_ISC = ITCT(“20th”)",
+    thumbnail: sampleThumbnail,
+  },
+  {
+    id: 1,
+    creator: "정보문화학",
+    title: "new_ISC = ITCT(“20th”)",
+    thumbnail: sampleThumbnail,
+  },
+  {
+    id: 2,
+    creator: "정보문화학",
+    title: "new_ISC = ITCT(“20th”)",
+    thumbnail: sampleThumbnail,
+  },
+  {
+    id: 3,
+    creator: "정보문화학",
+    title: "new_ISC = ITCT(“20th”)",
+    thumbnail: sampleThumbnail,
+  },
+];
 
 export default function Home() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
   return (
     <main className={styles.Home}>
       <HomeHeader />
-      <PromotionBanner />
+      <PromotionBanner bannerData={sampleBanners} />
       {!isLoggedIn && <AboutWonder />}
-      <RecentEvent />
+      <RecentEvent eventData={sampleCards} />
     </main>
   );
 }
