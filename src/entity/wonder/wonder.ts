@@ -23,17 +23,3 @@ export type Wonder = {
   reservationProcess: WonderReservationProcess;
   dateInformation: DateInformation;
 };
-/*
-export const initialWonder: Wonder = {
-  id: null,
-  title: "",
-  tags: [],
-  creator: "",
-  thumbnail: "",
-  summary: "",
-  content: "",
-  schedule: "",
-  location: "",
-  reservationProcess: null,
-};
-*/
