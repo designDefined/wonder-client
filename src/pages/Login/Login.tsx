@@ -4,6 +4,7 @@ import naver_icon from "../../assets/icon/naver_icon.png";
 import google_icon from "../../assets/icon/google_icon.png";
 import back_icon from "../../assets/icon/arrow_back.svg";
 import { navigate } from "../../libs/Codex";
+import api from "../../api";
 
 export default function Login() {
   return (
@@ -19,14 +20,20 @@ export default function Login() {
           <img src={back_icon} />
         </button>
       </div>
-
       <div className={styles.illustration}>
         일러스트 이미지 하나 들어감...
         <br />
         비워주세엿
       </div>
       <div className={styles.loginButtons}>
-        <button className={styles.kakaoLogin}>
+        <button
+          className={styles.kakaoLogin}
+          onClick={() => {
+            api
+              .post("/login", { code: "test" })
+              .then((res) => console.log(res));
+          }}
+        >
           <img src={kakao_icon} />
           <div>카카오 계정으로 로그인하기</div>
         </button>

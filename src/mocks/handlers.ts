@@ -1,7 +1,8 @@
 import { rest, RestHandler } from "msw";
+import userHandler from "./handlers/userHandler";
+import { pass } from "./handlers/utility";
 
 export const handlers: RestHandler[] = [
-  rest.get("/ping", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ success: true }));
-  }),
+  ...userHandler,
+  rest.get("/ping", pass),
 ];

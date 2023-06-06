@@ -6,11 +6,10 @@ import AboutWonder from "../../components/Home/AboutWonder/AboutWonder";
 import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
 import sampleBanner from "../../assets/sample/promotion_banner_sample.png";
 import sampleThumbnail from "../../assets/sample/poster_sample.png";
-import { homeBanner } from "../../entity/etc/homeBanner";
-import { WonderCard } from "../../entity/wonder/card";
 import creatorGuide from "../../assets/illustration/creator_guide.png";
 import instagram from "../../assets/illustration/instagram.png";
 import { useEffect } from "react";
+import api from "../../api";
 
 const sampleBanners: homeBanner[] = [
   { id: 0, alt: "alt", thumbnail: sampleBanner },
@@ -47,17 +46,11 @@ const sampleCards: WonderCard[] = [
   },
 ];
 
-const test = async () => {
-  const res = await fetch("/ping");
-  const json = await res.json();
-  console.log(json);
-};
-
 export default function Home() {
   const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
 
   useEffect(() => {
-    test().then(() => {});
+    api.get("/ping").then((res) => console.log(res));
   }, []);
 
   return (

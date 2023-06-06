@@ -3,7 +3,7 @@ import { DateInformation, StoredImage } from "../utility/utility";
 
 export type WonderId = number | null;
 export type WonderTag = string;
-export type WonderThumbnail = StoredImage;
+export type WonderThumbnail = StoredImage | null;
 export type WonderSummary = string;
 export type WonderContent = string;
 export type WonderSchedule = string;
