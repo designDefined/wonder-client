@@ -38,6 +38,14 @@ type Send = (
 ) => (result: Result) => MSWResponse;
 
 const parseRequest: ParseRequest = async (req) => {
+  if (req.method === "GET") {
+    return Promise.resolve({
+      method: req.method,
+      params: req.params,
+      body: null,
+      isAuthorized: false,
+    });
+  }
   const body = await req.json();
   return Promise.resolve({
     method: req.method,

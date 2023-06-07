@@ -1,5 +1,5 @@
 import { User } from "../../entity/user/user";
-import { find, propEq } from "ramda";
+import { findByProperty, FindByProperty } from "./DBManipulator";
 
 const userDB: User[] = [
   {
@@ -22,14 +22,5 @@ const userDB: User[] = [
 
 export const findSampleUser = () => Promise.resolve(userDB[0]);
 
-export const findMockUserInDB = async (id: string) =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const user = find(propEq(id, "id"))(userDB);
-      if (user) {
-        resolve(user);
-      } else {
-        reject(new Error("User not found"));
-      }
-    }, 100);
-  });
+export const findMockUserInDB: FindByProperty<User, "id"> =
+  findByProperty("id")(userDB);

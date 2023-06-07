@@ -1,29 +1,68 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { range } from "ramda";
 
-export type Async<T> =
-  | { _status: "Idle"; value: null }
-  | { _status: "Fail"; value: null }
-  | { _status: "Success"; value: T };
+export type Async<Success, Error> =
+  | { _status: "Idle"; _value: null }
+  | { _status: "Fail"; _value: Error }
+  | { _status: "Success"; _value: Success };
 
-export const useFetch = <T>(
-  f: Promise<T>,
-  fMap: (data: T) => any = (data) => data,
-): Async<ReturnType<typeof fMap>> => {
-  const [get, set] = useState<Async<ReturnType<typeof fMap>>>({
+export const useFetch = <Success, Error>(f: Promise<Success | Error>) => {
+  const [get, set] = useState<Async<Success, Error>>({
     _status: "Idle",
-    value: null,
+    _value: null,
   });
 
   useEffect(() => {
     f.then(
       (res) => {
-        set({ _status: "Success", value: fMap(res) });
+        const data = res as Success;
+        set({ _status: "Success", _value: data });
       },
-      () => {
-        set({ _status: "Fail", value: null });
+      (err) => {
+        const data = err as Error;
+        set({ _status: "Fail", _value: data });
       },
     );
   }, []);
 
-  return get;
+  const map = (mapper: (data: Success) => ReactNode, altComponent: ReactNode) =>
+    get._status === "Success" ? mapper(get._value) : altComponent;
+
+  return {
+    read: () => get,
+    map,
+  };
+};
+
+export const useFetches = <Success, Error>(
+  f: Promise<Success | Error>,
+  config: { amount: number } = { amount: 3 },
+) => {
+  const [get, set] = useState<Async<Success[], Error>>({
+    _status: "Idle",
+    _value: null,
+  });
+
+  useEffect(() => {
+    f.then(
+      (res) => {
+        const data = res as Success[];
+        set({ _status: "Success", _value: data });
+      },
+      (err) => {
+        const data = err as Error;
+        set({ _status: "Fail", _value: data });
+      },
+    );
+  }, []);
+
+  const map = (mapper: (data: Success) => ReactNode, altComponent: ReactNode) =>
+    get._status === "Success"
+      ? get._value.map(mapper)
+      : range(0, config.amount).map(() => altComponent);
+
+  return {
+    read: () => get,
+    map,
+  };
 };

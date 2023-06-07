@@ -10,3 +10,8 @@ export type Creator = {
   dateInformation: DateInformation;
   createdWonder: Wonder[];
 };
+
+export interface CreatorData extends Omit<Creator, "owner" | "createdWonder"> {
+  owner: User["id"];
+  createdWonder: Wonder["id"][];
+}

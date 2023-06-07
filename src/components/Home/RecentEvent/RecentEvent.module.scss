@@ -5,7 +5,7 @@
 .RecentEvent {
   width: 100%;
   margin-top: 44px;
-  margin-bottom: 78px;
+  margin-bottom: 58px;
 
   .title {
     @include textStyle.title;
@@ -13,16 +13,26 @@
     padding: 0 20px;
   }
   .eventList {
-    margin-top: 31px;
+    margin-top: 11px;
     width: 100%;
     display: flex;
     column-gap: 14px;
     scroll-snap-type: x mandatory;
     overflow-x: auto;
-    padding: 0 20px;
+    padding: 20px 20px;
+
+    .noEvent {
+      @include utility.responsivePx(300px, 424px);
+      background: #797979;
+      border-radius: 10px;
+      filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+    }
 
     .event {
       @include utility.responsivePx(300px, 424px);
+      width: utility.pxToVw(300px);
       position: relative;
       display: flex;
       flex-direction: column;

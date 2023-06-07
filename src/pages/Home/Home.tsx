@@ -11,38 +11,31 @@ import instagram from "../../assets/illustration/instagram.png";
 import { useEffect } from "react";
 import api from "../../api";
 
-const sampleBanners: homeBanner[] = [
-  { id: 0, alt: "alt", thumbnail: sampleBanner },
-  { id: 1, alt: "alt", thumbnail: sampleBanner },
-  { id: 2, alt: "alt", thumbnail: sampleBanner },
-  { id: 3, alt: "alt", thumbnail: sampleBanner },
-  { id: 4, alt: "alt", thumbnail: sampleBanner },
-];
-
-const sampleCards: WonderCard[] = [
+const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
   {
     id: 0,
-    creator: "정보문화학",
-    title: "new_ISC = ITCT(“20th”)",
-    thumbnail: sampleThumbnail,
+    alt: "alt",
+    thumbnail: "/src/assets/sample/promotion_banner_sample.png",
   },
   {
     id: 1,
-    creator: "정보문화학",
-    title: "new_ISC = ITCT(“20th”)",
-    thumbnail: sampleThumbnail,
+    alt: "alt",
+    thumbnail: "/src/assets/sample/promotion_banner_sample.png",
   },
   {
     id: 2,
-    creator: "정보문화학",
-    title: "new_ISC = ITCT(“20th”)",
-    thumbnail: sampleThumbnail,
+    alt: "alt",
+    thumbnail: "/src/assets/sample/promotion_banner_sample.png",
   },
   {
     id: 3,
-    creator: "정보문화학",
-    title: "new_ISC = ITCT(“20th”)",
-    thumbnail: sampleThumbnail,
+    alt: "alt",
+    thumbnail: "/src/assets/sample/promotion_banner_sample.png",
+  },
+  {
+    id: 4,
+    alt: "alt",
+    thumbnail: "/src/assets/sample/promotion_banner_sample.png",
   },
 ];
 
@@ -58,7 +51,7 @@ export default function Home() {
       <HomeHeader />
       <PromotionBanner bannerData={sampleBanners} />
       {!isLoggedIn && <AboutWonder />}
-      <RecentEvent eventData={sampleCards} />
+      <RecentEvent />
       <div className={styles.banners}>
         <a className={styles.miniBanner}>
           <img className={styles.background} src={instagram} />

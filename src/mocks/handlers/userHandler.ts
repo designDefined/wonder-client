@@ -6,7 +6,7 @@ import { justValid, validIfRequestIs, respond, respondIf } from "./utility";
 const login: RestHandler = rest.post(
   "/login",
   respondIf(validIfRequestIs({ method: "POST", body: { code: "test" } }))(
-    (req) => findMockUserInDB("test"),
+    (req) => findMockUserInDB(req.body.code),
   ),
 );
 
