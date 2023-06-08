@@ -6,14 +6,17 @@ export type Async<Success, Error> =
   | { _status: "Fail"; _value: Error }
   | { _status: "Success"; _value: Success };
 
-export const useFetch = <Success, Error>(f: Promise<Success | Error>) => {
+export const useFetch = <Success, Error>(
+  fetchFunction: Promise<Success | Error>,
+  deps: any[] = [],
+) => {
   const [get, set] = useState<Async<Success, Error>>({
     _status: "Idle",
     _value: null,
   });
 
   useEffect(() => {
-    f.then(
+    fetchFunction.then(
       (res) => {
         const data = res as Success;
         set({ _status: "Success", _value: data });
@@ -23,7 +26,7 @@ export const useFetch = <Success, Error>(f: Promise<Success | Error>) => {
         set({ _status: "Fail", _value: data });
       },
     );
-  }, []);
+  }, deps);
 
   const map = (mapper: (data: Success) => ReactNode, altComponent: ReactNode) =>
     get._status === "Success" ? mapper(get._value) : altComponent;
@@ -35,7 +38,8 @@ export const useFetch = <Success, Error>(f: Promise<Success | Error>) => {
 };
 
 export const useFetches = <Success, Error>(
-  f: Promise<Success | Error>,
+  fetchFunction: Promise<Success | Error>,
+  deps: any[] = [],
   config: { amount: number } = { amount: 3 },
 ) => {
   const [get, set] = useState<Async<Success[], Error>>({
@@ -44,7 +48,7 @@ export const useFetches = <Success, Error>(
   });
 
   useEffect(() => {
-    f.then(
+    fetchFunction.then(
       (res) => {
         const data = res as Success[];
         set({ _status: "Success", _value: data });
@@ -54,7 +58,7 @@ export const useFetches = <Success, Error>(
         set({ _status: "Fail", _value: data });
       },
     );
-  }, []);
+  }, deps);
 
   const map = (mapper: (data: Success) => ReactNode, altComponent: ReactNode) =>
     get._status === "Success"
