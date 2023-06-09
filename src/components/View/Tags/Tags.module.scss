@@ -1,0 +1,11 @@
+@use "./src/styles/reset";
+.Tags {
+  @include reset.uol;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-top: 17px;
+  padding-bottom: 12px;
+}

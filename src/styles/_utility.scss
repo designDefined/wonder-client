@@ -40,3 +40,7 @@ $max-vw: 500px;
   min-height: pxToMinVw($height);
   max-height: pxToMaxVw($height);
 }
+
+@mixin loading {
+  background: red;
+}

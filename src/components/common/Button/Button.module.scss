@@ -1,0 +1,34 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/reset";
+
+Button {
+  @include reset.button;
+  border-radius: 5px;
+
+  &.big {
+    @include textStyle.subtitle;
+    width: 100%;
+    padding: 12px;
+  }
+  &.small {
+    @include textStyle.default;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 22px;
+    padding: 5px 10px;
+  }
+  &.default {
+    background: color.$main-blue;
+    color: color.$white;
+  }
+  &.white {
+    background: color.$white;
+    color: color.$black;
+    border: 1px solid color.$gray;
+  }
+  &.gray {
+    background: color.$gray;
+    color: color.$black;
+  }
+}

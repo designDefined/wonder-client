@@ -1,6 +1,6 @@
 import styles from "./Home.module.scss";
 import { useMyAccountStore } from "../../store/account/useMyAccountStore";
-import HomeHeader from "../../components/Home/HomeHeader/HomeHeader";
+import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
 import PromotionBanner from "../../components/Home/PromotionBanner/PromotionBanner";
 import AboutWonder from "../../components/Home/AboutWonder/AboutWonder";
 import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <main className={styles.Home}>
-      <HomeHeader />
+      <DefaultHeader />
       <PromotionBanner bannerData={sampleBanners} />
       {!isLoggedIn && <AboutWonder />}
       <RecentEvent />

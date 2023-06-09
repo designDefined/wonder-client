@@ -1,0 +1,8 @@
+@use "../../../styles/textStyle";
+@use "../../../styles/color";
+
+.Period {
+  @include textStyle.subtitle;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color.$gray;
+}

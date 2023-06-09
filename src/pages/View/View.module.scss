@@ -1,0 +1,12 @@
+.View {
+  position: relative;
+  width: 100%;
+  .main {
+    position: relative;
+    padding: 0 14px;
+    width: 100%;
+    .reserveButton {
+      margin: 13px 0;
+    }
+  }
+}

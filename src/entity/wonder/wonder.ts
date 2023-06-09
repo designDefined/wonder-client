@@ -6,7 +6,10 @@ export type WonderTag = { isPrimary: boolean; value: string };
 export type WonderThumbnail = StoredImage | null;
 export type WonderSummary = string;
 export type WonderContent = string;
-export type WonderSchedule = { date: Date; time: [number, number][] }[];
+export type WonderSchedule = {
+  date: [number, number, number];
+  time: [number, number][];
+};
 export type WonderLocation = string;
 export type WonderReservationProcess = null;
 
@@ -18,7 +21,7 @@ export type Wonder = {
   thumbnail: WonderThumbnail;
   summary: WonderSummary;
   content: WonderContent;
-  schedule: WonderSchedule;
+  schedule: WonderSchedule[];
   location: WonderLocation;
   reservationProcess: WonderReservationProcess;
   dateInformation: DateInformation;
