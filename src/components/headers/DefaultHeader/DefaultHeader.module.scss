@@ -1,4 +1,6 @@
 @use "../../../styles/reset";
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
 .DefaultHeader {
   position: relative;
   width: 100%;
@@ -25,9 +27,12 @@
 }
 
 .login {
+  @include textStyle.default;
   @include reset.button;
-  //  @include fontStyle.label;
-  //  color: defaultTheme.$key-purple;
+  color: color.$main-blue;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
   margin-left: 27px;
   width: 48px;
 }

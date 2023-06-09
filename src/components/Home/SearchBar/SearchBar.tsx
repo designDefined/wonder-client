@@ -13,7 +13,7 @@ export default function SearchBar() {
       <button
         className={styles.searchButton}
         onClick={() => {
-          if (!isSearching) setIsSearching(true);
+          setIsSearching(!isSearching);
         }}
       >
         <img src={searchIcon} />

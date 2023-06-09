@@ -13,7 +13,7 @@ import {
   slice,
 } from "ramda";
 
-const thumbnailSample = ["/src/assets/sample/poster_sample.png"];
+const thumbnailSample = ["/src/assets/sample/wonder_poster_sample.png"];
 
 const createSampleWonder = (id: number): Wonder => ({
   id,

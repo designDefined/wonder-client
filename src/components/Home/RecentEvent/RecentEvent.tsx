@@ -17,11 +17,14 @@ export default function RecentEvent() {
               className={styles.event}
               key={id}
               onClick={() => {
-                navigate(`view/${id}`);
+                navigate(`view/${id}`, "slideNext");
               }}
             >
               <img className={styles.thumbnail} src={thumbnail?.src ?? ""} />
-              <div className={styles.eventCreator}>{creator.name}</div>
+              <div className={styles.eventCreator}>
+                <img className={styles.thumb} src={creator.profileImage.src} />
+                <div className={styles.name}>{creator.name}</div>
+              </div>
               <div className={styles.eventTitle}>{title}</div>
             </li>
           ),

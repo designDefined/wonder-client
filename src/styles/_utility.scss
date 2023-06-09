@@ -1,3 +1,5 @@
+@use "./color";
+
 @mixin stretchWidth() {
   position: relative;
   width: 100%;
@@ -42,5 +44,15 @@ $max-vw: 500px;
 }
 
 @mixin loading {
-  background: red;
+  background-color: color.$gray;
+  animation: grayBlink 1s ease-in-out infinite alternate;
+}
+
+@keyframes grayBlink {
+  0% {
+    background-color: color.$gray;
+  }
+  100% {
+    background-color: #a4a4a4;
+  }
 }

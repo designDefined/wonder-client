@@ -6,7 +6,10 @@ export const creatorDB: CreatorData[] = [
     id: 0,
     owner: "isc",
     name: "정보문화학",
-    profileImage: { src: "", altText: "정보문화학 아이콘" },
+    profileImage: {
+      src: "/src/assets/sample/creator_thumbnail_sample_1.png",
+      altText: "정보문화학 아이콘",
+    },
     dateInformation: {
       createdAt: new Date("2022-11-01"),
       lastModifiedAt: new Date("2022-11-01"),

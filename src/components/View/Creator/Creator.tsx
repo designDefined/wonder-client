@@ -18,8 +18,11 @@ export default function Creator({
         </>
       ) : (
         <>
-          <div className={styles.thumb} />
-          <div className={styles.name}>{creator._value.name}</div>
+          <img
+            className={styles.thumb}
+            src={maybe.read(creator).profileImage.src}
+          />
+          <div className={styles.name}>{maybe.read(creator).name}</div>
           <Button
             label={"구독하기 +"}
             attribute={{ size: "small", theme: "gray" }}
