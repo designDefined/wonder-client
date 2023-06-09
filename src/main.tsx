@@ -8,12 +8,13 @@ import Login from "./pages/Login/Login";
 import { Codex } from "./libs/Codex/types";
 import CodexProvider from "./libs/Codex/components/Provider/CodexProvider";
 import initMocks from "./mocks";
+import View from "./pages/View/View";
 
 const codex: Codex = {
   _index: <Home />,
   new: <New />,
   login: <Login />,
-  view: { _index: <div>view</div>, _params: ["wonder_id"] },
+  view: { _index: <View />, _params: ["wonder_id"] },
   _error: <div>error page</div>,
 };
 

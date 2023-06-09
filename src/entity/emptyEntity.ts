@@ -1,5 +1,6 @@
 import { Wonder } from "./wonder/wonder";
 import { Creator } from "./creator/creator";
+import { KeysOfUnion } from "ramda";
 
 export const emptyWonder = (creator: Creator, date: Date): Wonder => ({
   id: null,
@@ -17,3 +18,17 @@ export const emptyWonder = (creator: Creator, date: Date): Wonder => ({
     lastModifiedAt: date,
   },
 });
+
+export const keysOfWonder: KeysOfUnion<Wonder>[] = [
+  "id",
+  "title",
+  "tags",
+  "creator",
+  "thumbnail",
+  "summary",
+  "content",
+  "schedule",
+  "location",
+  "reservationProcess",
+  "dateInformation",
+];

@@ -1,9 +1,9 @@
-const get = async (url: string): Promise<any> =>
-  fetch(url, { method: "GET", mode: "cors", cache: "no-cache" }).then((res) =>
-    res.json(),
+const get = async <T>(url: string): Promise<T> =>
+  fetch(url, { method: "GET", mode: "cors", cache: "no-cache" }).then(
+    (res) => res.json() as T,
   );
 
-const post = async (url: string, data: object = {}): Promise<any> =>
+const post = async <T>(url: string, data: object = {}): Promise<T> =>
   fetch(url, {
     method: "POST",
     mode: "cors",
@@ -12,7 +12,7 @@ const post = async (url: string, data: object = {}): Promise<any> =>
       ContentType: "application/json",
     },
     body: JSON.stringify(data),
-  }).then((res) => res.json());
+  }).then((res) => res.json() as T);
 
 const api = { get, post };
 export default api;

@@ -4,8 +4,6 @@ import HomeHeader from "../../components/Home/HomeHeader/HomeHeader";
 import PromotionBanner from "../../components/Home/PromotionBanner/PromotionBanner";
 import AboutWonder from "../../components/Home/AboutWonder/AboutWonder";
 import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
-import sampleBanner from "../../assets/sample/promotion_banner_sample.png";
-import sampleThumbnail from "../../assets/sample/poster_sample.png";
 import creatorGuide from "../../assets/illustration/creator_guide.png";
 import instagram from "../../assets/illustration/instagram.png";
 import { useEffect } from "react";

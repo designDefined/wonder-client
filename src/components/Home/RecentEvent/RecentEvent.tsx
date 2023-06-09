@@ -17,7 +17,7 @@ export default function RecentEvent() {
               className={styles.event}
               key={id}
               onClick={() => {
-                navigate(`wonder/${id}`);
+                navigate(`view/${id}`);
               }}
             >
               <img className={styles.thumbnail} src={thumbnail?.src ?? ""} />
