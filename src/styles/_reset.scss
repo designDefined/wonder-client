@@ -14,3 +14,8 @@
   padding: 0;
   margin: 0;
 }
+@mixin textArea {
+  font: inherit;
+  border: none;
+  resize: none;
+}

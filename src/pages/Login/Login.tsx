@@ -5,8 +5,11 @@ import google_icon from "../../assets/icon/google_icon.png";
 import back_icon from "../../assets/icon/arrow_back.svg";
 import { navigate } from "../../libs/Codex";
 import api from "../../api";
+import { useMyAccountStore } from "../../store/account/useMyAccountStore";
+import { User } from "../../entity/user/user";
 
 export default function Login() {
+  const { login } = useMyAccountStore((state) => state.actions);
   return (
     <main className={styles.Login}>
       <div className={styles.header}>
@@ -29,9 +32,10 @@ export default function Login() {
         <button
           className={styles.kakaoLogin}
           onClick={() => {
-            api
-              .post("/login", { code: "test" })
-              .then((res) => console.log(res));
+            api.post<User>("/login", { code: "test" }).then((res) => {
+              login(res);
+              navigate("/", "slidePrevious");
+            });
           }}
         >
           <img src={kakao_icon} />

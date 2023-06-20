@@ -10,7 +10,7 @@ const userDB: User[] = [
     phoneNumber: "01012345678",
     email: "test@wonderer.kr",
     profileImage: {
-      src: "",
+      src: "/src/assets/sample/creator_thumbnail_sample_2.png",
       altText: "",
     },
     dateInformation: {

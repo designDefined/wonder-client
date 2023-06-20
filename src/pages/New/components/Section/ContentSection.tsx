@@ -7,10 +7,6 @@ import {
 } from "../../../../store/new/useNewWonderStore";
 
 export default function ContentSection() {
-  const title = useNewWonderStore((state) => state.title);
-  const tags = useNewWonderStore((state) => state.tags);
-  const summary = useNewWonderStore((state) => state.summary);
-
   return (
     <section className={styles.ContentSection}>
       <TextInputWithLabel

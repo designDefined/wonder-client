@@ -1,0 +1,58 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/reset";
+@use "./src/styles/utility";
+
+.ThumbnailUploader {
+  position: relative;
+  width: 100%;
+  .thumbnail {
+    position: relative;
+    width: 100%;
+    height: 196px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+
+    .preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .inputButton {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      > label {
+        @include textStyle.default;
+        padding: 11px 20px;
+        border-radius: 45px;
+        background-color: white;
+        opacity: 0.8;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        display: flex;
+        gap: 16px;
+      }
+      > input[type="file"] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        padding: 0;
+      }
+    }
+  }
+  .caution {
+    @include textStyle.default;
+    padding: 13px 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

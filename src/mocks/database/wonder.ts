@@ -12,6 +12,7 @@ import {
   reverse,
   slice,
 } from "ramda";
+import { NewWonder } from "../../types/wonder/newWonder";
 
 const thumbnailSample = ["/src/assets/sample/wonder_poster_sample.png"];
 
@@ -80,3 +81,19 @@ export const getRecentWonderCardDisplay: (
     (arr) => reverse(arr),
     delayedReturn,
   )(wonderDB);
+
+export const createNewWonder = (wonder: NewWonder) => {
+  const id = wonderDB.length + 1;
+  wonderDB.push({
+    ...wonder,
+    id: id,
+    tags: wonder.tags.map((tag) => ({ isPrimary: false, value: tag })),
+    thumbnail: wonder.thumbnail ?? { src: "", altText: "" },
+    creator: creatorDB[0],
+    dateInformation: {
+      createdAt: new Date(),
+      lastModifiedAt: new Date(),
+    },
+  });
+  return Promise.resolve(id);
+};

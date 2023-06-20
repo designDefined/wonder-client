@@ -8,6 +8,7 @@ import creatorGuide from "../../assets/illustration/creator_guide.png";
 import instagram from "../../assets/illustration/instagram.png";
 import { useEffect } from "react";
 import api from "../../api";
+import Overlay from "../../components/Overlay/Overlay";
 
 const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
   {
@@ -38,7 +39,7 @@ const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
 ];
 
 export default function Home() {
-  const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
+  const myAccount = useMyAccountStore((state) => state.data);
 
   useEffect(() => {
     api.get("/ping").then((res) => console.log(res));
@@ -48,7 +49,7 @@ export default function Home() {
     <main className={styles.Home}>
       <DefaultHeader />
       <PromotionBanner bannerData={sampleBanners} />
-      {!isLoggedIn && <AboutWonder />}
+      {!myAccount && <AboutWonder />}
       <RecentEvent />
       <div className={styles.banners}>
         <a className={styles.miniBanner}>
@@ -62,6 +63,7 @@ export default function Home() {
           보러 가기
         </a>
       </div>
+      <Overlay />
     </main>
   );
 }

@@ -10,7 +10,7 @@ export const emptyWonder = (creator: Creator, date: Date): Wonder => ({
   thumbnail: null,
   summary: "",
   content: "",
-  schedule: "",
+  schedule: [],
   location: "",
   reservationProcess: null,
   dateInformation: {

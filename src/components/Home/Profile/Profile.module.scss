@@ -1,0 +1,51 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+
+.Profile {
+  margin-left: 31px;
+  border-radius: 50%;
+
+  .thumb {
+    background-color: black;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+}
+
+.DropdownOverlay {
+  position: absolute;
+  width: 176px;
+  background-color: color.$white;
+  top: 20px;
+  right: 35px;
+  border-radius: 5px;
+  .profile {
+    display: flex;
+    gap: 14px;
+    margin-top: 29px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    .thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .name {
+      @include textStyle.default;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+    }
+  }
+  .tab {
+    padding: 9px 15px;
+  }
+  .divider {
+    width: 100%;
+    border-bottom: 1px solid color.$gray;
+  }
+}

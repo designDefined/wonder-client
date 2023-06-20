@@ -18,7 +18,7 @@ import Content from "../../components/View/Content/Content";
 export default function View() {
   const wonderId = useParams()?.wonder_id;
   const wonderData = useJSONFetch<Wonder>(
-    api.get<Wonder>(`/wonder/${wonderId ?? "error"}`),
+    api.get<Wonder>(`/wonder/${wonderId ?? "1"}`),
     keysOfWonder,
     [],
   );

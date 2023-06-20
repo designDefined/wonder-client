@@ -10,7 +10,7 @@ import { navigate } from "../../../libs/Codex";
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
-  const isLoggedIn = useMyAccountStore((state) => state.isLoaded);
+  const myAccount = useMyAccountStore((state) => state.data);
 
   return (
     <header className={cx("DefaultHeader")}>
@@ -20,8 +20,8 @@ export default function DefaultHeader() {
         <button className={styles.shuffle}>
           <img src={shuffleIcon} />
         </button>
-        {isLoggedIn ? (
-          <Profile />
+        {myAccount ? (
+          <Profile myAccount={myAccount} />
         ) : (
           <button
             className={styles.login}

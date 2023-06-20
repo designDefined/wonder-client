@@ -1,4 +1,4 @@
-import { Creator, CreatorData } from "../creator/creator";
+import { CreatorData } from "../creator/creator";
 import { DateInformation, StoredImage } from "../utility/utility";
 
 export type WonderId = number | null;

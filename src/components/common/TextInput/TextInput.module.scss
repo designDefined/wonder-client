@@ -1,0 +1,26 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/reset";
+
+.TextInput {
+  @include textStyle.default;
+  width: 100%;
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 7px;
+  }
+  .input {
+    @include reset.inputText;
+    width: 100%;
+    font: inherit;
+    padding: 13px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 22px;
+    border: 1px solid color.$gray;
+    border-radius: 5px;
+  }
+}

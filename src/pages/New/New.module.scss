@@ -1,2 +1,37 @@
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
+
 .New {
+  position: relative;
+  width: 100%;
+  .mainContent {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+
+    padding-top: 15px;
+    padding-bottom: 29px;
+    .divider {
+      width: 100%;
+      border-bottom: 1px solid color.$gray;
+    }
+  }
+  .horizon {
+    @include textStyle.default;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .titleBig {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .titleSmall {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
 }
