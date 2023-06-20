@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     gap: 29px;
-
     padding-top: 15px;
     padding-bottom: 29px;
     .divider {
@@ -18,20 +17,18 @@
       border-bottom: 1px solid color.$gray;
     }
   }
-  .horizon {
-    @include textStyle.default;
+  .reservationDetail {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    .titleBig {
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 22px;
-    }
-    .titleSmall {
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 22px;
-    }
+    flex-direction: column;
+    gap: 22px;
   }
+}
+
+.empty {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

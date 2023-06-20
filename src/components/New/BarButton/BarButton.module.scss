@@ -1,0 +1,29 @@
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
+
+.BarButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .title {
+    @include textStyle.default;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    &.bold {
+      font-weight: 700;
+    }
+  }
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .valueLabel {
+      @include textStyle.default;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: color.$dark-gray;
+    }
+  }
+}

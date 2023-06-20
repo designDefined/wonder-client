@@ -1,6 +1,6 @@
 import styles from "./New.module.scss";
 import TextInput from "../../components/common/TextInput/TextInput";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { NewWonder } from "../../types/wonder/newWonder";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
 import RichTextArea from "../../components/New/RichTextArea/RichTextArea";
@@ -9,6 +9,10 @@ import ToggleButton from "../../components/common/Toggle/ToggleButton";
 import Button from "../../components/common/Button/Button";
 import api from "../../api";
 import { navigate } from "../../libs/Codex";
+import BottomTray from "../../libs/Tray/BottomTray";
+import BarButton from "../../components/New/BarButton/BarButton";
+import { map, pipe, split } from "ramda";
+import { openTray } from "../../libs/Tray/useTray";
 export default function New() {
   const [newWonder, setNewWonder] = useState<NewWonder>({
     thumbnail: null,
@@ -21,8 +25,20 @@ export default function New() {
     reservationProcess: null,
   });
 
-  const setNewWonderValue = (key: keyof NewWonder, value: any) =>
-    setNewWonder({ ...newWonder, [key]: value });
+  const setNewWonderValue = useCallback(
+    (key: keyof NewWonder, value: any) =>
+      setNewWonder({ ...newWonder, [key]: value }),
+    [],
+  );
+  const formatTag = useCallback((value: string) => {
+    const splits = value.split(" ");
+    const mapped = splits.map((chunk, index) =>
+      index !== splits.length - 1 && chunk[0] !== "#" && chunk.length > 0
+        ? "#" + chunk
+        : chunk,
+    );
+    return mapped;
+  }, []);
 
   return (
     <main className={styles.New}>
@@ -41,17 +57,7 @@ export default function New() {
         <TextInput
           title={"이벤트 태그"}
           value={newWonder.tags.join(" ")}
-          onChange={(e) => {
-            const splits = e.target.value.split(" ");
-            const mapped = splits.map((chunk, index) =>
-              index !== splits.length - 1 &&
-              chunk[0] !== "#" &&
-              chunk.length > 0
-                ? "#" + chunk
-                : chunk,
-            );
-            setNewWonderValue("tags", mapped);
-          }}
+          onChange={(e) => setNewWonderValue("tags", formatTag(e.target.value))}
           onBlur={() => {
             setNewWonderValue(
               "tags",
@@ -77,28 +83,54 @@ export default function New() {
           }
         />
         <div className={styles.divider} />
-        <div className={styles.horizon}>
-          <div className={styles.titleBig}>이벤트 일정</div>
-        </div>
-        <div className={styles.horizon}>
-          <div className={styles.titleBig}>이벤트 장소</div>
-        </div>
+        <BarButton
+          title={"이벤트 일정"}
+          interaction={{
+            type: "click",
+            onClick: () =>
+              openTray(<div className={styles.empty}>가나다라마!!!</div>),
+          }}
+          isBold={false}
+        />
+        <BarButton
+          title={"이벤트 장소"}
+          interaction={{ type: "click", onClick: () => {} }}
+          isBold={false}
+        />
         <div className={styles.divider} />
-        <div className={styles.horizon}>
-          <div className={styles.titleBig}>예약 / 예매</div>
-          <ToggleButton onChange={() => {}} defaultValue={true} />
-        </div>
-        <div className={styles.horizon}>
-          <div className={styles.titleSmall}>이름을 받을게요</div>
-          <ToggleButton onChange={() => {}} />
-        </div>
-        <div className={styles.horizon}>
-          <div className={styles.titleSmall}>전화번호를 받을게요</div>
-          <ToggleButton onChange={() => {}} />
-        </div>
-        <div className={styles.horizon}>
-          <div className={styles.titleSmall}>메일 주소를 받을게요</div>
-          <ToggleButton onChange={() => {}} />
+        <BarButton
+          title={"예약 / 예매"}
+          interaction={{
+            type: "toggle",
+            onToggle: () => {},
+          }}
+          isBold={true}
+        />
+        <div className={styles.reservationDetail}>
+          <BarButton
+            title={"이름을 받을게요"}
+            interaction={{
+              type: "toggle",
+              onToggle: () => {},
+            }}
+            isBold={false}
+          />
+          <BarButton
+            title={"전화번호를 받을게요"}
+            interaction={{
+              type: "toggle",
+              onToggle: () => {},
+            }}
+            isBold={false}
+          />
+          <BarButton
+            title={"메일 주소를 받을게요"}
+            interaction={{
+              type: "toggle",
+              onToggle: () => {},
+            }}
+            isBold={false}
+          />
         </div>
       </div>
       <Button
@@ -112,6 +144,7 @@ export default function New() {
           });
         }}
       />
+      <BottomTray />
     </main>
   );
 }
