@@ -1,19 +1,19 @@
-import styles from "./New.module.scss";
-import TextInput from "../../components/common/TextInput/TextInput";
+import styles from "./NewWonderPage.module.scss";
+import TextInput from "../../../components/common/TextInput/TextInput";
 import { useCallback, useState } from "react";
-import { NewWonder } from "../../types/wonder/newWonder";
-import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
-import RichTextArea from "../../components/New/RichTextArea/RichTextArea";
-import ThumbnailUploader from "../../components/New/ThumbnailUploader/ThumbnailUploader";
-import ToggleButton from "../../components/common/Toggle/ToggleButton";
-import Button from "../../components/common/Button/Button";
-import api from "../../api";
-import { navigate } from "../../libs/Codex";
-import BottomTray from "../../libs/Tray/BottomTray";
-import BarButton from "../../components/New/BarButton/BarButton";
+import { NewWonder } from "../../../types/wonder/newWonder";
+import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHeader";
+import RichTextArea from "../../../components/New/RichTextArea/RichTextArea";
+import ThumbnailUploader from "../../../components/New/ThumbnailUploader/ThumbnailUploader";
+import ToggleButton from "../../../components/common/Toggle/ToggleButton";
+import Button from "../../../components/common/Button/Button";
+import api from "../../../api";
+import { navigate } from "../../../libs/Codex";
+import BottomTray from "../../../libs/Tray/BottomTray";
+import BarButton from "../../../components/New/BarButton/BarButton";
 import { map, pipe, split } from "ramda";
-import { openTray } from "../../libs/Tray/useTray";
-export default function New() {
+import { openTray } from "../../../libs/Tray/useTray";
+export default function NewWonderPage() {
   const [newWonder, setNewWonder] = useState<NewWonder>({
     thumbnail: null,
     title: "",
@@ -24,7 +24,9 @@ export default function New() {
     location: "",
     reservationProcess: null,
   });
-
+  /**
+   * TODO: Typesafe Setter 만들기
+   */
   const setNewWonderValue = useCallback(
     (key: keyof NewWonder, value: any) =>
       setNewWonder({ ...newWonder, [key]: value }),
@@ -41,7 +43,7 @@ export default function New() {
   }, []);
 
   return (
-    <main className={styles.New}>
+    <main className={styles.NewWonderPage}>
       <DefaultHeader />
       <ThumbnailUploader
         value={newWonder.thumbnail ? newWonder.thumbnail.src : ""}

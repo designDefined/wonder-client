@@ -1,4 +1,7 @@
 import styles from "./TextInput.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
 
 type Props = {
   title?: string;
@@ -8,6 +11,7 @@ type Props = {
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   placeholder: string;
   classNames?: string;
+  isRound?: boolean;
 };
 export default function TextInput({
   title,
@@ -17,12 +21,13 @@ export default function TextInput({
   onFocus,
   placeholder,
   classNames,
+  isRound,
 }: Props) {
   return (
-    <div className={styles.TextInput}>
-      {title && <h3 className={styles.title}>{title}</h3>}
+    <div className={cx("TextInput", { notRound: !isRound })}>
+      {title && <h3 className={cx("title")}>{title}</h3>}
       <input
-        className={styles.input}
+        className={cx("input")}
         type="text"
         placeholder={placeholder}
         value={value}

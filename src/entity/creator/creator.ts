@@ -6,9 +6,11 @@ export type Creator = {
   id: number;
   owner: User;
   name: string;
+  summary: string;
   profileImage: StoredImage;
   dateInformation: DateInformation;
   createdWonder: Wonder[];
+  instagram?: string;
 };
 
 export interface CreatorData extends Omit<Creator, "owner" | "createdWonder"> {
