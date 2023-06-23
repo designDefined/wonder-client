@@ -41,10 +41,6 @@ const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
 export default function Home() {
   const myAccount = useMyAccountStore((state) => state.data);
 
-  useEffect(() => {
-    api.get("/ping").then((res) => console.log(res));
-  }, []);
-
   return (
     <main className={styles.Home}>
       <DefaultHeader />

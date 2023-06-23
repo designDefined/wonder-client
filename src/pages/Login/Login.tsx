@@ -7,6 +7,7 @@ import { navigate } from "../../libs/Codex";
 import api from "../../api";
 import { useMyAccountStore } from "../../store/account/useMyAccountStore";
 import { User } from "../../entity/user/user";
+import { UserSummary } from "../../types/user/userSummary";
 
 export default function Login() {
   const { login } = useMyAccountStore((state) => state.actions);
@@ -32,10 +33,12 @@ export default function Login() {
         <button
           className={styles.kakaoLogin}
           onClick={() => {
-            api.post<User>("/login", { code: "test" }).then((res) => {
-              login(res);
-              navigate("/", "slidePrevious");
-            });
+            api
+              .post<UserSummary>("/user/login", { code: "test" })
+              .then((res) => {
+                login(res);
+                navigate("/", "slidePrevious");
+              });
           }}
         >
           <img src={kakao_icon} />
@@ -52,7 +55,14 @@ export default function Login() {
           <img src={naver_icon} />
           <div>네이버 계정으로 로그인하기</div>
         </button>
-        <button className={styles.googleLogin}>
+        <button
+          className={styles.googleLogin}
+          onClick={() => {
+            api.post("/echo", { code: "test" }).then((res) => {
+              console.log(res);
+            });
+          }}
+        >
           <img src={google_icon} />
           <div>구글 계정으로 로그인하기</div>
         </button>

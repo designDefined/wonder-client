@@ -2,11 +2,12 @@ import styles from "./Creator.module.scss";
 import { Maybe, maybe } from "../../../libs/Admon/maybe";
 import { Wonder } from "../../../entity/wonder/wonder";
 import Button from "../../common/Button/Button";
+import { WonderView } from "../../../types/wonder/wonderView";
 
 export default function Creator({
   creator,
 }: {
-  creator: Maybe<Wonder["creator"]>;
+  creator: Maybe<WonderView["creator"]>;
 }) {
   return (
     <div className={styles.Creator}>

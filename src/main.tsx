@@ -10,6 +10,8 @@ import initMocks from "./mocks";
 import View from "./pages/View/View";
 import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
 import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
+import Creator from "./components/View/Creator/Creator";
+import CreatorPage from "./pages/Creator/CreatorPage";
 
 const codex: Codex = {
   _index: <Home />,
@@ -20,12 +22,15 @@ const codex: Codex = {
   },
   login: <Login />,
   view: { _index: <View />, _params: ["wonder_id"] },
+  creator: { _index: <CreatorPage />, _params: ["creator_id"] },
   _error: <div>error page</div>,
 };
 
+/*
 if (process.env.NODE_ENV === "development") {
   await initMocks();
 }
+ */
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <CodexProvider provider={codex} />,

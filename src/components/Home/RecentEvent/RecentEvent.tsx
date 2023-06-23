@@ -5,7 +5,7 @@ import { navigate } from "../../../libs/Codex";
 import { useFetches } from "../../../libs/Admon";
 
 export default function RecentEvent() {
-  const cards = useFetches<WonderCardDisplay>(api.get("/wonderCard"));
+  const cards = useFetches<WonderCardDisplay>(api.get("/wonder/recent"));
 
   return (
     <div className={styles.RecentEvent}>

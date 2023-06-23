@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { User } from "../../entity/user/user";
+import { UserSummary } from "../../types/user/userSummary";
 type MyAccountStore = {
-  data: null | User;
+  data: null | UserSummary;
   actions: {
-    login: (user: User) => void;
+    login: (user: UserSummary) => void;
     logout: () => void;
   };
 };

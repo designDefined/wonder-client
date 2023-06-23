@@ -6,25 +6,26 @@ import { NewCreator } from "../../../types/creator/newCreator";
 import { useCallback, useState } from "react";
 import { NewWonder } from "../../../types/wonder/newWonder";
 import Button from "../../../components/common/Button/Button";
+import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
+import api from "../../../api";
+import { navigate } from "../../../libs/Codex";
 
 const cx = classNames.bind(styles);
 
-type Setter<T extends Record<string, any>> = <K extends keyof T>(
-  key: K,
-  value: T,
-) => void;
-
 export default function NewCreatorPage() {
-  const [newCreator, setNewCreator] = useState<NewCreator>({
+  const [newCreator, setNewCreator] = useState<
+    NewCreator & { instagram: string }
+  >({
     name: "",
     summary: "",
     instagram: "",
   });
+  const myAccount = useMyAccountStore((state) => state.data);
 
   const setNewCreatorValue = useCallback(
     (key: keyof NewCreator, value: any) =>
       setNewCreator({ ...newCreator, [key]: value }),
-    [],
+    [newCreator],
   );
 
   return (
@@ -47,14 +48,14 @@ export default function NewCreatorPage() {
           />
           <LabeledTextForm
             label={"크리에이터 한 줄 소개"}
-            value={newCreator.name}
+            value={newCreator.summary}
             onChange={(e) => setNewCreatorValue("summary", e.target.value)}
             placeHolder={"30자 이내로 작성해주세요."}
             isMandatory={true}
-          />{" "}
+          />
           <LabeledTextForm
-            label={"크리에이터명"}
-            value={newCreator.name}
+            label={"인스타그램 계정"}
+            value={newCreator.instagram}
             onChange={(e) => setNewCreatorValue("instagram", e.target.value)}
             placeHolder={
               "인스타그램 계정이 있다면 작성해주세요. (ex. @uuonder)"
@@ -65,7 +66,32 @@ export default function NewCreatorPage() {
         <Button
           label={"완료!"}
           attribute={{ size: "big", theme: "default" }}
-          onClick={() => null}
+          onClick={() => {
+            const { name, summary, instagram } = newCreator;
+            if (!myAccount) {
+              alert("로그인 후 이용해주세요.");
+              return;
+            }
+            if (name.length < 1 || name.length > 15) {
+              alert("적절한 이름을 입력해주세요");
+              return;
+            }
+            if (summary.length < 1 || summary.length > 30) {
+              alert("적절한 소개를 입력해주세요");
+              return;
+            }
+            api
+              .post("/creator/new", {
+                name,
+                summary,
+                instagram,
+                userId: myAccount.id,
+              })
+              .then((res) => {
+                const data = res as { isSuccess: boolean; createdId: number };
+                if (data.isSuccess) navigate(`/creator/${data.createdId}`);
+              });
+          }}
         />
       </main>
     </>

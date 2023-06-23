@@ -5,14 +5,13 @@ import { NewWonder } from "../../../types/wonder/newWonder";
 import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHeader";
 import RichTextArea from "../../../components/New/RichTextArea/RichTextArea";
 import ThumbnailUploader from "../../../components/New/ThumbnailUploader/ThumbnailUploader";
-import ToggleButton from "../../../components/common/Toggle/ToggleButton";
 import Button from "../../../components/common/Button/Button";
 import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import BottomTray from "../../../libs/Tray/BottomTray";
 import BarButton from "../../../components/New/BarButton/BarButton";
-import { map, pipe, split } from "ramda";
 import { openTray } from "../../../libs/Tray/useTray";
+import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 export default function NewWonderPage() {
   const [newWonder, setNewWonder] = useState<NewWonder>({
     thumbnail: null,
@@ -24,13 +23,16 @@ export default function NewWonderPage() {
     location: "",
     reservationProcess: null,
   });
+
+  const myAccount = useMyAccountStore((state) => state.data);
+
   /**
    * TODO: Typesafe Setter 만들기
    */
   const setNewWonderValue = useCallback(
     (key: keyof NewWonder, value: any) =>
       setNewWonder({ ...newWonder, [key]: value }),
-    [],
+    [newWonder],
   );
   const formatTag = useCallback((value: string) => {
     const splits = value.split(" ");

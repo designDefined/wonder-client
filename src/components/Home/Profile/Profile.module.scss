@@ -6,7 +6,6 @@
   border-radius: 50%;
 
   .thumb {
-    background-color: black;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -43,6 +42,17 @@
   }
   .tab {
     padding: 9px 15px;
+  }
+  .creator {
+    color: color.$main-blue;
+    padding: 9px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > img {
+      width: 24px;
+      height: 24px;
+    }
   }
   .divider {
     width: 100%;

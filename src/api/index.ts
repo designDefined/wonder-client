@@ -1,15 +1,19 @@
+const baseURL = "http://localhost:8000";
+
 const get = async <T>(url: string): Promise<T> =>
-  fetch(url, { method: "GET", mode: "cors", cache: "no-cache" }).then(
-    (res) => res.json() as T,
-  );
+  fetch(`${baseURL}${url}`, {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+  }).then((res) => res.json() as T);
 
 const post = async <T>(url: string, data: object = {}): Promise<T> =>
-  fetch(url, {
+  fetch(`${baseURL}${url}`, {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
     headers: {
-      ContentType: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   }).then((res) => res.json() as T);

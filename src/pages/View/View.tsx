@@ -14,11 +14,12 @@ import Period from "../../components/View/Period/Period";
 import Location from "../../components/View/Location/Location";
 import Schedules from "../../components/View/Schedules/Schedules";
 import Content from "../../components/View/Content/Content";
+import { WonderView } from "../../types/wonder/wonderView";
 
 export default function View() {
   const wonderId = useParams()?.wonder_id;
-  const wonderData = useJSONFetch<Wonder>(
-    api.get<Wonder>(`/wonder/${wonderId ?? "1"}`),
+  const wonderData = useJSONFetch<WonderView>(
+    api.get<WonderView>(`/wonder/${wonderId ?? "-1"}`),
     keysOfWonder,
     [],
   );

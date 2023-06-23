@@ -1,0 +1,61 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+@use "/src/styles/reset";
+
+.CreatorPage {
+  width: 100%;
+  .title {
+    @include textStyle.default;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .my {
+    @include textStyle.default;
+    padding: 10px 20px;
+    border-bottom: 1px solid color.$gray;
+    .name {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+    }
+    .summary {
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 18px;
+    }
+  }
+  .events {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 20px;
+    .wonder {
+      @include textStyle.title;
+      width: 100%;
+      height: 162px;
+      background-color: gray;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      color: white;
+      padding: 0 20px;
+      border-radius: 6px;
+    }
+    .addEvent {
+      @include reset.button;
+
+      font: inherit;
+      width: 100%;
+      height: 162px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: color.$gray;
+      border: 1px dashed color.$dark-gray;
+      color: color.$dark-gray;
+      border-radius: 6px;
+    }
+  }
+}
