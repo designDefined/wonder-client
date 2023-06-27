@@ -5,29 +5,21 @@ import { useState } from "react";
 const cx = classNames.bind(styles);
 
 type Props = {
+  value: boolean;
   onToggle: (value: boolean) => void;
-  defaultValue?: boolean;
   className?: string;
 };
 
-export default function ToggleButton({
-  onToggle,
-  defaultValue,
-  className,
-}: Props) {
-  const [isOn, setIsOn] = useState<boolean>(
-    defaultValue ? defaultValue : false,
-  );
+export default function ToggleButton({ value, onToggle, className }: Props) {
   return (
     <button
       className={cx(
         "ToggleButton",
-        { isOn },
+        { isOn: value },
         { [className ? className : "none"]: className },
       )}
       onClick={() => {
-        onToggle(!isOn);
-        setIsOn(!isOn);
+        onToggle(!value);
       }}
     >
       <div className={cx("circle")} />

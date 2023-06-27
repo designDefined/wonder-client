@@ -1,6 +1,6 @@
 import styles from "./LabeledTextForm.module.scss";
 import classNames from "classnames/bind";
-import TextInput from "../../common/TextInput/TextInput";
+import TextInput from "../../../common/TextInput/TextInput";
 
 const cx = classNames.bind(styles);
 

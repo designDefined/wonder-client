@@ -14,8 +14,8 @@ export default function RecentEvent() {
         {cards.map(
           ({ id, title, creator, thumbnail }) => (
             <li
-              className={styles.event}
               key={id}
+              className={styles.event}
               onClick={() => {
                 navigate(`view/${id}`, "slideNext");
               }}

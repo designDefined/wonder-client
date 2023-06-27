@@ -6,7 +6,6 @@ export type UserEmail = string;
 export type User = {
   platformType: UserPlatformType;
   id: string;
-  _id: string;
   name: string;
   nickname: string;
   phoneNumber: string | null;

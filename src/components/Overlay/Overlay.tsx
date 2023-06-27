@@ -13,7 +13,9 @@ export default function Overlay() {
 
   return (
     <div
-      className={`${styles.Overlay} ${overlays.length > 0 && styles.active}`}
+      className={`${styles.Overlay} ${
+        overlays.length > 0 ? styles.active : ""
+      }`}
       onMouseDown={(e) => {
         setOverlay(
           overlays.filter(

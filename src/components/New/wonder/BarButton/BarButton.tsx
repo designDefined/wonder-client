@@ -1,6 +1,6 @@
 import styles from "./BarButton.module.scss";
 import classNames from "classnames/bind";
-import ToggleButton from "../../common/Toggle/ToggleButton";
+import ToggleButton from "../../../common/Toggle/ToggleButton";
 import arrowIcon from "/src/assets/icon/arrow_forward_ios.svg";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
     | {
         type: "toggle";
         onToggle: (value: boolean) => void;
-        defaultValue?: boolean;
+        value: boolean;
       }
     | {
         type: "click";
@@ -36,7 +36,7 @@ export default function BarButton({ title, interaction, isBold }: Props) {
       {interaction.type === "toggle" && (
         <ToggleButton
           onToggle={interaction.onToggle}
-          defaultValue={interaction.defaultValue ?? false}
+          value={interaction.value}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import styles from "./NewCreatorPage.module.scss";
 import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHeader";
 import classNames from "classnames/bind";
-import LabeledTextForm from "../../../components/New/LabeledTextForm/LabeledTextForm";
+import LabeledTextForm from "../../../components/New/creator/LabeledTextForm/LabeledTextForm";
 import { NewCreator } from "../../../types/creator/newCreator";
 import { useCallback, useState } from "react";
 import { NewWonder } from "../../../types/wonder/newWonder";
@@ -9,24 +9,19 @@ import Button from "../../../components/common/Button/Button";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
+import useFormState from "../../../libs/FormState/useFormState";
 
 const cx = classNames.bind(styles);
 
 export default function NewCreatorPage() {
-  const [newCreator, setNewCreator] = useState<
+  const myAccount = useMyAccountStore((state) => state.data);
+  const [newCreator, setNewCreatorValue] = useFormState<
     NewCreator & { instagram: string }
   >({
     name: "",
     summary: "",
     instagram: "",
   });
-  const myAccount = useMyAccountStore((state) => state.data);
-
-  const setNewCreatorValue = useCallback(
-    (key: keyof NewCreator, value: any) =>
-      setNewCreator({ ...newCreator, [key]: value }),
-    [newCreator],
-  );
 
   return (
     <>

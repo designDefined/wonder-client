@@ -1,49 +1,63 @@
 import styles from "./NewWonderPage.module.scss";
 import TextInput from "../../../components/common/TextInput/TextInput";
-import { useCallback, useState } from "react";
 import { NewWonder } from "../../../types/wonder/newWonder";
 import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHeader";
-import RichTextArea from "../../../components/New/RichTextArea/RichTextArea";
-import ThumbnailUploader from "../../../components/New/ThumbnailUploader/ThumbnailUploader";
+import RichTextArea from "../../../components/New/wonder/RichTextArea/RichTextArea";
+import ThumbnailUploader from "../../../components/New/wonder/ThumbnailUploader/ThumbnailUploader";
 import Button from "../../../components/common/Button/Button";
 import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import BottomTray from "../../../libs/Tray/BottomTray";
-import BarButton from "../../../components/New/BarButton/BarButton";
+import BarButton from "../../../components/New/wonder/BarButton/BarButton";
 import { openTray } from "../../../libs/Tray/useTray";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import DatePanel from "../../../components/New/DatePanel/DatePanel";
+import DatePanel from "../../../components/New/wonder/panels/DatePanel/DatePanel";
+import useFormState from "../../../libs/FormState/useFormState";
+
+const formatTagExceptLast = (value: string): NewWonder["tags"] => {
+  const splits = value.split(" ");
+  const mapped = splits.map((chunk, index) =>
+    index !== splits.length - 1 && chunk[0] !== "#" && chunk.length > 0
+      ? "#" + chunk
+      : chunk,
+  );
+  return mapped;
+};
+
+const formatAllTags = (tags: NewWonder["tags"]): NewWonder["tags"] =>
+  tags.map((chunk) =>
+    chunk[0] !== "#" && chunk.length > 0 ? "#" + chunk : chunk,
+  );
+
+const emptyReservation: NewWonder["reservationProcess"] = {
+  requireName: false,
+  requirePhoneNumber: false,
+  requireEmail: false,
+};
+const toggleReservationDetail =
+  (propertyName: keyof typeof emptyReservation, value: boolean) =>
+  (
+    currentProcess: NewWonder["reservationProcess"],
+  ): NewWonder["reservationProcess"] =>
+    currentProcess
+      ? {
+          ...currentProcess,
+          [propertyName]: value,
+        }
+      : { ...emptyReservation, [propertyName]: value };
+
 export default function NewWonderPage() {
-  const [newWonder, setNewWonder] = useState<NewWonder>({
+  const myAccount = useMyAccountStore((state) => state.data);
+  const [newWonder, setNewWonderValue] = useFormState<NewWonder>({
     thumbnail: null,
     title: "",
     summary: "",
     tags: [],
     content: "",
     schedule: [],
-    location: "",
-    reservationProcess: null,
+    location: { x: 0, y: 0, name: "" },
+    reservationProcess: false,
   });
-
-  const myAccount = useMyAccountStore((state) => state.data);
-
-  /**
-   * TODO: Typesafe Setter 만들기
-   */
-  const setNewWonderValue = useCallback(
-    (key: keyof NewWonder, value: any) =>
-      setNewWonder({ ...newWonder, [key]: value }),
-    [newWonder],
-  );
-  const formatTag = useCallback((value: string) => {
-    const splits = value.split(" ");
-    const mapped = splits.map((chunk, index) =>
-      index !== splits.length - 1 && chunk[0] !== "#" && chunk.length > 0
-        ? "#" + chunk
-        : chunk,
-    );
-    return mapped;
-  }, []);
 
   return (
     <main className={styles.NewWonderPage}>
@@ -62,14 +76,11 @@ export default function NewWonderPage() {
         <TextInput
           title={"이벤트 태그"}
           value={newWonder.tags.join(" ")}
-          onChange={(e) => setNewWonderValue("tags", formatTag(e.target.value))}
+          onChange={(e) =>
+            setNewWonderValue("tags", formatTagExceptLast(e.target.value))
+          }
           onBlur={() => {
-            setNewWonderValue(
-              "tags",
-              newWonder.tags.map((chunk) =>
-                chunk[0] !== "#" && chunk.length > 0 ? "#" + chunk : chunk,
-              ),
-            );
+            setNewWonderValue("tags", formatAllTags(newWonder.tags));
           }}
           placeholder={"예) 연극, 뮤지컬, 일일호프, 연주회, 전시"}
         />
@@ -106,7 +117,12 @@ export default function NewWonderPage() {
           title={"예약 / 예매"}
           interaction={{
             type: "toggle",
-            onToggle: () => {},
+            value: newWonder.reservationProcess !== false,
+            onToggle: (value) =>
+              setNewWonderValue(
+                "reservationProcess",
+                value ? emptyReservation : false,
+              ),
           }}
           isBold={true}
         />
@@ -115,7 +131,17 @@ export default function NewWonderPage() {
             title={"이름을 받을게요"}
             interaction={{
               type: "toggle",
-              onToggle: () => {},
+              value: newWonder.reservationProcess
+                ? newWonder.reservationProcess.requireName
+                : false,
+              onToggle: (value) =>
+                setNewWonderValue(
+                  "reservationProcess",
+                  toggleReservationDetail(
+                    "requireName",
+                    value,
+                  )(newWonder.reservationProcess),
+                ),
             }}
             isBold={false}
           />
@@ -123,7 +149,17 @@ export default function NewWonderPage() {
             title={"전화번호를 받을게요"}
             interaction={{
               type: "toggle",
-              onToggle: () => {},
+              value: newWonder.reservationProcess
+                ? newWonder.reservationProcess.requirePhoneNumber
+                : false,
+              onToggle: (value) =>
+                setNewWonderValue(
+                  "reservationProcess",
+                  toggleReservationDetail(
+                    "requirePhoneNumber",
+                    value,
+                  )(newWonder.reservationProcess),
+                ),
             }}
             isBold={false}
           />
@@ -131,7 +167,17 @@ export default function NewWonderPage() {
             title={"메일 주소를 받을게요"}
             interaction={{
               type: "toggle",
-              onToggle: () => {},
+              value: newWonder.reservationProcess
+                ? newWonder.reservationProcess.requireEmail
+                : false,
+              onToggle: (value) =>
+                setNewWonderValue(
+                  "reservationProcess",
+                  toggleReservationDetail(
+                    "requireEmail",
+                    value,
+                  )(newWonder.reservationProcess),
+                ),
             }}
             isBold={false}
           />
