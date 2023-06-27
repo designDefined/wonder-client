@@ -36,9 +36,11 @@ export default function Login() {
             api
               .post<UserSummary>("/user/login", { code: "test" })
               .then((res) => {
+                console.log(res);
                 login(res);
                 navigate("/", "slidePrevious");
-              });
+              })
+              .catch(async (err) => console.log(await err));
           }}
         >
           <img src={kakao_icon} />

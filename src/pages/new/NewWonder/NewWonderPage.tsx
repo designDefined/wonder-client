@@ -12,6 +12,7 @@ import BottomTray from "../../../libs/Tray/BottomTray";
 import BarButton from "../../../components/New/BarButton/BarButton";
 import { openTray } from "../../../libs/Tray/useTray";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
+import DatePanel from "../../../components/New/DatePanel/DatePanel";
 export default function NewWonderPage() {
   const [newWonder, setNewWonder] = useState<NewWonder>({
     thumbnail: null,
@@ -91,8 +92,7 @@ export default function NewWonderPage() {
           title={"이벤트 일정"}
           interaction={{
             type: "click",
-            onClick: () =>
-              openTray(<div className={styles.empty}>가나다라마!!!</div>),
+            onClick: () => openTray(<DatePanel />),
           }}
           isBold={false}
         />

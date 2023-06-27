@@ -5,7 +5,9 @@ const get = async <T>(url: string): Promise<T> =>
     method: "GET",
     mode: "cors",
     cache: "no-cache",
-  }).then((res) => res.json() as T);
+  }).then((res) => {
+    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+  });
 
 const post = async <T>(url: string, data: object = {}): Promise<T> =>
   fetch(`${baseURL}${url}`, {
@@ -16,7 +18,9 @@ const post = async <T>(url: string, data: object = {}): Promise<T> =>
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((res) => res.json() as T);
+  }).then(async (res) => {
+    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+  });
 
 const api = { get, post };
 export default api;

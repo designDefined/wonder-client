@@ -6,9 +6,9 @@ import AboutWonder from "../../components/Home/AboutWonder/AboutWonder";
 import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
 import creatorGuide from "../../assets/illustration/creator_guide.png";
 import instagram from "../../assets/illustration/instagram.png";
+import Overlay from "../../components/Overlay/Overlay";
 import { useEffect } from "react";
 import api from "../../api";
-import Overlay from "../../components/Overlay/Overlay";
 
 const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
   {
@@ -40,6 +40,16 @@ const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
 
 export default function Home() {
   const myAccount = useMyAccountStore((state) => state.data);
+
+  useEffect(() => {
+    api
+      .post("/reqTest/98/and/76?qId=132", {
+        string: "abc",
+        array: [0, 1, 2],
+        number: 3,
+      })
+      .then((res) => console.log(res));
+  }, []);
 
   return (
     <main className={styles.Home}>
