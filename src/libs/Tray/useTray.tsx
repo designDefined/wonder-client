@@ -4,19 +4,25 @@ import { ReactNode } from "react";
 type TrayStore = {
   target: ReactNode | null;
   isHandle: boolean;
-  openTray: (target: ReactNode, isHandle?: boolean) => void;
+  props: Record<string, any>;
+  openTray: (target: ReactNode, props?: Record<string, any>) => void;
   closeTray: () => void;
+  updateTrayProp: (props: Record<string, any>) => void;
 };
 
 export const useTray = create<TrayStore>(() => ({
   target: null,
   isHandle: false,
-  openTray: (target, isHandle) => {
-    useTray.setState({ target, isHandle: isHandle ?? false });
+  props: {},
+  openTray: (target, props) => {
+    useTray.setState({ target, props });
   },
   closeTray: () => {
     useTray.setState({ target: null, isHandle: false });
   },
+  updateTrayProp: (props) => {
+    useTray.setState({ props });
+  },
 }));
 
-export const { openTray, closeTray } = useTray.getState();
+export const { openTray, closeTray, updateTrayProp } = useTray.getState();

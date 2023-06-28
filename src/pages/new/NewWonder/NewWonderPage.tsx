@@ -9,10 +9,11 @@ import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import BottomTray from "../../../libs/Tray/BottomTray";
 import BarButton from "../../../components/New/wonder/BarButton/BarButton";
-import { openTray } from "../../../libs/Tray/useTray";
+import { openTray, updateTrayProp } from "../../../libs/Tray/useTray";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import DatePanel from "../../../components/New/wonder/panels/DatePanel/DatePanel";
 import useFormState from "../../../libs/FormState/useFormState";
+import { useEffect } from "react";
 
 const formatTagExceptLast = (value: string): NewWonder["tags"] => {
   const splits = value.split(" ");
@@ -54,7 +55,7 @@ export default function NewWonderPage() {
     summary: "",
     tags: [],
     content: "",
-    schedule: [],
+    schedule: [{ date: [2023, 6, 28], time: [] }],
     location: { x: 0, y: 0, name: "" },
     reservationProcess: false,
   });
@@ -103,7 +104,16 @@ export default function NewWonderPage() {
           title={"이벤트 일정"}
           interaction={{
             type: "click",
-            onClick: () => openTray(<DatePanel />),
+            onClick: () =>
+              openTray(
+                <DatePanel
+                  setSchedule={(schedule) => {
+                    setNewWonderValue("schedule", schedule);
+                    updateTrayProp({ schedule });
+                  }}
+                />,
+                { schedule: newWonder.schedule },
+              ),
           }}
           isBold={false}
         />
