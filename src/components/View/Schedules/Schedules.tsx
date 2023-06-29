@@ -24,19 +24,15 @@ function ScheduleCard({
 export default function Schedules({
   schedules,
 }: {
-  schedules: Maybe<Wonder["schedule"]>;
+  schedules: Wonder["schedule"];
 }) {
   return (
     <div className={styles.Schedules}>
       <h3 className={styles.label}>이벤트 일시</h3>
       <ul className={styles.scheduleContainer}>
-        {maybe.isNothing(schedules)
-          ? [0, 1, 2].map(() => <div className={styles.noCard} />)
-          : maybe
-              .read(schedules)
-              .map((schedule, index) => (
-                <ScheduleCard key={index} schedule={schedule} />
-              ))}
+        {schedules.map((schedule, index) => (
+          <ScheduleCard key={index} schedule={schedule} />
+        ))}
       </ul>
     </div>
   );

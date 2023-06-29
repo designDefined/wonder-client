@@ -8,6 +8,12 @@ import api from "../../api";
 import { useMyAccountStore } from "../../store/account/useMyAccountStore";
 import { User } from "../../entity/user/user";
 import { UserSummary } from "../../types/user/userSummary";
+import BottomTray from "../../libs/Tray/BottomTray";
+import { openTray, useTray } from "../../libs/Tray/useTray";
+import TextInput from "../../components/common/TextInput/TextInput";
+import Button from "../../components/common/Button/Button";
+import { useState } from "react";
+import SampleLoginTray from "../../components/Login/SampleLoginTray/SampleLoginTray";
 
 export default function Login() {
   const { login } = useMyAccountStore((state) => state.actions);
@@ -33,6 +39,7 @@ export default function Login() {
         <button
           className={styles.kakaoLogin}
           onClick={() => {
+            /*
             api
               .post<UserSummary>("/user/login", { code: "test" })
               .then((res) => {
@@ -41,6 +48,8 @@ export default function Login() {
                 navigate("/", "slidePrevious");
               })
               .catch(async (err) => console.log(await err));
+               */
+            openTray(<SampleLoginTray />);
           }}
         >
           <img src={kakao_icon} />
@@ -69,6 +78,7 @@ export default function Login() {
           <div>구글 계정으로 로그인하기</div>
         </button>
       </div>
+      <BottomTray />
     </main>
   );
 }

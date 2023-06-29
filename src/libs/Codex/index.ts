@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { CodexStore, TransitionType } from "./types";
 import { createBrowserHistory } from "history";
 import { searchCodex } from "./codexFunctions";
+import { closeTray } from "../Tray/useTray";
 
 export const useCodex = create<CodexStore>()((set, get) => {
   const history = createBrowserHistory();
@@ -26,15 +27,17 @@ export const useCodex = create<CodexStore>()((set, get) => {
     componentB: null,
     provide: (provider) => {
       const firstPath = history.location.pathname;
-      const firstComponent = searchCodex(
+
+      const { element: firstComponent, params } = searchCodex(
         provider,
         firstPath.split("/").slice(1),
-      ).element;
+      );
 
       set({
         codexTree: provider,
         currentSide: "A",
         componentA: firstComponent,
+        currentParams: params ?? null,
       });
     },
     proceedCodex: (path, transitionType?: TransitionType) => {
@@ -56,6 +59,7 @@ export const useCodex = create<CodexStore>()((set, get) => {
           nextState.transitionType = transitionType;
         }
         nextState.currentParams = searchResult.params ?? null;
+        closeTray();
         set(nextState);
       }
     },
@@ -69,6 +73,9 @@ export const useCodex = create<CodexStore>()((set, get) => {
         }
       }
     },
+    redirect: () => {
+      console.log(history.location.pathname);
+    },
     actions: {
       navigate: (to, transitionType) => {
         transitionType
@@ -80,4 +87,4 @@ export const useCodex = create<CodexStore>()((set, get) => {
 });
 
 export const { navigate } = useCodex.getState().actions;
-export const useParams = () => useCodex((state) => state.currentParams);
+export const useParams = () => useCodex.getState().currentParams;

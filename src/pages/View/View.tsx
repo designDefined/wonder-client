@@ -1,9 +1,6 @@
 import styles from "./View.module.scss";
-import { useParams } from "../../libs/Codex";
-import { Wonder } from "../../entity/wonder/wonder";
+import { useCodex, useParams } from "../../libs/Codex";
 import api from "../../api";
-import { useJSONFetch } from "../../libs/Admon";
-import { keysOfWonder } from "../../entity/emptyEntity";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
 import Cover from "../../components/View/Cover/Cover";
 import { pick } from "ramda";
@@ -15,23 +12,33 @@ import Location from "../../components/View/Location/Location";
 import Schedules from "../../components/View/Schedules/Schedules";
 import Content from "../../components/View/Content/Content";
 import { WonderView } from "../../types/wonder/wonderView";
+import useFetch from "../../libs/Fetch/useFetch";
+import { useEffect } from "react";
 
 export default function View() {
-  const wonderId = useParams()?.wonder_id;
-  const wonderData = useJSONFetch<WonderView>(
+  //  const wonderId = useParams()?.wonder_id;
+  const wonderId = useCodex((state) => state.currentParams)?.wonder_id;
+  const [wonderData] = useFetch<WonderView>(
     api.get<WonderView>(`/wonder/${wonderId ?? "-1"}`),
-    keysOfWonder,
     [],
   );
+
+  useEffect(() => {
+    console.log(wonderId);
+  }, [wonderId]);
+
+  if (!wonderData) {
+    return <div></div>;
+  }
 
   return (
     <main className={styles.View}>
       <DefaultHeader />
-      <Cover data={pick(["title", "summary", "thumbnail"], wonderData.read)} />
+      <Cover data={pick(["title", "summary", "thumbnail"], wonderData)} />
       <div className={styles.main}>
-        <Creator creator={wonderData.read.creator} />
-        <Tags tags={wonderData.read.tags} />
-        <Period schedule={wonderData.read.schedule} />
+        <Creator creator={wonderData.creator} />
+        <Tags tags={wonderData.tags} />
+        <Period schedule={wonderData.schedule} />
         <Button
           label="예약하기"
           attribute={{ size: "big", theme: "default" }}
@@ -39,8 +46,8 @@ export default function View() {
           className={styles.reserveButton}
         />
         <Location />
-        <Schedules schedules={wonderData.read.schedule} />
-        <Content content={wonderData.read.content} />
+        <Schedules schedules={wonderData.schedule} />
+        <Content content={wonderData.content} />
       </div>
     </main>
   );

@@ -7,7 +7,7 @@ import BarButton from "../../BarButton/BarButton";
 import useFormState from "../../../../../libs/FormState/useFormState";
 import { NewWonder } from "../../../../../types/wonder/newWonder";
 import { WonderSchedule } from "../../../../../entity/wonder/wonder";
-import { useTray } from "../../../../../libs/Tray/useTray";
+import { requestTrayResize, useTray } from "../../../../../libs/Tray/useTray";
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +37,10 @@ export default function DatePanel({ setSchedule }: DatePanelProps) {
       {stage === "type" && (
         <TypeInput
           toDate={() => setStage("date")}
-          setContinuous={(value) => setInputConfig("isContinuous", value)}
+          setContinuous={(value) => {
+            requestTrayResize();
+            setInputConfig("isContinuous", value);
+          }}
         />
       )}
       {stage === "date" && (
@@ -218,7 +221,6 @@ export function DateInput({
 }: DateInputProps) {
   const { isContinuous, includeTime, isSameTime } = inputConfig;
   const [[year, month], setYearMonth] = useState<[number, number]>([2023, 6]);
-  const [startDay, setStartDay] = useState<Day | null>(null);
   const calendar = useMemo(
     () => getMonthlyCalendar(year, month, { weekBeginsWith: "mon" }),
     [year, month],

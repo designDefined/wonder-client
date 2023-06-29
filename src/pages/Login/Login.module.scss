@@ -1,4 +1,5 @@
 @use "../../styles/reset";
+@use "../../styles/textStyle";
 
 $kakao-color: #ffeb3b;
 $naver-color: #71c75c;
@@ -7,6 +8,7 @@ $naver-color: #71c75c;
   position: relative;
   width: 100%;
   padding: 0 5%;
+  padding-bottom: 80px;
 }
 
 .header {

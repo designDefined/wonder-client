@@ -16,23 +16,15 @@ const sortDate = (a: [number, number, number], b: [number, number, number]) => {
   return 0;
 };
 
-export default function Period({
-  schedule,
-}: {
-  schedule: Maybe<Wonder["schedule"]>;
-}) {
+export default function Period({ schedule }: { schedule: Wonder["schedule"] }) {
   const [dateStart, dateEnd] = useMemo(
     () =>
-      maybe.isNothing(schedule)
-        ? ""
-        : pipe(
-            map(
-              (schedule: { date: [number, number, number] }) => schedule.date,
-            ),
-            sort(sortDate),
-            map(([y, m, d]) => `${y}. ${m}. ${d}`),
-            (dates) => [dates[0], dates[dates.length - 1]],
-          )(maybe.read(schedule)),
+      pipe(
+        map((schedule: { date: [number, number, number] }) => schedule.date),
+        sort(sortDate),
+        map(([y, m, d]) => `${y}. ${m}. ${d}`),
+        (dates) => [dates[0], dates[dates.length - 1]],
+      )(schedule),
     [schedule],
   );
 

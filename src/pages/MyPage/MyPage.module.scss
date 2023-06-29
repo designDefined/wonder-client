@@ -2,11 +2,10 @@
 @use "/src/styles/color";
 @use "/src/styles/reset";
 
-.CreatorPage {
+.MyPage {
   width: 100%;
-
+  padding-top: 80px;
   padding-bottom: 80px;
-
   .title {
     @include textStyle.default;
     font-weight: 700;

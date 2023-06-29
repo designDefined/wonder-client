@@ -12,6 +12,7 @@ import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
 import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
 import Creator from "./components/View/Creator/Creator";
 import CreatorPage from "./pages/Creator/CreatorPage";
+import MyPage from "./pages/MyPage/MyPage";
 
 const codex: Codex = {
   _index: <Home />,
@@ -22,6 +23,7 @@ const codex: Codex = {
   },
   login: <Login />,
   view: { _index: <View />, _params: ["wonder_id"] },
+  me: { _index: <MyPage /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },
   _error: <div>error page</div>,
 };

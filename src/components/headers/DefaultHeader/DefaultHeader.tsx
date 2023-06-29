@@ -6,11 +6,17 @@ import classNames from "classnames/bind";
 import SearchBar from "../../Home/SearchBar/SearchBar";
 import Profile from "../../Home/Profile/Profile";
 import { navigate } from "../../../libs/Codex";
+import { useEffect } from "react";
+import { tryAutoLogin } from "../../../libs/AutoLogin/autoLogin";
 
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
   const myAccount = useMyAccountStore((state) => state.data);
+
+  useEffect(() => {
+    tryAutoLogin();
+  }, []);
 
   return (
     <header className={cx("DefaultHeader")}>
@@ -26,7 +32,7 @@ export default function DefaultHeader() {
           <button
             className={styles.login}
             onClick={() => {
-              navigate("login", "slideNext");
+              navigate("/login", "slideNext");
             }}
           >
             로그인

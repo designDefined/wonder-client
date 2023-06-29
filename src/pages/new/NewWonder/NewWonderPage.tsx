@@ -9,11 +9,18 @@ import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import BottomTray from "../../../libs/Tray/BottomTray";
 import BarButton from "../../../components/New/wonder/BarButton/BarButton";
-import { openTray, updateTrayProp } from "../../../libs/Tray/useTray";
+import { openTray, updateTrayProp, useTray } from "../../../libs/Tray/useTray";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import DatePanel from "../../../components/New/wonder/panels/DatePanel/DatePanel";
 import useFormState from "../../../libs/FormState/useFormState";
 import { useEffect } from "react";
+import {
+  getCreatorToken,
+  getUserToken,
+} from "../../../libs/AutoLogin/autoLogin";
+import LocationPanel from "../../../components/New/wonder/panels/LocationPanel/LocationPanel";
+
+const primaries: string[] = [];
 
 const formatTagExceptLast = (value: string): NewWonder["tags"] => {
   const splits = value.split(" ");
@@ -48,20 +55,37 @@ const toggleReservationDetail =
       : { ...emptyReservation, [propertyName]: value };
 
 export default function NewWonderPage() {
-  const myAccount = useMyAccountStore((state) => state.data);
+  const token = getCreatorToken();
   const [newWonder, setNewWonderValue] = useFormState<NewWonder>({
-    thumbnail: null,
+    thumbnail: {
+      src: "/src/assets/sample/wonder_poster_sample.png",
+      altText: "",
+    },
     title: "",
     summary: "",
     tags: [],
     content: "",
-    schedule: [{ date: [2023, 6, 28], time: [] }],
+    schedule: [],
     location: { x: 0, y: 0, name: "" },
     reservationProcess: false,
   });
 
+  const hasTray = useTray((state) => state.target);
+
+  useEffect(() => {
+    console.log(token);
+    if (token === null) {
+      alert("크리에이터 로그인이 필요합니다.");
+      navigate("/", "slidePrevious");
+    }
+  }, []);
+
+  if (token === null) return <div />;
+
   return (
-    <main className={styles.NewWonderPage}>
+    <main
+      className={`${styles.NewWonderPage} ${hasTray ? styles.noScroll : ""}`}
+    >
       <DefaultHeader />
       <ThumbnailUploader
         value={newWonder.thumbnail ? newWonder.thumbnail.src : ""}
@@ -119,7 +143,18 @@ export default function NewWonderPage() {
         />
         <BarButton
           title={"이벤트 장소"}
-          interaction={{ type: "click", onClick: () => {} }}
+          interaction={{
+            type: "click",
+            onClick: () =>
+              openTray(
+                <LocationPanel
+                  currentLocation={newWonder.location.name}
+                  setCurrentLocation={(e) =>
+                    setNewWonderValue("location", { name: e, x: 0, y: 0 })
+                  }
+                />,
+              ),
+          }}
           isBold={false}
         />
         <div className={styles.divider} />
@@ -192,18 +227,42 @@ export default function NewWonderPage() {
             isBold={false}
           />
         </div>
+        <Button
+          label={"원더 생성하기"}
+          attribute={{ size: "big", theme: "default" }}
+          onClick={() => {
+            api
+              .post(
+                "/wonder/new",
+                {
+                  wonder: {
+                    ...newWonder,
+                    tags: newWonder.tags.map((value) => ({
+                      isPrimary: primaries.includes(value),
+                      value,
+                    })),
+                  },
+                },
+                {
+                  Authorization: Number(token),
+                },
+              )
+              .then((res) => {
+                const data = res as
+                  | { isSuccess: true; createdId: number }
+                  | { isSuccess: false };
+                if (data.isSuccess) {
+                  navigate(`/view/${data.createdId}`, "slideNext");
+                } else {
+                  console.log(data);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        />
       </div>
-      <Button
-        label={"원더 생성"}
-        attribute={{ size: "big", theme: "default" }}
-        onClick={() => {
-          api.post("/wonder", newWonder).then((res) => {
-            const data = res as number;
-            alert("업로드 완료");
-            navigate(`/view/${data}`);
-          });
-        }}
-      />
       <BottomTray />
     </main>
   );

@@ -19,6 +19,7 @@ export type CodexStore = {
   provide: (provider: Codex) => void;
   proceedCodex: (path: string[], transitionType?: TransitionType) => void;
   stabilize: () => void;
+  redirect: () => void;
   actions: CodexAction;
 };
 

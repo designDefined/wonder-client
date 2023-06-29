@@ -4,7 +4,7 @@ import { UserSummary } from "../../types/user/userSummary";
 type MyAccountStore = {
   data: null | UserSummary;
   actions: {
-    login: (user: UserSummary) => void;
+    login: (user: User) => void;
     logout: () => void;
   };
 };

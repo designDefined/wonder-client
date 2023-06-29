@@ -10,11 +10,13 @@ import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import api from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import useFormState from "../../../libs/FormState/useFormState";
+import { getUserToken } from "../../../libs/AutoLogin/autoLogin";
 
 const cx = classNames.bind(styles);
 
 export default function NewCreatorPage() {
-  const myAccount = useMyAccountStore((state) => state.data);
+  const token = getUserToken();
+
   const [newCreator, setNewCreatorValue] = useFormState<
     NewCreator & { instagram: string }
   >({
@@ -22,6 +24,10 @@ export default function NewCreatorPage() {
     summary: "",
     instagram: "",
   });
+  if (!token) {
+    alert("로그인 후 이용해주세요.");
+    navigate("/");
+  }
 
   return (
     <>
@@ -63,7 +69,7 @@ export default function NewCreatorPage() {
           attribute={{ size: "big", theme: "default" }}
           onClick={() => {
             const { name, summary, instagram } = newCreator;
-            if (!myAccount) {
+            if (!token) {
               alert("로그인 후 이용해주세요.");
               return;
             }
@@ -80,7 +86,7 @@ export default function NewCreatorPage() {
                 name,
                 summary,
                 instagram,
-                userId: myAccount.id,
+                userId: Number(token),
               })
               .then((res) => {
                 const data = res as { isSuccess: boolean; createdId: number };

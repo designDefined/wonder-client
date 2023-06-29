@@ -1,20 +1,29 @@
-const baseURL = "http://localhost:8000";
+const baseURL = "http://172.20.10.4:8000";
 
-const get = async <T>(url: string): Promise<T> =>
+const get = async <T>(
+  url: string,
+  header: Record<string, any> = {},
+): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
+    headers: header,
   }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res.json());
   });
 
-const post = async <T>(url: string, data: object = {}): Promise<T> =>
+const post = async <T>(
+  url: string,
+  data: object = {},
+  header: Record<string, any> = {},
+): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
     headers: {
+      ...header,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
