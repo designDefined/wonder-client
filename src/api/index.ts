@@ -1,4 +1,6 @@
-const baseURL = "http://172.20.10.4:8000";
+import { getUserToken } from "../libs/AutoLogin/autoLogin";
+
+const baseURL = "http://localhost:8000";
 
 const get = async <T>(
   url: string,
@@ -12,7 +14,6 @@ const get = async <T>(
   }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res.json());
   });
-
 const post = async <T>(
   url: string,
   data: object = {},
@@ -23,8 +24,40 @@ const post = async <T>(
     mode: "cors",
     cache: "no-cache",
     headers: {
-      ...header,
       "Content-Type": "application/json",
+      ...header,
+    },
+    body: JSON.stringify(data),
+  }).then(async (res) => {
+    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+  });
+
+const authedGet = async <T>(
+  url: string,
+  header: Record<string, any> = {},
+): Promise<T> =>
+  fetch(`${baseURL}${url}`, {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    headers: { Authorization: `${getUserToken() ?? "no_token"}`, ...header },
+  }).then((res) => {
+    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+  });
+
+const authedPost = async <T>(
+  url: string,
+  data: object = {},
+  header: Record<string, any> = {},
+): Promise<T> =>
+  fetch(`${baseURL}${url}`, {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${getUserToken() ?? "no_token"}`,
+      ...header,
     },
     body: JSON.stringify(data),
   }).then(async (res) => {
@@ -32,4 +65,5 @@ const post = async <T>(
   });
 
 const api = { get, post };
+export const authedApi = { get: authedGet, post: authedPost };
 export default api;

@@ -10,9 +10,9 @@ import initMocks from "./mocks";
 import View from "./pages/View/View";
 import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
 import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
-import Creator from "./components/View/Creator/Creator";
 import CreatorPage from "./pages/Creator/CreatorPage";
 import MyPage from "./pages/MyPage/MyPage";
+import Register from "./pages/Register/Register";
 
 const codex: Codex = {
   _index: <Home />,
@@ -22,6 +22,7 @@ const codex: Codex = {
     creator: <NewCreatorPage />,
   },
   login: <Login />,
+  register: <Register />,
   view: { _index: <View />, _params: ["wonder_id"] },
   me: { _index: <MyPage /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },

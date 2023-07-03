@@ -1,21 +1,21 @@
 import styles from "./DefaultHeader.module.scss";
 import shuffleIcon from "../../../assets/icon/shuffle.svg";
 import HeaderLogo from "../../logos/HeaderLogo/HeaderLogo";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import classNames from "classnames/bind";
 import SearchBar from "../../Home/SearchBar/SearchBar";
 import Profile from "../../Home/Profile/Profile";
 import { navigate } from "../../../libs/Codex";
 import { useEffect } from "react";
 import { tryAutoLogin } from "../../../libs/AutoLogin/autoLogin";
+import { autoLoginUser, useAccount } from "../../../store/account/useAccount";
 
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
-  const myAccount = useMyAccountStore((state) => state.data);
+  const myAccount = useAccount((state) => state.user);
 
   useEffect(() => {
-    tryAutoLogin();
+    if (!myAccount) void autoLoginUser();
   }, []);
 
   return (

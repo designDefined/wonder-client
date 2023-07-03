@@ -1,6 +1,7 @@
 import api from "../../api";
 import { useMyAccountStore } from "../../store/account/useMyAccountStore";
 import { User } from "../../entity/user/user";
+import { useAccount } from "../../store/account/useAccount";
 
 const STORAGE = "wonderTokenV2";
 export const saveAutoLogin = (
@@ -49,8 +50,13 @@ const emptyToken: string = JSON.stringify({
 export const getToken = (): Token =>
   JSON.parse(localStorage.getItem(STORAGE) ?? emptyToken) as Token;
 
-export const getUserToken = (): string | null =>
-  (JSON.parse(localStorage.getItem(STORAGE) ?? emptyToken) as Token).user;
+export const getUserToken = (): string | null => {
+  const storeToken = useAccount.getState().user?.token;
+  return (
+    storeToken ??
+    (JSON.parse(localStorage.getItem(STORAGE) ?? emptyToken) as Token).user
+  );
+};
 
 export const getCreatorToken = (): string | null =>
   (JSON.parse(localStorage.getItem(STORAGE) ?? emptyToken) as Token).creator;

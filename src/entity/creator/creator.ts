@@ -10,6 +10,7 @@ export type Creator = {
   profileImage: StoredImage;
   dateInformation: DateInformation;
   createdWonder: Wonder[];
+  subscribedUsers: User[];
   instagram?: string;
 };
 

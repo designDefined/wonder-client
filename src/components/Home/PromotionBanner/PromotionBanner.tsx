@@ -1,8 +1,7 @@
 import styles from "./PromotionBanner.module.scss";
-import { homeBanner } from "../../../entity/etc/homeBanner";
 
 type Props = {
-  bannerData: homeBanner[];
+  bannerData: { thumbnail: string; alt: string }[];
 };
 
 export default function PromotionBanner({ bannerData }: Props) {

@@ -1,9 +1,9 @@
-import { CreatorData } from "../creator/creator";
+import { Creator, CreatorData } from "../creator/creator";
+import { Reservation } from "../reservation/reservation";
+import { User } from "../user/user";
 import { DateInformation, StoredImage } from "../utility/utility";
 
-export type WonderId = number | null;
 export type WonderTag = { isPrimary: boolean; value: string };
-export type WonderThumbnail = StoredImage | null;
 export type WonderContent = string;
 export type WonderSchedule = {
   date: [number, number, number];
@@ -19,15 +19,17 @@ export type WonderReservationProcess =
     };
 
 export type Wonder = {
-  id: WonderId;
+  id: number;
   title: string;
   tags: WonderTag[];
-  creator: CreatorData;
-  thumbnail: WonderThumbnail;
+  creator: Creator;
+  thumbnail: StoredImage;
   summary: string;
   content: WonderContent;
   schedule: WonderSchedule[];
   location: WonderLocation;
   reservationProcess: WonderReservationProcess;
   dateInformation: DateInformation;
+  likedUsers: User[];
+  reservations: Reservation[];
 };

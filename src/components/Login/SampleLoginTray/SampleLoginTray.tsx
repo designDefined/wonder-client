@@ -7,6 +7,8 @@ import { User } from "../../../entity/user/user";
 import { saveAutoLogin } from "../../../libs/AutoLogin/autoLogin";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import { navigate } from "../../../libs/Codex";
+import { testLoginUser } from "../../../store/account/useAccount";
+import { isValidRegisterEmail } from "../../../libs/validator";
 
 export default function SampleLoginTray() {
   const [email, setEmail] = useState("");
@@ -26,6 +28,12 @@ export default function SampleLoginTray() {
         label={"확인"}
         attribute={{ size: "big", theme: "default" }}
         onClick={() => {
+          if (isValidRegisterEmail(email)) {
+            void testLoginUser(email);
+          } else {
+            alert("이메일 형식이 올바르지 않습니다.");
+          }
+          /* 
           api
             .post<User>("/user/login", { code: email })
             .then((res) => {
@@ -34,7 +42,7 @@ export default function SampleLoginTray() {
               login(res);
               navigate("/", "slidePrevious");
             })
-            .catch(async (e) => console.log(await e));
+            .catch(async (e) => console.log(await e));*/
         }}
       />
     </div>

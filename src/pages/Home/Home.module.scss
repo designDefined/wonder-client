@@ -3,13 +3,14 @@
 .Home {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  min-width: 370px;
+  //max-width: 500px;
+  //min-width: 370px;
+  //padding: 0 5%;
   padding-bottom: 80px;
 }
 .banners {
   width: 100%;
-  padding: 20px;
+  padding: 20px 0;
   margin-bottom: 78px;
   display: flex;
   flex-direction: column;
