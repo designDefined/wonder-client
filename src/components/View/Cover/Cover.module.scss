@@ -1,5 +1,6 @@
 @use "./src/styles/utility";
 @use "./src/styles/textStyle";
+@use "./src/styles/reset";
 
 .Cover {
   position: relative;
@@ -25,7 +26,12 @@
     width: 100%;
     height: 100%;
   }
-
+  .like {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+  }
   .texts {
     @include textStyle.default;
     color: white;

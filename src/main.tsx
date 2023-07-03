@@ -13,6 +13,9 @@ import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
 import CreatorPage from "./pages/Creator/CreatorPage";
 import MyPage from "./pages/MyPage/MyPage";
 import Register from "./pages/Register/Register";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 const codex: Codex = {
   _index: <Home />,
@@ -36,5 +39,7 @@ if (process.env.NODE_ENV === "development") {
  */
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <CodexProvider provider={codex} />,
+  <QueryClientProvider client={queryClient}>
+    <CodexProvider provider={codex} />
+  </QueryClientProvider>,
 );

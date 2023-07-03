@@ -2,7 +2,7 @@ import styles from "./Creator.module.scss";
 import { Maybe, maybe } from "../../../libs/Admon/maybe";
 import { Wonder } from "../../../entity/wonder/wonder";
 import Button from "../../common/Button/Button";
-import { WonderView } from "../../../types/wonder/wonderView";
+import { WonderView } from "../../../types/depcrecated/wonderView";
 
 export default function Creator({
   creator,

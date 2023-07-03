@@ -1,6 +1,6 @@
 import styles from "./View.module.scss";
 import { useCodex, useParams } from "../../libs/Codex";
-import api from "../../api";
+import api, { authedApi } from "../../api";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
 import Cover from "../../components/View/Cover/Cover";
 import { pick } from "ramda";
@@ -11,17 +11,38 @@ import Period from "../../components/View/Period/Period";
 import Location from "../../components/View/Location/Location";
 import Schedules from "../../components/View/Schedules/Schedules";
 import Content from "../../components/View/Content/Content";
-import { WonderView } from "../../types/wonder/wonderView";
-import useFetch from "../../libs/Fetch/useFetch";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { WonderDetail } from "../../types/wonder/wonderDetail";
+import { useAccount } from "../../store/account/useAccount";
+import { useQuery } from "react-query/types/react/useQuery";
+import useFetch from "../../libs/ReactAssistant/useFetch";
 
 export default function View() {
-  //  const wonderId = useParams()?.wonder_id;
-  const wonderId = useCodex((state) => state.currentParams)?.wonder_id;
-  const [wonderData] = useFetch<WonderView>(
-    api.get<WonderView>(`/wonder/${wonderId ?? "-1"}`),
-    [],
+  const authed = useAccount((state) => state.user) !== null;
+  const wonderId = useParams()?.wonder_id;
+
+  /* 
+  const { isLoading, error, data } = useQuery<WonderDetail>({
+    queryKey: ["wonderDetail"],
+    queryFn: () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
+  });
+  */
+  //const wonderId = useCodex((state) => state.currentParams)?.wonder_id;
+  const [wonderData, , refetchWonderData] = useFetch<WonderDetail>(
+    () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
+    [authed],
   );
+  const onLike = useCallback((): void => {
+    if (!authed || wonderData === null) {
+      alert("먼저 로그인해주세요!");
+    } else {
+      void authedApi
+        .put(`/wonder/${wonderData.id}/like`, {
+          value: !wonderData.liked,
+        })
+        .then(() => refetchWonderData());
+    }
+  }, [authed, wonderData]);
 
   useEffect(() => {
     console.log(wonderId);
@@ -34,7 +55,10 @@ export default function View() {
   return (
     <main className={styles.View}>
       <DefaultHeader />
-      <Cover data={pick(["title", "summary", "thumbnail"], wonderData)} />
+      <Cover
+        data={pick(["title", "summary", "thumbnail", "liked"], wonderData)}
+        onLike={onLike}
+      />
       <div className={styles.main}>
         <Creator creator={wonderData.creator} />
         <Tags tags={wonderData.tags} />

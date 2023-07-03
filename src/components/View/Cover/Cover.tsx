@@ -1,11 +1,12 @@
 import styles from "./Cover.module.scss";
-import { maybe, Maybe, MaybeJSON } from "../../../libs/Admon/maybe";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { WonderDetail } from "../../../types/wonder/wonderDetail";
 
 export default function Cover({
   data,
+  onLike,
 }: {
-  data: Pick<Wonder, "title" | "summary" | "thumbnail">;
+  data: Pick<WonderDetail, "title" | "summary" | "thumbnail" | "liked">;
+  onLike: () => void;
 }) {
   return (
     <div className={styles.Cover}>
@@ -14,6 +15,15 @@ export default function Cover({
         src={data.thumbnail?.src ?? ""}
         alt={data.thumbnail?.altText ?? ""}
       />
+      <button className={styles.like} onClick={onLike}>
+        <img
+          src={
+            data.liked
+              ? "/assets/icon/favorite/filled.svg"
+              : "/assets/icon/favorite/default.svg"
+          }
+        />
+      </button>
       <div className={styles.texts}>
         <div className={styles.title}>{data.title}</div>
         <div className={styles.summary}>{data.summary}</div>

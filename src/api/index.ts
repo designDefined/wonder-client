@@ -64,6 +64,25 @@ const authedPost = async <T>(
     return res.ok ? (res.json() as T) : Promise.reject(res.json());
   });
 
+const authedPut = async <T>(
+  url: string,
+  data: object = {},
+  header: Record<string, any> = {},
+): Promise<T> =>
+  fetch(`${baseURL}${url}`, {
+    method: "PUT",
+    mode: "cors",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${getUserToken() ?? "no_token"}`,
+      ...header,
+    },
+    body: JSON.stringify(data),
+  }).then(async (res) => {
+    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+  });
+
 const api = { get, post };
-export const authedApi = { get: authedGet, post: authedPost };
+export const authedApi = { get: authedGet, post: authedPost, put: authedPut };
 export default api;

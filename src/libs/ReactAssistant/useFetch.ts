@@ -1,21 +1,22 @@
 import { useCallback, useEffect, useState } from "react";
-import useEnhancedState from "../ReactAssistant/useEnhancedState";
 
-const useFetch = <Success>(fetchFunction: Promise<Success>, deps: any[]) => {
+const useFetch = <Success>(
+  fetchFunction: () => Promise<Success>,
+  deps: any[],
+) => {
   const [get, set] = useState<Success | null>(null);
 
-  const refetch = () => {
-    fetchFunction.then(
+  const refetch = useCallback(() => {
+    fetchFunction().then(
       (res) => {
-        console.log(res);
         set(res);
       },
       () => null,
     );
-  }; //, [fetchFunction]);
+  }, [fetchFunction]);
 
   useEffect(() => {
-    fetchFunction.then(
+    fetchFunction().then(
       (res) => set(res),
       () => null,
     );
