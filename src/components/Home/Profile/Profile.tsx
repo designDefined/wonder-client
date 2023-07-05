@@ -3,14 +3,11 @@ import { useOverlay } from "../../../store/overlay/useOverlay";
 import { navigate } from "../../../libs/Codex";
 import { useFetches } from "../../../libs/Admon";
 import api, { authedApi } from "../../../api";
-import {
-  CreatorDisplay,
-  OwnedCreator,
-} from "../../../types/creator/creatorDisplay";
+import { OwnedCreator } from "../../../types/creator/creatorDisplay";
 import {
   deleteAutoLogin,
-  getUserToken,
   saveAutoLogin,
+  saveCreatorToken,
 } from "../../../libs/AutoLogin/autoLogin";
 import { useState } from "react";
 import { UserLoggedIn } from "../../../types/user/userAuthorization";
@@ -54,7 +51,7 @@ function DropdownOverlay({ myAccount }: Props) {
               className={styles.creator}
               key={id}
               onClick={() => {
-                saveAutoLogin("creator", id);
+                saveCreatorToken(id);
                 navigate(`/creator/${id}`, "slideNext");
               }}
             >

@@ -6,7 +6,6 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import { Codex } from "./libs/Codex/types";
 import CodexProvider from "./libs/Codex/components/Provider/CodexProvider";
-import initMocks from "./mocks";
 import View from "./pages/View/View";
 import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
 import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";

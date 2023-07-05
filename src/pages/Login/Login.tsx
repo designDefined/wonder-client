@@ -49,7 +49,7 @@ export default function Login() {
               })
               .catch(async (err) => console.log(await err));
                */
-            openTray(<SampleLoginTray />);
+            openTray(() => <SampleLoginTray />);
           }}
         >
           <img src={kakao_icon} />

@@ -14,7 +14,6 @@ import Content from "../../components/View/Content/Content";
 import { useCallback, useEffect } from "react";
 import { WonderDetail } from "../../types/wonder/wonderDetail";
 import { useAccount } from "../../store/account/useAccount";
-import { useQuery } from "react-query/types/react/useQuery";
 import useFetch from "../../libs/ReactAssistant/useFetch";
 
 export default function View() {

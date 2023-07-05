@@ -15,6 +15,7 @@ export default function BottomTray() {
     now: false,
     amount: height,
   });
+
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
