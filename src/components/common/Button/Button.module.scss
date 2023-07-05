@@ -5,6 +5,7 @@
 Button {
   @include reset.button;
   border-radius: 5px;
+  cursor: pointer;
 
   &.big {
     @include textStyle.subtitle;

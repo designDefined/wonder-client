@@ -39,7 +39,6 @@ export default function DefaultHeader() {
           </button>
         )}
       </div>
-      <div className={cx("LoginHeader")}>Login</div>
     </header>
   );
 }

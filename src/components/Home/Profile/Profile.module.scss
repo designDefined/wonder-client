@@ -1,10 +1,12 @@
 @use "./src/styles/textStyle";
 @use "./src/styles/color";
+@use "./src/styles/layout";
 
 .Profile {
+  position: relative;
   margin-left: 31px;
   border-radius: 50%;
-
+  cursor: pointer;
   .thumb {
     width: 36px;
     height: 36px;
@@ -16,9 +18,12 @@
   position: absolute;
   width: 176px;
   background-color: color.$white;
-  top: 20px;
-  right: 35px;
+  top: 16px;
+  right: 16px;
   border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(color.$black, 0.25);
+  z-index: layout.$level-6-menu;
+
   .profile {
     display: flex;
     gap: 14px;

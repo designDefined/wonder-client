@@ -1,6 +1,7 @@
 @use "./src/styles/textStyle";
 @use "./src/styles/componentStyle";
 @use "./src/styles/utility";
+@use "./src/styles/layout";
 
 .RecentEvent {
   width: 100%;
@@ -8,18 +9,19 @@
   margin-bottom: 58px;
 
   .title {
+    @include layout.defaultSidePadding;
     @include textStyle.title;
-    //    padding: 0 20px;
-    padding: 0 20px;
   }
   .eventList {
+    @include layout.defaultSidePadding;
     margin-top: 11px;
     width: 100%;
     display: flex;
     column-gap: 14px;
     scroll-snap-type: x mandatory;
     overflow-x: auto;
-    padding: 20px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
     .noEvent {
       @include utility.responsivePx(300px, 424px);

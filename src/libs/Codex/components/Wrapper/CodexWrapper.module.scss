@@ -23,8 +23,8 @@
     left: 0;
     top: 0;
     &.stable {
-      display: none;
-      visibility: hidden;
+      display: none !important;
+      visibility: hidden !important;
     }
     &.slideNext {
       animation: 1s ease slideToRight;

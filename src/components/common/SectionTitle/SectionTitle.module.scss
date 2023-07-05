@@ -1,0 +1,19 @@
+@use "/src/styles/textStyle";
+.SectionTitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &.big {
+  }
+  &.medium {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &.clickable {
+    cursor: pointer;
+  }
+  .title {
+    @include textStyle.default;
+  }
+}

@@ -10,5 +10,5 @@ export type NewWonder = Pick<
   | "reservationProcess"
 > & {
   tags: string[];
-  thumbnail: Wonder["thumbnail"] | null;
+  thumbnail: Wonder["thumbnail"];
 };

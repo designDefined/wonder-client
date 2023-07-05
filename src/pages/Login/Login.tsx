@@ -69,13 +69,12 @@ export default function Login() {
         <button
           className={styles.googleLogin}
           onClick={() => {
-            openTray(<SampleLoginTray />);
+            openTray(() => <SampleLoginTray />);
           }}
         >
           <div>테스트 계정으로 로그인하기</div>
         </button>
       </div>
-      <BottomTray />
     </main>
   );
 }

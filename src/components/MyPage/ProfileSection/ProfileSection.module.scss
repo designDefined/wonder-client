@@ -1,0 +1,45 @@
+@use "/src/styles/color";
+@use "/src/styles/textStyle";
+
+.ProfileSection {
+  @include textStyle.default;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 96px;
+    background-color: color.$gray;
+    z-index: -1;
+  }
+  .profileImage {
+    width: 112px;
+    height: 112px;
+    margin-top: 30px;
+    margin-bottom: 6px;
+    border-radius: 50%;
+  }
+  .nickname {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .email {
+    margin-top: 1px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 9px;
+    color: color.$dark-gray;
+  }
+  .modify {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 22px;
+    margin-bottom: 11px;
+    color: color.$dark-gray;
+  }
+}

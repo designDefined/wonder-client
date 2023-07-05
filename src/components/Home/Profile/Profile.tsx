@@ -1,27 +1,33 @@
 import styles from "./Profile.module.scss";
 import { useOverlay } from "../../../store/overlay/useOverlay";
-import { User } from "../../../entity/user/user";
 import { navigate } from "../../../libs/Codex";
-import { UserSummary } from "../../../types/user/userSummary";
 import { useFetches } from "../../../libs/Admon";
-import api from "../../../api";
-import { CreatorDisplay } from "../../../types/creator/creatorDisplay";
+import api, { authedApi } from "../../../api";
+import {
+  CreatorDisplay,
+  OwnedCreator,
+} from "../../../types/creator/creatorDisplay";
 import {
   deleteAutoLogin,
   getUserToken,
   saveAutoLogin,
-  tryAutoLogin,
 } from "../../../libs/AutoLogin/autoLogin";
-import { useEffect } from "react";
+import { useState } from "react";
+import { UserLoggedIn } from "../../../types/user/userAuthorization";
+import useFetch from "../../../libs/ReactAssistant/useFetch";
 
 type Props = {
-  myAccount: UserSummary;
+  myAccount: UserLoggedIn;
 };
 
 function DropdownOverlay({ myAccount }: Props) {
+  /* 
   const myCreators = useFetches<CreatorDisplay>(
-    //    api.get(`/user/ownedCreator?userId=${myAccount.id}`),
     api.get(`/user/ownedCreator`, { Authorization: getUserToken() ?? "-1" }),
+  ); */
+  const [ownedCreators] = useFetch<OwnedCreator[]>(
+    () => authedApi.get("/user/ownedCreator"),
+    [],
   );
 
   return (
@@ -42,25 +48,27 @@ function DropdownOverlay({ myAccount }: Props) {
       <div className={styles.tab}>알림</div>
       <div className={styles.divider} />
       <div className={styles.tab}>크리에이터 페이지</div>
-      {myCreators.map(
-        ({ id, name, profileImage }) => (
-          <div
-            className={styles.creator}
-            key={id}
-            onClick={() => {
-              saveAutoLogin("creator", id);
-              navigate(`/creator/${id}`, "slideNext");
-            }}
-          >
-            <span>{name}</span>
-            <img src={profileImage.src} alt={profileImage.altText} />
-          </div>
-        ),
-        <div />,
-      )}
+      {ownedCreators
+        ? ownedCreators.map(({ id, name, profileImage }) => (
+            <div
+              className={styles.creator}
+              key={id}
+              onClick={() => {
+                saveAutoLogin("creator", id);
+                navigate(`/creator/${id}`, "slideNext");
+              }}
+            >
+              <span>{name}</span>
+              <img src={profileImage.src} alt={profileImage.altText} />
+            </div>
+          ))
+        : [...(Array(myAccount.howManyCreatorsOwned) as unknown[])].map(
+            (_, i) => <div key={i} className={styles.emptyCreator} />,
+          )}
+      {/*
       <div className={styles.tab} onClick={() => navigate("/new/creator")}>
         새 크리에이터 생성
-      </div>
+      </div>*/}
       <div className={styles.divider} />
       <div className={styles.tab}>설정</div>
       <div className={styles.tab}>업데이트 노트</div>
@@ -79,17 +87,22 @@ function DropdownOverlay({ myAccount }: Props) {
 
 export default function Profile({ myAccount }: Props) {
   const { addOverlay } = useOverlay((state) => state.actions);
+  const [menuOpened, setMenuOpened] = useState(false);
 
   return (
     <div
       className={styles.Profile}
-      onClick={() =>
+      onClick={
+        () => setMenuOpened(!menuOpened)
+        /* 
         addOverlay({
           target: <DropdownOverlay myAccount={myAccount} />,
           config: { closeWhenBlurred: true },
         })
+        */
       }
     >
+      {menuOpened && <DropdownOverlay myAccount={myAccount} />}
       <img className={styles.thumb} src={myAccount.profileImage.src} />
     </div>
   );

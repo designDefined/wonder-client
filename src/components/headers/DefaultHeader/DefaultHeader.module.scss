@@ -1,6 +1,8 @@
-@use "../../../styles/reset";
+@use "./src/styles/reset";
 @use "./src/styles/textStyle";
 @use "./src/styles/color";
+@use "./src/styles/layout";
+
 .DefaultHeader {
   position: relative;
   width: 100%;
@@ -9,7 +11,10 @@
   align-items: center;
   padding: 0 5%;
   transition: 1s ease;
-  overflow-x: hidden;
+  //overflow-x: hidden;
+  overflow: visible;
+
+  z-index: layout.$level-5-header;
 }
 
 .logo {

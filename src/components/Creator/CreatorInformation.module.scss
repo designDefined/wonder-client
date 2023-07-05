@@ -1,0 +1,53 @@
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
+@use "./src/styles/layout";
+
+.CreatorInformation {
+  position: relative;
+  width: 100%;
+  padding-top: 120px;
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    background-color: color.$gray;
+    z-index: -1;
+  }
+  .information {
+    @include layout.defaultSidePadding;
+    display: flex;
+    gap: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid color.$gray;
+    .profile {
+      align-self: flex-start;
+      width: 64px;
+      height: 64px;
+      > img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .text {
+      @include textStyle.default;
+      align-self: flex-end;
+      display: flex;
+      flex-direction: column;
+      .name {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 22px;
+        padding-top: 20px;
+      }
+      .summary {
+        font-size: 13.5px;
+        font-weight: 400;
+        line-height: 18px;
+        color: color.$dark-gray;
+      }
+    }
+  }
+}

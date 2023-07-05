@@ -13,9 +13,7 @@ import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
 import CreatorPage from "./pages/Creator/CreatorPage";
 import MyPage from "./pages/MyPage/MyPage";
 import Register from "./pages/Register/Register";
-import { QueryClient, QueryClientProvider } from "react-query";
-
-const queryClient = new QueryClient();
+import Liked from "./pages/MyPage/Liked/Liked";
 
 const codex: Codex = {
   _index: <Home />,
@@ -27,7 +25,7 @@ const codex: Codex = {
   login: <Login />,
   register: <Register />,
   view: { _index: <View />, _params: ["wonder_id"] },
-  me: { _index: <MyPage /> },
+  me: { _index: <MyPage />, liked: <Liked /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },
   _error: <div>error page</div>,
 };
@@ -39,7 +37,5 @@ if (process.env.NODE_ENV === "development") {
  */
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <CodexProvider provider={codex} />
-  </QueryClientProvider>,
+  <CodexProvider provider={codex} />,
 );

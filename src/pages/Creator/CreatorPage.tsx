@@ -1,49 +1,45 @@
 import styles from "./CreatorPage.module.scss";
 import classNames from "classnames/bind";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
-import { useFetch, useJSONFetch } from "../../libs/Admon";
 import { StoredImage } from "../../entity/utility/utility";
-import api from "../../api";
+import api, { authedApi } from "../../api";
 import { navigate, useParams } from "../../libs/Codex";
 import { useEffect, useState } from "react";
+import { CreatorDetail } from "../../types/creator/creatorDetail";
+import useFetch from "../../libs/ReactAssistant/useFetch";
+import CreatorInformation from "../../components/Creator/CreatorInformation";
+import { WonderSummaryTitleOnly } from "../../types/wonder/WonderSummary";
+import { useAccount } from "../../store/account/useAccount";
+import { saveCreatorToken } from "../../libs/AutoLogin/autoLogin";
 
 const cx = classNames.bind(styles);
 
 export default function CreatorPage() {
   const creatorId = useParams()?.creator_id;
+  const [creator] = useFetch<CreatorDetail>(
+    () => authedApi.get(`/creator/${creatorId ?? "-1"}`),
+    [],
+  );
+  const [wonders] = useFetch<WonderSummaryTitleOnly[]>(
+    () => authedApi.get(`/creator/${creatorId ?? "-1"}/wonders`),
+    [],
+  );
 
-  const [creator, setCreator] = useState<{
-    id: number;
-    name: string;
-    summary: string;
-  }>();
-  const [wonders, setWonders] = useState<
-    {
-      id: number;
-      title: string;
-      thumbnail: StoredImage;
-    }[]
-  >();
+  /* 
+  const [wonders] = useFetch<CreatorDetail>(
+    () => authedApi.get(`/creator/${creatorId ?? "-1"}`),
+    [],
+  );
+*/
 
-  useEffect(() => {
-    api
-      .get<{
-        creator: { id: number; name: string; summary: string };
-        wonders: { id: number; title: string; thumbnail: StoredImage }[];
-      }>(`/creator/${creatorId ?? "-1"}`)
-      .then((res) => {
-        setCreator(res.creator);
-        setWonders(res.wonders);
-      });
-  }, []);
+  if (!creator || wonders === null) {
+    return <div />;
+  }
 
   return (
     <div className={cx("CreatorPage")}>
       <DefaultHeader />
-      <div className={cx("my")}>
-        <div className={cx("name")}>{creator && creator.name}</div>
-        <div className={cx("summary")}>{creator && creator.summary}</div>
-      </div>
+      <CreatorInformation detail={creator} />
       <div className={cx("events")}>
         <div className={cx("title")}>나의 이벤트</div>
         {wonders &&
@@ -56,12 +52,17 @@ export default function CreatorPage() {
               {wonder.title}
             </div>
           ))}
-        <button
-          className={cx("addEvent")}
-          onClick={() => navigate("/new/wonder", "slideNext")}
-        >
-          이벤트 추가하기 +
-        </button>
+        {creator.isMine && (
+          <button
+            className={cx("addEvent")}
+            onClick={() => {
+              saveCreatorToken(creator.id);
+              navigate("/new/wonder", "slideNext");
+            }}
+          >
+            이벤트 추가하기 +
+          </button>
+        )}
       </div>
     </div>
   );

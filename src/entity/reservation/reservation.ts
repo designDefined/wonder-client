@@ -1,6 +1,6 @@
 import { User } from "../user/user";
 import { DateInformation } from "../utility/utility";
-import { Wonder } from "../wonder/wonder";
+import { Wonder, WonderSchedule } from "../wonder/wonder";
 
 export type ReservationData = {
   wonderId: Wonder["id"];
@@ -9,10 +9,7 @@ export type ReservationData = {
   phoneNumber?: User["phoneNumber"];
   email?: User["email"];
 };
-export type ReservationTime = {
-  day: [number, number, number];
-  time: [number, number];
-};
+export type ReservationTime = WonderSchedule;
 
 export type Reservation = {
   id: number;

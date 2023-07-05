@@ -1,4 +1,4 @@
-import { Creator, CreatorData } from "../creator/creator";
+import { Creator } from "../creator/creator";
 import { Reservation } from "../reservation/reservation";
 import { User } from "../user/user";
 import { DateInformation, StoredImage } from "../utility/utility";

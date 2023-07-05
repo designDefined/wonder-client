@@ -7,17 +7,23 @@ import { useCallback, useState } from "react";
 import { NewWonder } from "../../../types/wonder/newWonder";
 import Button from "../../../components/common/Button/Button";
 import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import api from "../../../api";
+import api, { authedApi } from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import useFormState from "../../../libs/FormState/useFormState";
 import { getUserToken } from "../../../libs/AutoLogin/autoLogin";
+import useEnhancedState from "../../../libs/ReactAssistant/useEnhancedState";
+import {
+  isValidCreatorName,
+  isValidCreatorSummary,
+  isValidInstagram,
+} from "../../../libs/validator";
 
 const cx = classNames.bind(styles);
 
 export default function NewCreatorPage() {
   const token = getUserToken();
 
-  const [newCreator, setNewCreatorValue] = useFormState<
+  const [newCreator, setNewCreator, setNewCreatorValue] = useEnhancedState<
     NewCreator & { instagram: string }
   >({
     name: "",
@@ -69,28 +75,28 @@ export default function NewCreatorPage() {
           attribute={{ size: "big", theme: "default" }}
           onClick={() => {
             const { name, summary, instagram } = newCreator;
-            if (!token) {
-              alert("로그인 후 이용해주세요.");
+            if (!isValidCreatorName(name)) {
+              alert("적절한 이름을 입력해주세요.");
               return;
             }
-            if (name.length < 1 || name.length > 15) {
-              alert("적절한 이름을 입력해주세요");
+            if (!isValidCreatorSummary(summary)) {
+              alert("적절한 소개를 입력해주세요.");
               return;
             }
-            if (summary.length < 1 || summary.length > 30) {
-              alert("적절한 소개를 입력해주세요");
+            if (!isValidInstagram(instagram)) {
+              alert("적절하지 않은 인스타그램 계정입니다.");
               return;
             }
-            api
+            void authedApi
               .post("/creator/new", {
                 name,
                 summary,
                 instagram,
-                userId: Number(token),
               })
               .then((res) => {
                 const data = res as { isSuccess: boolean; createdId: number };
-                if (data.isSuccess) navigate(`/creator/${data.createdId}`);
+                if (data.isSuccess)
+                  navigate(`/creator/${data.createdId}`, "slideNext");
               });
           }}
         />
