@@ -1,79 +1,35 @@
+import { setScroll } from "../Codex";
 import styles from "./BottomTray.module.scss";
-import { useTray } from "./useTray";
+import { closeTray, requestTrayResize, useTray } from "./useTray";
 import classNames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
 
 const cx = classNames.bind(styles);
 
 export default function BottomTray() {
+  const ref = useRef<HTMLDivElement>(null);
   const target = useTray((state) => state.target);
   const needResize = useTray((state) => state.needResize);
-  const requestTrayResize = useTray((state) => state.requestTrayResize);
-  const closeTray = useTray((state) => state.closeTray);
+
   const [height, setHeight] = useState(0);
   const [dragging, setDragging] = useState<{ now: boolean; amount: number }>({
     now: false,
     amount: height,
   });
 
-  const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (ref.current) {
-      setHeight(ref.current.clientHeight);
-      if (needResize) {
-        requestTrayResize(false);
+    if (target !== null) {
+      if (ref.current) {
+        setScroll(false);
+        setHeight(ref.current.offsetHeight ?? 0);
+        if (needResize) requestTrayResize(false);
       }
-    }
-  }, [ref.current?.clientHeight, needResize, target]);
-
-  useEffect(() => {
-    if (!target) {
-      console.log(dragging.now);
+    } else {
+      setScroll(true);
       setHeight(0);
       setDragging({ now: false, amount: 0 });
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
     }
-  }, [target]);
-
-  useEffect(() => {
-    const touchmove = (e: TouchEvent) => {
-      e.stopPropagation();
-      if (ref.current?.offsetParent) {
-        if (dragging.now) {
-          const viewportHeight = window.innerHeight;
-          if (!(viewportHeight - e.changedTouches[0].clientY > height)) {
-            console.log(viewportHeight - e.changedTouches[0].clientY > height);
-            setDragging({
-              now: true,
-              amount: viewportHeight - e.changedTouches[0].clientY,
-            });
-          }
-        }
-      }
-    };
-    const touchend = () => {
-      if (dragging.now) {
-        if (dragging.amount < height / 2) {
-          closeTray();
-        } else {
-          setDragging({
-            now: false,
-            amount: height,
-          });
-        }
-      }
-    };
-
-    window.addEventListener("touchmove", touchmove);
-    window.addEventListener("touchend", touchend);
-    return () => {
-      removeEventListener("touchmove", touchmove);
-      removeEventListener("touchend", touchend);
-    };
-  }, []);
+  }, [target, needResize]);
 
   return (
     <div
@@ -86,8 +42,38 @@ export default function BottomTray() {
           (dragging.now ? dragging.amount : height) / (height * 1.5)
         })`,
       }}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         closeTray();
+      }}
+      onTouchMove={(e) => {
+        e.stopPropagation();
+        console.log(e);
+        if (ref.current?.offsetParent) {
+          if (dragging.now) {
+            const viewportHeight = window.innerHeight;
+            if (!(viewportHeight - e.changedTouches[0].clientY > height)) {
+              setDragging({
+                now: true,
+                amount: viewportHeight - e.changedTouches[0].clientY,
+              });
+            }
+          }
+        }
+      }}
+      onTouchEnd={() => {
+        {
+          if (dragging.now) {
+            if (dragging.amount < height / 2) {
+              closeTray();
+            } else {
+              setDragging({
+                now: false,
+                amount: height,
+              });
+            }
+          }
+        }
       }}
     >
       <div
@@ -103,6 +89,7 @@ export default function BottomTray() {
         <div
           className={cx("handle")}
           onTouchStart={() => {
+            console.log("start!");
             setDragging({
               now: true,
               amount: height,

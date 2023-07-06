@@ -16,6 +16,7 @@ export type CodexStore = {
   currentParams: null | Record<string, string | undefined>;
   componentA: ReactNode | null;
   componentB: ReactNode | null;
+  isScrollable: boolean;
   provide: (provider: Codex) => void;
   proceedCodex: (path: string[], transitionType?: TransitionType) => void;
   stabilize: () => void;
@@ -25,4 +26,5 @@ export type CodexStore = {
 
 export type CodexAction = {
   navigate: (to: string, transitionType?: TransitionType) => void;
+  setScroll: (value: boolean) => void;
 };

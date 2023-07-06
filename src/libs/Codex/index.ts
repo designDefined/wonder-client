@@ -25,6 +25,7 @@ export const useCodex = create<CodexStore>()((set, get) => {
     currentParams: null,
     componentA: null,
     componentB: null,
+    isScrollable: true,
     provide: (provider) => {
       const firstPath = history.location.pathname;
 
@@ -82,9 +83,10 @@ export const useCodex = create<CodexStore>()((set, get) => {
           ? history.push(to, { transitionType })
           : history.push(to);
       },
+      setScroll: (value) => set({ isScrollable: value }),
     },
   };
 });
 
-export const { navigate } = useCodex.getState().actions;
+export const { navigate, setScroll } = useCodex.getState().actions;
 export const useParams = () => useCodex.getState().currentParams;
