@@ -25,7 +25,7 @@
 }
 
 .DateInput {
-  padding: 48px 20px 90px 20px;
+  padding: 0 5% 60px 5%;
   position: relative;
   width: 100%;
 
@@ -54,6 +54,10 @@
     border-top: 1px solid color.$gray;
   }
   .details {
+    opacity: 0;
+    &.visible {
+      opacity: 1;
+    }
     .title {
       @include textStyle.default;
       padding-top: 22px;
@@ -61,6 +65,50 @@
       font-weight: 700;
       line-height: 22px;
       border-top: 1px solid color.$gray;
+    }
+    .sameTime {
+      margin-top: 20px;
+      display: flex;
+      gap: 8px;
+    }
+    .emptyBox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid black;
+      border-radius: 3px;
+    }
+    .timeList {
+      margin-top: 8px;
+      .timeItem {
+        @include textStyle.default;
+        position: relative;
+        display: flex;
+        width: 100%;
+        margin: 8px 0;
+        height: 50px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        border: 1px solid color.$gray;
+        border-radius: 5px;
+        padding: 10px;
+        gap: 20px;
+
+        .label {
+          display: absolute;
+          width: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        select {
+          width: calc(100% - 140px);
+          font: inherit;
+          text-align: center;
+          border: 0;
+          border-left: 1px solid color.$gray !important;
+        }
+      }
     }
   }
 }

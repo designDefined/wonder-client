@@ -6,8 +6,9 @@ import { getMonthlyCalendar, getSampleCalendar } from "calend-arr";
 import BarButton from "../../BarButton/BarButton";
 import { NewWonder } from "../../../../../types/wonder/newWonder";
 import { WonderSchedule } from "../../../../../entity/wonder/wonder";
-import { requestTrayResize, useTray } from "../../../../../libs/Tray/useTray";
+import { requestTrayResize } from "../../../../../libs/Tray/useTray";
 import useEnhancedState from "../../../../../libs/ReactAssistant/useEnhancedState";
+import SelectDifferentTime from "./TimeSelect";
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +26,7 @@ type DatePanelProps = {
 export default function DatePanel({ schedule, setSchedule }: DatePanelProps) {
   const [inputConfig, , setInputConfig] = useEnhancedState<DateInputConfig>({
     isContinuous: false,
-    includeTime: false,
+    includeTime: schedule.filter(({ time }) => time.length > 0).length > 0,
     isSameTime: false,
   });
   const [stage, setStage] = useState<"type" | "date">("type");
@@ -147,25 +148,44 @@ const onClickDate =
   (
     schedule: NewWonder["schedule"],
     setSchedule: (schedule: NewWonder["schedule"]) => void,
-    { isContinuous }: DateInputConfig,
+    { isContinuous, includeTime, isSameTime }: DateInputConfig,
   ) =>
   (year: number, month: number, date: number) => {
     if (isContinuous) {
       //continuous
       if (schedule.length !== 1) {
         //first click
-        setSchedule([{ date: [year, month, date], time: [] }]);
+        setSchedule([
+          {
+            date: [year, month, date],
+            time: includeTime
+              ? isSameTime
+                ? schedule[0].time
+                : [[12, 0]]
+              : [],
+          },
+        ]);
       } else {
         //second click
         setSchedule(
           selectDatesBetween(schedule[0].date, [year, month, date]).map(
-            (date) => ({ date, time: [] }),
+            (date) => ({
+              date,
+              time: includeTime
+                ? isSameTime
+                  ? schedule[0].time
+                  : [[12, 0]]
+                : [],
+            }),
           ),
         );
       }
     } else {
       //not continuous
-      const newDate: WonderSchedule = { date: [year, month, date], time: [] };
+      const newDate: WonderSchedule = {
+        date: [year, month, date],
+        time: includeTime ? (isSameTime ? schedule[0].time : [[12, 0]]) : [],
+      };
       if (
         schedule
           .map(({ date }) => date)
@@ -224,15 +244,11 @@ export function DateInput({
   setSameTime,
 }: DateInputProps) {
   const { isContinuous, includeTime, isSameTime } = inputConfig;
-  const [[year, month], setYearMonth] = useState<[number, number]>([2023, 6]);
+  const [[year, month], setYearMonth] = useState<[number, number]>([2023, 7]);
   const calendar = useMemo(
     () => getMonthlyCalendar(year, month, { weekBeginsWith: "mon" }),
     [year, month],
   );
-
-  useEffect(() => {
-    console.log(currentSchedule.map(({ date }) => date[2]));
-  }, [currentSchedule]);
 
   return (
     <div className={cx("DateInput")}>
@@ -273,8 +289,34 @@ export function DateInput({
           isBold={true}
         />
       </div>
-      <div className={cx("details")}>
+      <div className={cx("details", { visible: includeTime })}>
         <div className={cx("title")}>시간 상세 설정</div>
+        <div
+          className={cx("sameTime")}
+          onClick={() => {
+            setSameTime(!isSameTime);
+          }}
+        >
+          <div className={cx("toggle")}>
+            {isSameTime ? (
+              <img src={"/assets/icon/check_box.svg"} />
+            ) : (
+              <div className={cx("emptyBox")} />
+            )}
+          </div>
+          전체 시간 통일할게요
+        </div>
+        <div className={cx("timeList")}>
+          <SelectDifferentTime
+            includeTime={includeTime}
+            sameTime={isSameTime}
+            schedule={currentSchedule}
+            setSchedule={(e) => {
+              console.log(e.length > 0 ? e[0].time : "no time");
+              setSchedule(e);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -60,6 +60,12 @@
   &.empty {
     display: none;
   }
+  .targetWrapper {
+    width: 100%;
+    margin-top: 30px;
+    max-height: calc(90vh - 60px);
+    overflow-y: scroll;
+  }
 }
 
 @keyframes reveal {
