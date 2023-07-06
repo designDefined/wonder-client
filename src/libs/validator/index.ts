@@ -3,6 +3,7 @@
  */
 
 import { Wonder } from "../../entity/wonder/wonder";
+import { NewWonder } from "../../types/wonder/newWonder";
 
 export const isValidRegisterEmail = (input: string): boolean =>
   !(input.length < 5) && input.includes("@");
@@ -39,3 +40,7 @@ export const isValidWonderSchedule = (input: Wonder["schedule"]): boolean =>
 
 export const isValidWonderLocation = (input: Wonder["location"]): boolean =>
   input.name.length > 0;
+
+export const isValidWonderThumbnail = (
+  input: NewWonder["thumbnail"],
+): boolean => input !== null;

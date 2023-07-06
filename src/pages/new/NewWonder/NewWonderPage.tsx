@@ -14,6 +14,12 @@ import { useEffect } from "react";
 import { getCreatorToken } from "../../../libs/AutoLogin/autoLogin";
 import LocationPanel from "../../../components/New/wonder/panels/LocationPanel/LocationPanel";
 import useEnhancedState from "../../../libs/ReactAssistant/useEnhancedState";
+import {
+  isValidWonderLocation,
+  isValidWonderSchedule,
+  isValidWonderThumbnail,
+  isValidWonderTitle,
+} from "../../../libs/validator";
 
 const formatTagExceptLast = (value: string): NewWonder["tags"] => {
   const splits = value.split(" ");
@@ -60,10 +66,7 @@ const summarizeScheduleToString = (schedule: NewWonder["schedule"]): string => {
 export default function NewWonderPage() {
   const token = getCreatorToken();
   const [newWonder, , setNewWonderValue] = useEnhancedState<NewWonder>({
-    thumbnail: {
-      src: "",
-      altText: "",
-    },
+    thumbnail: null,
     title: "",
     summary: "",
     tags: [],
@@ -92,10 +95,8 @@ export default function NewWonderPage() {
         className={`${styles.NewWonderPage} ${hasTray ? styles.noScroll : ""}`}
       >
         <ThumbnailUploader
-          value={newWonder.thumbnail ? newWonder.thumbnail.src : ""}
-          setValue={(src) =>
-            setNewWonderValue("thumbnail", { src, altText: "" })
-          }
+          value={newWonder.thumbnail}
+          setValue={(data) => setNewWonderValue("thumbnail", data)}
         />
         <div className={styles.mainContent}>
           <TextInput
@@ -135,17 +136,14 @@ export default function NewWonderPage() {
             interaction={{
               type: "click",
               onClick: () =>
-                openTray(
-                  () => (
-                    <DatePanel
-                      schedule={newWonder.schedule}
-                      setSchedule={(schedule) => {
-                        setNewWonderValue("schedule", schedule);
-                      }}
-                    />
-                  ),
-                  { schedule: newWonder.schedule },
-                ),
+                openTray(() => (
+                  <DatePanel
+                    schedule={newWonder.schedule}
+                    setSchedule={(schedule) => {
+                      setNewWonderValue("schedule", schedule);
+                    }}
+                  />
+                )),
             }}
             subText={summarizeScheduleToString(newWonder.schedule)}
             isBold={false}
@@ -241,7 +239,23 @@ export default function NewWonderPage() {
             label={"원더 생성하기"}
             attribute={{ size: "big", theme: "default" }}
             onClick={() => {
-              console.log(newWonder);
+              const { title, location, schedule, thumbnail } = newWonder;
+              if (!isValidWonderTitle(title)) {
+                alert("적절한 제목을 입력해주세요.");
+                return;
+              }
+              if (!isValidWonderLocation(location)) {
+                alert("적절한 장소를 입력해주세요.");
+                return;
+              }
+              if (!isValidWonderSchedule(schedule)) {
+                alert("적절한 일정을 입력해주세요.");
+                return;
+              }
+              if (!isValidWonderThumbnail(thumbnail)) {
+                alert("적절한 썸네일을 입력해주세요.");
+                return;
+              }
               authedApi
                 .post(`/wonder/new/${token}`, newWonder)
                 .then((res) => {

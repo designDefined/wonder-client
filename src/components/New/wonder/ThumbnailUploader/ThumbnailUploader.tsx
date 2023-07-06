@@ -1,11 +1,12 @@
+import { NewWonder } from "../../../../types/wonder/newWonder";
 import styles from "./ThumbnailUploader.module.scss";
 
 export default function ThumbnailUploader({
   value,
   setValue,
 }: {
-  value: string;
-  setValue: (data: string) => void;
+  value: NewWonder["thumbnail"];
+  setValue: (data: NewWonder["thumbnail"]) => void;
 }) {
   return (
     <div className={styles.ThumbnailUploader}>
@@ -13,7 +14,9 @@ export default function ThumbnailUploader({
         <img
           className={styles.preview}
           src={
-            value.length > 0 ? value : "/assets/illustration/upload_area.png"
+            value && value.url.length > 0
+              ? value.url
+              : "/assets/illustration/upload_area.png"
           }
         />
         <div className={styles.inputButton}>
@@ -23,11 +26,17 @@ export default function ThumbnailUploader({
           </label>
           <input
             type="file"
+            accept="image/*"
             id="thumb"
             onChange={(e) => {
               if (e.target.files) {
                 const url = URL.createObjectURL(e.target.files[0]);
-                setValue(url);
+                const fileName = encodeURIComponent(e.target.files[0].name);
+                setValue({
+                  file: e.target.files[0],
+                  url,
+                  fileName,
+                });
               }
             }}
           />
