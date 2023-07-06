@@ -40,10 +40,12 @@
     align-items: center;
     z-index: 2;
     color: color.$white;
+    padding: 0 20px;
     .title {
       @include textStyle.title;
       color: color.$white;
       margin-top: 21px;
+      text-align: center;
     }
     .location {
       text-align: center;
