@@ -52,7 +52,9 @@ export default function BottomTray() {
         if (ref.current?.offsetParent) {
           if (dragging.now) {
             const viewportHeight = window.innerHeight;
-            if (!(viewportHeight - e.changedTouches[0].clientY > height)) {
+            if (
+              !(viewportHeight - e.changedTouches[0].clientY > height * 1.2)
+            ) {
               setDragging({
                 now: true,
                 amount: viewportHeight - e.changedTouches[0].clientY,
@@ -100,6 +102,7 @@ export default function BottomTray() {
           <div className={cx("bar")} />
         </div>
         {target && target()}
+        <div className={cx("hider")} />
       </div>
     </div>
   );
