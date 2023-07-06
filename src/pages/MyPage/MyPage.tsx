@@ -37,7 +37,6 @@ export default function MyPage() {
             attribute={{ size: "medium" }}
             onClick={() => navigate("me/reserved", "slideNext")}
           />
-
           {myWonderSummary.reserved ? (
             <WonderSummaryReserved wonder={myWonderSummary.reserved} />
           ) : (
