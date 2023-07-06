@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 :root {
   @include textStyle.default;
   font-synthesis: none;
