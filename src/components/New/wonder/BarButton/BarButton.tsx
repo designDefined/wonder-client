@@ -16,29 +16,43 @@ type Props = {
         onClick: () => void;
         valueLabel?: string;
       };
+  subText?: string;
   isBold: boolean;
 };
 
 const cx = classNames.bind(styles);
 
-export default function BarButton({ title, interaction, isBold }: Props) {
+export default function BarButton({
+  title,
+  interaction,
+  isBold,
+  subText,
+}: Props) {
   return (
-    <div className={cx("BarButton")}>
+    <div
+      className={cx("BarButton")}
+      onClick={() => {
+        if (interaction.type === "click") interaction.onClick();
+      }}
+    >
       <div className={cx("title", { bold: isBold })}>{title}</div>
-      {interaction.type === "click" && (
-        <button className={styles.button} onClick={interaction.onClick}>
-          <div className={styles.valueLabel}>
-            {interaction.valueLabel ?? ""}
-          </div>
-          <img src={arrowIcon} />
-        </button>
-      )}
-      {interaction.type === "toggle" && (
-        <ToggleButton
-          onToggle={interaction.onToggle}
-          value={interaction.value}
-        />
-      )}
+      <div className={styles.buttonArea}>
+        <div className={styles.subText}>{subText && subText}</div>
+        {interaction.type === "click" && (
+          <button className={styles.button}>
+            <div className={styles.valueLabel}>
+              {interaction.valueLabel ?? ""}
+            </div>
+            <img src={arrowIcon} />
+          </button>
+        )}
+        {interaction.type === "toggle" && (
+          <ToggleButton
+            onToggle={interaction.onToggle}
+            value={interaction.value}
+          />
+        )}
+      </div>
     </div>
   );
 }

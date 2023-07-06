@@ -13,14 +13,12 @@ export default function ThumbnailUploader({
         <img
           className={styles.preview}
           src={
-            value.length > 0
-              ? value
-              : "/src/assets/illustration/upload_area.png"
+            value.length > 0 ? value : "/assets/illustration/upload_area.png"
           }
         />
         <div className={styles.inputButton}>
           <label htmlFor="thumb">
-            <img src={"/src/assets/icon/textarea/upload_image.svg"} />
+            <img src={"/assets/icon/textarea/upload_image.svg"} />
             썸네일 이미지 등록
           </label>
           <input

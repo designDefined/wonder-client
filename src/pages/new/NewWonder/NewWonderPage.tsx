@@ -8,7 +8,7 @@ import Button from "../../../components/common/Button/Button";
 import { authedApi } from "../../../api";
 import { navigate } from "../../../libs/Codex";
 import BarButton from "../../../components/New/wonder/BarButton/BarButton";
-import { openTray, updateTrayProp, useTray } from "../../../libs/Tray/useTray";
+import { openTray, useTray } from "../../../libs/Tray/useTray";
 import DatePanel from "../../../components/New/wonder/panels/DatePanel/DatePanel";
 import { useEffect } from "react";
 import { getCreatorToken } from "../../../libs/AutoLogin/autoLogin";
@@ -47,11 +47,21 @@ const toggleReservationDetail =
         }
       : { ...emptyReservation, [propertyName]: value };
 
+const summarizeScheduleToString = (schedule: NewWonder["schedule"]): string => {
+  if (schedule.length === 0) return "";
+  if (schedule.length === 1) return schedule[0].date.join(". ");
+  return `${schedule[0].date.slice(1).join(". ")} ~ ${schedule[
+    schedule.length - 1
+  ].date
+    .slice(1)
+    .join(". ")}`;
+};
+
 export default function NewWonderPage() {
   const token = getCreatorToken();
   const [newWonder, , setNewWonderValue] = useEnhancedState<NewWonder>({
     thumbnail: {
-      src: "/src/assets/sample/wonder_poster_sample.png",
+      src: "",
       altText: "",
     },
     title: "",
@@ -137,6 +147,7 @@ export default function NewWonderPage() {
                   { schedule: newWonder.schedule },
                 ),
             }}
+            subText={summarizeScheduleToString(newWonder.schedule)}
             isBold={false}
           />
           <BarButton
@@ -153,6 +164,7 @@ export default function NewWonderPage() {
                   />
                 )),
             }}
+            subText={newWonder.location.name}
             isBold={false}
           />
           <div className={styles.divider} />
@@ -225,7 +237,6 @@ export default function NewWonderPage() {
               isBold={false}
             />
           </div>
-          <button onClick={() => console.log("abc")}>가나다</button>
           <Button
             label={"원더 생성하기"}
             attribute={{ size: "big", theme: "default" }}

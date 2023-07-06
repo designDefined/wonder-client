@@ -1,6 +1,7 @@
 import { getUserToken } from "../libs/AutoLogin/autoLogin";
 
-const baseURL = "http://localhost:8000";
+const isDev = true;
+const baseURL = isDev ? "http://localhost:8000" : "https://mywondererserver.de";
 
 const get = async <T>(
   url: string,
