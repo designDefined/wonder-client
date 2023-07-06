@@ -15,17 +15,19 @@ import { useCallback, useEffect } from "react";
 import { WonderDetail } from "../../types/wonder/wonderDetail";
 import { useAccount } from "../../store/account/useAccount";
 import useFetch from "../../libs/ReactAssistant/useFetch";
+import { openTray } from "../../libs/Tray/useTray";
+import ReservationPanel from "../../components/View/ReservationPanel/ReservationPanel";
 
 export default function View() {
-  const authed = useAccount((state) => state.user) !== null;
+  const user = useAccount((state) => state.user);
   const wonderId = useParams()?.wonder_id;
 
   const [wonderData, , refetchWonderData] = useFetch<WonderDetail>(
     () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
-    [authed],
+    [user],
   );
   const onLike = useCallback((): void => {
-    if (!authed || wonderData === null) {
+    if (user === null || wonderData === null) {
       alert("먼저 로그인해주세요!");
     } else {
       void authedApi
@@ -34,7 +36,7 @@ export default function View() {
         })
         .then(() => refetchWonderData());
     }
-  }, [authed, wonderData]);
+  }, [user, wonderData]);
 
   useEffect(() => {
     console.log(wonderId);
@@ -55,10 +57,17 @@ export default function View() {
         <Creator creator={wonderData.creator} />
         <Tags tags={wonderData.tags} />
         <Period schedule={wonderData.schedule} />
+
         <Button
           label="예약하기"
           attribute={{ size: "big", theme: "default" }}
-          onClick={() => null}
+          onClick={() => {
+            if (user) {
+              openTray(() => (
+                <ReservationPanel wonder={wonderData} userId={user.id} />
+              ));
+            }
+          }}
           className={styles.reserveButton}
         />
         <Location />
