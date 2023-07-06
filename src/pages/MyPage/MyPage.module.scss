@@ -74,11 +74,12 @@ $section-gray: #f5f5f5;
     padding-top: 20px;
     padding-bottom: 40px;
     border-bottom: 10px solid $section-gray;
+
     .list {
       display: flex;
-      gap: 18px;
-      justify-content: center;
-      width: 10;
+      align-items: flex-start;
+      column-gap: 18px;
+      overflow-x: auto;
       padding: 28px 0;
     }
     .smallButton {
@@ -93,6 +94,27 @@ $section-gray: #f5f5f5;
       font-weight: 700;
       color: color.$dark-gray;
       line-height: 0px;
+      flex: 0 0 auto;
+    }
+    .creator {
+      width: 96px;
+      height: 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      flex: 0 0 auto;
+
+      .thumbnail {
+        width: 100%;
+        height: 100%;
+      }
+      .name {
+        @include textStyle.default;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+      }
     }
 
     .new {

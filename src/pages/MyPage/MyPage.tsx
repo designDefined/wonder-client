@@ -12,17 +12,24 @@ import {
   WonderSummarySimple,
 } from "../../components/MyPage/WonderSummary/WonderSummary";
 import ProfileSection from "../../components/MyPage/ProfileSection/ProfileSection";
+import { OwnedCreator } from "../../types/creator/creatorDisplay";
 
 const cx = classNames.bind(styles);
 
 export default function MyPage() {
   const me = useAccount((state) => state.user);
+
   const [myWonderSummary] = useFetch<MyWonderSummary>(
     () => authedApi.get("/user/myWonderSummary"),
     [],
   );
 
-  if (!(me && myWonderSummary)) {
+  const [myCreators] = useFetch<OwnedCreator[]>(
+    () => authedApi.get("/user/ownedCreator"),
+    [],
+  );
+
+  if (!(me && myWonderSummary && myCreators !== null)) {
     return <DefaultHeader />;
   }
 
@@ -63,19 +70,30 @@ export default function MyPage() {
           <button className={cx("smallButton")}> + </button>
 
           <div className={cx("list")}>
-            <div className={cx("new")}>
-              <button
-                className={cx("bigButton")}
-                onClick={() => navigate("/new/creator", "slideNext")}
-              >
-                {" "}
-                +{" "}
-              </button>
-              <div className={cx("description")}>
-                크리에이터 페이지가 없어요! <br />
-                하나 추가해보세요 {`:)`}
+            {myCreators.map((creator) => (
+              <div className={cx("creator")} key={creator.id}>
+                <img
+                  className={cx("thumbnail")}
+                  src={creator.profileImage.src}
+                  alt={creator.profileImage.altText}
+                />
+                <div className={cx("name")}>{creator.name}</div>
               </div>
-            </div>
+            ))}
+            {myCreators.length === 0 && (
+              <div className={cx("new")}>
+                <button
+                  className={cx("bigButton")}
+                  onClick={() => navigate("/new/creator", "slideNext")}
+                >
+                  +
+                </button>
+                <div className={cx("description")}>
+                  크리에이터 페이지가 없어요! <br />
+                  하나 추가해보세요 {`:)`}
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className={cx("section")}>

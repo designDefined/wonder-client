@@ -44,11 +44,15 @@ export function WonderSummaryReserved({
         src={thumbnail.src}
         alt={thumbnail.altText}
       />
-      <div className={styles.title}>{title}</div>
-      <div className={styles.location}>{location.name}</div>
-      <div className={styles.time}>
-        <div className={styles.date}>{reservedTime.date}</div>
-        <div className={styles.time}>{reservedTime.time}</div>
+      <div className={styles.content}>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.location}>{location.name}</div>
+        <div className={styles.schedule}>
+          <div className={styles.date}>
+            {reservedTime.date.slice(1).join("/")}
+          </div>
+          <div className={styles.time}>{reservedTime.time}</div>
+        </div>
       </div>
     </div>
   );
