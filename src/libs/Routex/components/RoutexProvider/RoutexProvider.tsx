@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { useRoutex } from "../../hooks/useRoutex";
 import { RoutexPageA, RoutexPageB } from "../RoutexPage/RoutexPage";
 
-const synchronizeLocation = () => {};
-
 type Props = {
   provider: RoutexType[];
 };

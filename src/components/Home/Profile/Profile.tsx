@@ -1,17 +1,16 @@
 import styles from "./Profile.module.scss";
 import { useOverlay } from "../../../store/overlay/useOverlay";
 import { navigate } from "../../../libs/Codex";
-import { useFetches } from "../../../libs/Admon";
-import api, { authedApi } from "../../../api";
+import { authedApi } from "../../../api";
 import { OwnedCreator } from "../../../types/creator/creatorDisplay";
 import {
   deleteAutoLogin,
-  saveAutoLogin,
   saveCreatorToken,
 } from "../../../libs/AutoLogin/autoLogin";
 import { useState } from "react";
 import { UserLoggedIn } from "../../../types/user/userAuthorization";
 import useFetch from "../../../libs/ReactAssistant/useFetch";
+import { useAccount } from "../../../store/account/useAccount";
 
 type Props = {
   myAccount: UserLoggedIn;
@@ -62,17 +61,13 @@ function DropdownOverlay({ myAccount }: Props) {
         : [...(Array(myAccount.howManyCreatorsOwned) as unknown[])].map(
             (_, i) => <div key={i} className={styles.emptyCreator} />,
           )}
-      {/*
-      <div className={styles.tab} onClick={() => navigate("/new/creator")}>
-        새 크리에이터 생성
-      </div>*/}
       <div className={styles.divider} />
       <div className={styles.tab}>설정</div>
       <div className={styles.tab}>업데이트 노트</div>
       <div
         className={styles.tab}
         onClick={() => {
-          deleteAutoLogin();
+          useAccount.getState().actions.logoutUser();
           useOverlay.getState().actions.clear();
         }}
       >
@@ -83,22 +78,10 @@ function DropdownOverlay({ myAccount }: Props) {
 }
 
 export default function Profile({ myAccount }: Props) {
-  const { addOverlay } = useOverlay((state) => state.actions);
   const [menuOpened, setMenuOpened] = useState(false);
 
   return (
-    <div
-      className={styles.Profile}
-      onClick={
-        () => setMenuOpened(!menuOpened)
-        /* 
-        addOverlay({
-          target: <DropdownOverlay myAccount={myAccount} />,
-          config: { closeWhenBlurred: true },
-        })
-        */
-      }
-    >
+    <div className={styles.Profile} onClick={() => setMenuOpened(!menuOpened)}>
       {menuOpened && <DropdownOverlay myAccount={myAccount} />}
       <img className={styles.thumb} src={myAccount.profileImage.src} />
     </div>

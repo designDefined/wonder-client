@@ -1,5 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { all, equals, map, range } from "ramda";
+
+/*
 import { Just, JustJSON, Maybe, maybe, Nothing, NothingJSON } from "./maybe";
 
 export type Async<Success> =
@@ -72,7 +74,7 @@ export const useJSONFetch = <Success extends Record<string, any>>(
 
   return { read: get._value };
 };
-*/
+
 export const useFetches = <Success>(
   fetchFunction: Promise<Success[]>,
   deps: any[] = [],
@@ -105,3 +107,5 @@ export const useFetches = <Success>(
     map,
   };
 };
+
+*/

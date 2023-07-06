@@ -1,6 +1,5 @@
 import styles from "./Schedules.module.scss";
 import { Wonder, WonderSchedule } from "../../../entity/wonder/wonder";
-import { maybe, Maybe } from "../../../libs/Admon/maybe";
 
 function ScheduleCard({
   schedule: { date, time },

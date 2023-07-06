@@ -1,22 +1,15 @@
 import styles from "./Login.module.scss";
-import kakao_icon from "../../assets/icon/kakao_icon.png";
-import naver_icon from "../../assets/icon/naver_icon.png";
-import google_icon from "../../assets/icon/google_icon.png";
-import back_icon from "../../assets/icon/arrow_back.svg";
+import kakao_icon from "/assets/icon/kakao_icon.png";
+import naver_icon from "/assets/icon/naver_icon.png";
+
+import back_icon from "/assets/icon/arrow_back.svg";
 import { navigate } from "../../libs/Codex";
-import api from "../../api";
-import { useMyAccountStore } from "../../store/account/useMyAccountStore";
-import { User } from "../../entity/user/user";
-import { UserSummary } from "../../types/user/userSummary";
-import BottomTray from "../../libs/Tray/BottomTray";
-import { openTray, useTray } from "../../libs/Tray/useTray";
-import TextInput from "../../components/common/TextInput/TextInput";
-import Button from "../../components/common/Button/Button";
-import { useState } from "react";
+
+import { openTray } from "../../libs/Tray/useTray";
+
 import SampleLoginTray from "../../components/Login/SampleLoginTray/SampleLoginTray";
 
 export default function Login() {
-  const { login } = useMyAccountStore((state) => state.actions);
   return (
     <main className={styles.Login}>
       <div className={styles.header}>

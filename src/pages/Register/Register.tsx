@@ -11,7 +11,7 @@ import { UserRegisterForm } from "../../types/user/userAuthorization";
 import styles from "./Register.module.scss";
 export default function Register() {
   const preparedEmail = useAccount((state) => state.registerEmail);
-  const [registerForm, setRegisterForm, setRegisterFormValue] =
+  const [registerForm, , setRegisterFormValue] =
     useEnhancedState<UserRegisterForm>({
       email: preparedEmail ?? "",
       name: "",

@@ -17,6 +17,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "exclude": ["src/mocks", "src/libs/Admon"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

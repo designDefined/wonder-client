@@ -1,7 +1,7 @@
 import styles from "./BarButton.module.scss";
 import classNames from "classnames/bind";
 import ToggleButton from "../../../common/Toggle/ToggleButton";
-import arrowIcon from "/src/assets/icon/arrow_forward_ios.svg";
+import arrowIcon from "/assets/icon/arrow_forward_ios.svg";
 
 type Props = {
   title: string;

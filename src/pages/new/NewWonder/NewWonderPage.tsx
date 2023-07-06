@@ -5,23 +5,15 @@ import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHead
 import RichTextArea from "../../../components/New/wonder/RichTextArea/RichTextArea";
 import ThumbnailUploader from "../../../components/New/wonder/ThumbnailUploader/ThumbnailUploader";
 import Button from "../../../components/common/Button/Button";
-import api, { authedApi } from "../../../api";
+import { authedApi } from "../../../api";
 import { navigate } from "../../../libs/Codex";
-import BottomTray from "../../../libs/Tray/BottomTray";
 import BarButton from "../../../components/New/wonder/BarButton/BarButton";
 import { openTray, updateTrayProp, useTray } from "../../../libs/Tray/useTray";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
 import DatePanel from "../../../components/New/wonder/panels/DatePanel/DatePanel";
-import useFormState from "../../../libs/FormState/useFormState";
 import { useEffect } from "react";
-import {
-  getCreatorToken,
-  getUserToken,
-} from "../../../libs/AutoLogin/autoLogin";
+import { getCreatorToken } from "../../../libs/AutoLogin/autoLogin";
 import LocationPanel from "../../../components/New/wonder/panels/LocationPanel/LocationPanel";
 import useEnhancedState from "../../../libs/ReactAssistant/useEnhancedState";
-
-const primaries: string[] = [];
 
 const formatTagExceptLast = (value: string): NewWonder["tags"] => {
   const splits = value.split(" ");
@@ -136,9 +128,9 @@ export default function NewWonderPage() {
                 openTray(
                   () => (
                     <DatePanel
+                      schedule={newWonder.schedule}
                       setSchedule={(schedule) => {
                         setNewWonderValue("schedule", schedule);
-                        updateTrayProp({ schedule });
                       }}
                     />
                   ),

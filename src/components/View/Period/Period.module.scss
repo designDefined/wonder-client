@@ -1,5 +1,5 @@
-@use "../../../styles/textStyle";
-@use "../../../styles/color";
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
 
 .Period {
   @include textStyle.subtitle;

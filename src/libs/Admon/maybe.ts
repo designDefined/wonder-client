@@ -1,3 +1,5 @@
+export {};
+/*
 export type Just<T> = { _state: "Just"; _value: T };
 export type Nothing = { _state: "Nothing"; _value: null };
 
@@ -27,3 +29,4 @@ export const maybe = {
   safeRead: <T>(value: Maybe<T>, instead: T): T =>
     maybe.isNothing(value) ? instead : value._value,
 };
+*/

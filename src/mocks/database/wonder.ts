@@ -1,21 +1,10 @@
 import { Wonder } from "../../entity/wonder/wonder";
-import { creatorDB } from "./creator";
 import { delayedReturn, findByProperty, FindByProperty } from "./DBManipulator";
-import { WonderCardDisplay } from "../../types/wonder/wonderCardDisplay";
-import {
-  findIndex,
-  map,
-  pick,
-  pipe,
-  propEq,
-  range,
-  reverse,
-  slice,
-} from "ramda";
+import { findIndex, map, pick, pipe, propEq, reverse, slice } from "ramda";
 import { NewWonder } from "../../types/wonder/newWonder";
 
 const thumbnailSample = ["/src/assets/sample/wonder_poster_sample.png"];
-
+/* 
 const createSampleWonder = (id: number): Wonder => ({
   id,
   title: "new_ISC = ITCT(“20th”)",
@@ -59,8 +48,9 @@ const createSampleWonder = (id: number): Wonder => ({
     lastModifiedAt: new Date("2022-12-05"),
   },
 });
-
-const wonderDB: Wonder[] = map(createSampleWonder)(range(0, 20));
+*/
+const wonderDB: Wonder[] = [];
+/*map(createSampleWonder)(range(0, 20));*/
 
 export const findMockWonderInDB: FindByProperty<Wonder, "id"> =
   findByProperty("id")(wonderDB);
@@ -68,7 +58,7 @@ export const findMockWonderInDB: FindByProperty<Wonder, "id"> =
 export const getRecentWonderCardDisplay: (
   amount: number,
   lastItemId?: Wonder["id"],
-) => Promise<WonderCardDisplay[]> = (amount, lastItemId) =>
+) => Promise<unknown[]> = (amount, lastItemId) =>
   pipe(
     findIndex(propEq(lastItemId, "id")),
     (index) => (index < 0 ? wonderDB.length : index),
@@ -84,6 +74,7 @@ export const getRecentWonderCardDisplay: (
 
 export const createNewWonder = (wonder: NewWonder) => {
   const id = wonderDB.length + 1;
+  /* 
   wonderDB.push({
     ...wonder,
     id: id,
@@ -95,5 +86,6 @@ export const createNewWonder = (wonder: NewWonder) => {
       lastModifiedAt: new Date(),
     },
   });
+  */
   return Promise.resolve(id);
 };

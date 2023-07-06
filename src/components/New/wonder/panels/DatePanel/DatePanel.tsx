@@ -2,12 +2,12 @@ import styles from "./DatePanel.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import classNames from "classnames/bind";
 import Calendar from "../../../../common/Calendar/Calendar";
-import { Day, getMonthlyCalendar, getSampleCalendar } from "calend-arr";
+import { getMonthlyCalendar, getSampleCalendar } from "calend-arr";
 import BarButton from "../../BarButton/BarButton";
-import useFormState from "../../../../../libs/FormState/useFormState";
 import { NewWonder } from "../../../../../types/wonder/newWonder";
 import { WonderSchedule } from "../../../../../entity/wonder/wonder";
 import { requestTrayResize, useTray } from "../../../../../libs/Tray/useTray";
+import useEnhancedState from "../../../../../libs/ReactAssistant/useEnhancedState";
 
 const cx = classNames.bind(styles);
 
@@ -18,19 +18,23 @@ type DateInputConfig = {
 };
 
 type DatePanelProps = {
+  schedule: NewWonder["schedule"];
   setSchedule: (schedule: NewWonder["schedule"]) => void;
 };
 
-export default function DatePanel({ setSchedule }: DatePanelProps) {
-  const [inputConfig, setInputConfig] = useFormState<DateInputConfig>({
+export default function DatePanel({ schedule, setSchedule }: DatePanelProps) {
+  const [inputConfig, , setInputConfig] = useEnhancedState<DateInputConfig>({
     isContinuous: false,
     includeTime: false,
     isSameTime: false,
   });
   const [stage, setStage] = useState<"type" | "date">("type");
-  const currentSchedule = useTray(
-    (state) => state.props.schedule,
-  ) as NewWonder["schedule"];
+  const [currentSchedule, setCurrentSchedule] =
+    useState<NewWonder["schedule"]>(schedule);
+
+  useEffect(() => {
+    setSchedule(currentSchedule);
+  }, [currentSchedule]);
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function DatePanel({ setSchedule }: DatePanelProps) {
       {stage === "date" && (
         <DateInput
           currentSchedule={currentSchedule}
-          setSchedule={setSchedule}
+          setSchedule={setCurrentSchedule}
           inputConfig={inputConfig}
           setContinuous={(value) => setInputConfig("isContinuous", value)}
           setIncludeTime={(value) => setInputConfig("includeTime", value)}

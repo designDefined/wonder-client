@@ -6,7 +6,6 @@ import {
   UserRegisterForm,
 } from "../../types/user/userAuthorization";
 import api, { authedApi } from "../../api";
-import { User } from "../../entity/user/user";
 import { navigate } from "../../libs/Codex";
 import {
   deleteAutoLogin,
@@ -27,6 +26,7 @@ type AccountStore = {
       registerForm: UserRegisterForm,
       redirectURL?: string,
     ) => Promise<void>;
+    logoutUser: () => void;
   };
 };
 
@@ -83,6 +83,10 @@ export const useAccount = create<AccountStore>()((set) => ({
       } catch (e) {
         console.error(e);
       }
+    },
+    logoutUser: () => {
+      set({ user: null });
+      deleteAutoLogin();
     },
   },
 }));

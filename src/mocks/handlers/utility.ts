@@ -1,6 +1,5 @@
 import { andThen, equals, keys, pick, pipe } from "ramda";
 import { ResponseComposition, RestContext, RestRequest } from "msw";
-import { p } from "msw/lib/glossary-de6278a9";
 
 type MSWResponse = ReturnType<ResponseComposition>;
 
@@ -9,7 +8,7 @@ type MSWResolver = (
   res: ResponseComposition,
   ctx: RestContext,
 ) => MSWResponse;
-
+/*
 type SimpleRequest = {
   method: string;
   params: Record<string, string | ReadonlyArray<string>>;
@@ -89,6 +88,7 @@ export const respond: Respond = (result) => (req, res, ctx) =>
   send(res, ctx)({ isSuccess: true, data: result });
 
 /** utilities **/
+/* 
 type ValidIfRequestIs = (
   expectedRequest: Partial<SimpleRequest>,
 ) => ValidateRequest;
@@ -109,4 +109,6 @@ export const validIfRequestIs: ValidIfRequestIs =
 export const justValid: ValidateRequest = (req: SimpleRequest) =>
   Promise.resolve({ ...req, isValid: true, message: "clean" });
 
+
 export const pass: MSWResolver = respond({ isSuccess: true });
+*/

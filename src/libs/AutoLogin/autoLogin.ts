@@ -1,5 +1,4 @@
 import api from "../../api";
-import { useMyAccountStore } from "../../store/account/useMyAccountStore";
 import { User } from "../../entity/user/user";
 import { useAccount } from "../../store/account/useAccount";
 
@@ -33,17 +32,6 @@ export const saveAutoLogin = (field: "user", token: string) => {
 };
 export const deleteAutoLogin = () => {
   localStorage.removeItem(STORAGE);
-  useMyAccountStore.getState().actions.logout();
-};
-export const tryAutoLogin = () => {
-  const token = getToken();
-  if (token.user !== null)
-    api
-      .post<User>("/user/autoLogin", { id: token.user })
-      .then((res) => {
-        useMyAccountStore.getState().actions.login(res);
-      })
-      .catch(() => deleteAutoLogin());
 };
 
 type CreatorToken = {

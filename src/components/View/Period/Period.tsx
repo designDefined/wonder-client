@@ -1,6 +1,5 @@
 import styles from "./Period.module.scss";
 import { Wonder } from "../../../entity/wonder/wonder";
-import { maybe, Maybe } from "../../../libs/Admon/maybe";
 import { useMemo } from "react";
 import { map, pipe, sort } from "ramda";
 

@@ -1,15 +1,12 @@
 import styles from "./CreatorPage.module.scss";
 import classNames from "classnames/bind";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
-import { StoredImage } from "../../entity/utility/utility";
-import api, { authedApi } from "../../api";
+import { authedApi } from "../../api";
 import { navigate, useParams } from "../../libs/Codex";
-import { useEffect, useState } from "react";
 import { CreatorDetail } from "../../types/creator/creatorDetail";
 import useFetch from "../../libs/ReactAssistant/useFetch";
 import CreatorInformation from "../../components/Creator/CreatorInformation";
 import { WonderSummaryTitleOnly } from "../../types/wonder/WonderSummary";
-import { useAccount } from "../../store/account/useAccount";
 import { saveCreatorToken } from "../../libs/AutoLogin/autoLogin";
 
 const cx = classNames.bind(styles);
@@ -24,13 +21,6 @@ export default function CreatorPage() {
     () => authedApi.get(`/creator/${creatorId ?? "-1"}/wonders`),
     [],
   );
-
-  /* 
-  const [wonders] = useFetch<CreatorDetail>(
-    () => authedApi.get(`/creator/${creatorId ?? "-1"}`),
-    [],
-  );
-*/
 
   if (!creator || wonders === null) {
     return <div />;

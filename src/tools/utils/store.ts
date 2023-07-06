@@ -1,4 +1,4 @@
-import { create, Mutate, SetState, StoreApi } from "zustand";
+import { create, StoreApi } from "zustand";
 
 type Setter<T> = StoreApi<T>["setState"];
 type Getter<T> = StoreApi<T>["getState"];

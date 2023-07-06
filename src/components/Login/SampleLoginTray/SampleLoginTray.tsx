@@ -2,17 +2,12 @@ import styles from "./SampleLoginTray.module.scss";
 import TextInput from "../../common/TextInput/TextInput";
 import Button from "../../common/Button/Button";
 import { useState } from "react";
-import api from "../../../api";
-import { User } from "../../../entity/user/user";
-import { saveAutoLogin } from "../../../libs/AutoLogin/autoLogin";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import { navigate } from "../../../libs/Codex";
+
 import { testLoginUser } from "../../../store/account/useAccount";
 import { isValidRegisterEmail } from "../../../libs/validator";
 
 export default function SampleLoginTray() {
   const [email, setEmail] = useState("");
-  const { login } = useMyAccountStore((state) => state.actions);
 
   return (
     <div className={styles.sampleLoginTray}>
@@ -33,16 +28,6 @@ export default function SampleLoginTray() {
           } else {
             alert("이메일 형식이 올바르지 않습니다.");
           }
-          /* 
-          api
-            .post<User>("/user/login", { code: email })
-            .then((res) => {
-              const { id: token } = res;
-              saveAutoLogin("user", token);
-              login(res);
-              navigate("/", "slidePrevious");
-            })
-            .catch(async (e) => console.log(await e));*/
         }}
       />
     </div>

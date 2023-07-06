@@ -13,8 +13,3 @@ export type Creator = {
   subscribedUsers: User[];
   instagram?: string;
 };
-
-export interface CreatorData extends Omit<Creator, "owner" | "createdWonder"> {
-  owner: User["id"];
-  createdWonder: Wonder["id"][];
-}

@@ -1,13 +1,12 @@
 import styles from "./Creator.module.scss";
-import { Maybe, maybe } from "../../../libs/Admon/maybe";
-import { Wonder } from "../../../entity/wonder/wonder";
+
 import Button from "../../common/Button/Button";
-import { WonderView } from "../../../types/depcrecated/wonderView";
+import { WonderDetail } from "../../../types/wonder/wonderDetail";
 
 export default function Creator({
   creator,
 }: {
-  creator: WonderView["creator"];
+  creator: WonderDetail["creator"];
 }) {
   return (
     <div className={styles.Creator}>

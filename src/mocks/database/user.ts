@@ -2,6 +2,7 @@ import { User } from "../../entity/user/user";
 import { findByProperty, FindByProperty } from "./DBManipulator";
 
 const userDB: User[] = [
+  /*
   {
     platformType: "NAVER",
     id: "test",
@@ -18,6 +19,7 @@ const userDB: User[] = [
       lastModifiedAt: new Date("2023-06-05"),
     },
   },
+  */
 ];
 
 export const findSampleUser = () => Promise.resolve(userDB[0]);

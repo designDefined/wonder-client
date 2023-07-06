@@ -20,13 +20,6 @@ export default function View() {
   const authed = useAccount((state) => state.user) !== null;
   const wonderId = useParams()?.wonder_id;
 
-  /* 
-  const { isLoading, error, data } = useQuery<WonderDetail>({
-    queryKey: ["wonderDetail"],
-    queryFn: () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
-  });
-  */
-  //const wonderId = useCodex((state) => state.currentParams)?.wonder_id;
   const [wonderData, , refetchWonderData] = useFetch<WonderDetail>(
     () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
     [authed],

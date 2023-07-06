@@ -3,13 +3,9 @@ import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHead
 import classNames from "classnames/bind";
 import LabeledTextForm from "../../../components/New/creator/LabeledTextForm/LabeledTextForm";
 import { NewCreator } from "../../../types/creator/newCreator";
-import { useCallback, useState } from "react";
-import { NewWonder } from "../../../types/wonder/newWonder";
 import Button from "../../../components/common/Button/Button";
-import { useMyAccountStore } from "../../../store/account/useMyAccountStore";
-import api, { authedApi } from "../../../api";
+import { authedApi } from "../../../api";
 import { navigate } from "../../../libs/Codex";
-import useFormState from "../../../libs/FormState/useFormState";
 import { getUserToken } from "../../../libs/AutoLogin/autoLogin";
 import useEnhancedState from "../../../libs/ReactAssistant/useEnhancedState";
 import {
@@ -23,7 +19,7 @@ const cx = classNames.bind(styles);
 export default function NewCreatorPage() {
   const token = getUserToken();
 
-  const [newCreator, setNewCreator, setNewCreatorValue] = useEnhancedState<
+  const [newCreator, , setNewCreatorValue] = useEnhancedState<
     NewCreator & { instagram: string }
   >({
     name: "",

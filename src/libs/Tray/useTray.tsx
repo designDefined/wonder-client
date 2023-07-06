@@ -4,11 +4,11 @@ import { ReactNode } from "react";
 type TrayStore = {
   target: (() => ReactNode) | null;
   isHandle: boolean;
-  props: Record<string, any>;
+  props: object;
   needResize: boolean;
-  openTray: (target: () => ReactNode, props?: Record<string, any>) => void;
+  openTray: (target: () => ReactNode, props?: object) => void;
   closeTray: () => void;
-  updateTrayProp: (props: Record<string, any>) => void;
+  updateTrayProp: (props: object) => void;
   requestTrayResize: (bool?: boolean) => void;
 };
 

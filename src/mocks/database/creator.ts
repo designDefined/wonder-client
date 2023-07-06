@@ -1,7 +1,8 @@
-import { CreatorData } from "../../entity/creator/creator";
+import { Creator } from "../../entity/creator/creator";
 import { findByProperty, FindByProperty } from "./DBManipulator";
 
-export const creatorDB: CreatorData[] = [
+export const creatorDB: Creator[] = [
+  /* 
   {
     id: 0,
     owner: "isc",
@@ -17,7 +18,8 @@ export const creatorDB: CreatorData[] = [
     },
     createdWonder: [0],
   },
+  */
 ];
 
-export const findMockCreatorInDB: FindByProperty<CreatorData, "id"> =
+export const findMockCreatorInDB: FindByProperty<Creator, "id"> =
   findByProperty("id")(creatorDB);

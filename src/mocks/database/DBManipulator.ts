@@ -1,4 +1,4 @@
-import { curry, filter, find, findIndex, pipe, propEq, slice } from "ramda";
+import { filter, find, findIndex, pipe, propEq, slice } from "ramda";
 
 type FindOne = <T>(
   data: T[],

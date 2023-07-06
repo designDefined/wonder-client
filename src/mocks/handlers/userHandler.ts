@@ -1,14 +1,14 @@
 import { rest, RestHandler } from "msw";
-import { pipe } from "ramda";
-import { findMockUserInDB, findSampleUser } from "../database/user";
-import { justValid, validIfRequestIs, respond, respondIf } from "./utility";
+import { findMockUserInDB } from "../database/user";
 
+/* 
 const login: RestHandler = rest.post(
   "/login",
   respondIf(validIfRequestIs({ method: "POST", body: { code: "test" } }))(
     (req) => findMockUserInDB(req.body.code),
   ),
 );
+*/
 
 /*
 const seeUser: RestHandler = rest.get(
@@ -16,6 +16,6 @@ const seeUser: RestHandler = rest.get(
   respondIf(isRequest({ method: "GET" }))(),
 );*/
 
-const userHandler: RestHandler[] = [login];
+const userHandler: RestHandler[] = [];
 
 export default userHandler;
