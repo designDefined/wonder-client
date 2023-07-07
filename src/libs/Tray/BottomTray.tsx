@@ -48,7 +48,6 @@ export default function BottomTray() {
       }}
       onTouchMove={(e) => {
         e.stopPropagation();
-        console.log(e);
         if (ref.current?.offsetParent) {
           if (dragging.now) {
             const viewportHeight = window.innerHeight;

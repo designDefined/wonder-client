@@ -155,10 +155,8 @@ export default function NewWonderPage() {
               onClick: () =>
                 openTray(() => (
                   <LocationPanel
-                    currentLocation={newWonder.location.name}
-                    setCurrentLocation={(e) =>
-                      setNewWonderValue("location", { name: e, x: 0, y: 0 })
-                    }
+                    currentLocation={newWonder.location}
+                    setCurrentLocation={(e) => setNewWonderValue("location", e)}
                   />
                 )),
             }}
