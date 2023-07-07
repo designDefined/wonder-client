@@ -85,9 +85,13 @@ export default function View() {
             attribute={{ size: "big", theme: "default" }}
             onClick={() => {
               if (user) {
-                openTray(() => (
-                  <ReservationPanel wonder={wonderData} userId={user.id} />
-                ));
+                if (wonderData.reservationProcess === false) {
+                  alert("예매가 필요 없는 이벤트입니다!");
+                } else {
+                  openTray(() => (
+                    <ReservationPanel wonder={wonderData} userId={user.id} />
+                  ));
+                }
               }
             }}
             className={styles.reserveButton}
