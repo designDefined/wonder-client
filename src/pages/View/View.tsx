@@ -18,6 +18,7 @@ import useFetch from "../../libs/ReactAssistant/useFetch";
 import { openTray } from "../../libs/Tray/useTray";
 import ReservationPanel from "../../components/View/ReservationPanel/ReservationPanel";
 import { ChipLoading } from "../../components/common/Chip/Chip";
+import { contents } from "./sample";
 
 export default function View() {
   const user = useAccount((state) => state.user);
@@ -68,7 +69,6 @@ export default function View() {
 
   return (
     <>
-      {" "}
       <DefaultHeader />
       <main className={styles.View}>
         <Cover
@@ -94,7 +94,13 @@ export default function View() {
           />
           <Location location={wonderData.location} />
           <Schedules schedules={wonderData.schedule} />
-          <Content content={wonderData.content} />
+
+          {contents[wonderData.id].map(({ type, content }, i) => (
+            <div key={i} className={`${styles.chunk} ${styles[type]}`}>
+              {content}
+            </div>
+          ))}
+          {/*<Content content={wonderData.content} />*/}
         </div>
       </main>
     </>

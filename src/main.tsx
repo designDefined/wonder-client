@@ -13,6 +13,7 @@ import MyPage from "./pages/MyPage/MyPage";
 import Register from "./pages/Register/Register";
 import Liked from "./pages/MyPage/Liked/Liked";
 import Reserved from "./pages/MyPage/Reserved/Reserved";
+import Wonders from "./pages/Wonders/Wonders";
 
 const codex: Codex = {
   _index: <Home />,
@@ -23,6 +24,7 @@ const codex: Codex = {
   },
   login: <Login />,
   register: <Register />,
+  wonders: <Wonders />,
   view: { _index: <View />, _params: ["wonder_id"] },
   me: { _index: <MyPage />, liked: <Liked />, reserved: <Reserved /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },

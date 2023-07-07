@@ -15,7 +15,7 @@ export default function RecentEvent() {
         <SectionTitle
           title="최근 올라온 이벤트"
           attribute={{ size: "medium" }}
-          onClick={() => null}
+          onClick={() => navigate("/wonders", "slideNext")}
         />
       </div>
       <ul className={styles.eventList}>

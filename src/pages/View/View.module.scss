@@ -1,5 +1,6 @@
 @use "/src/styles/color";
 @use "/src/styles/layout";
+@use "/src/styles/textStyle";
 
 .View {
   position: relative;
@@ -53,5 +54,20 @@
       margin: 13px 0;
       border-radius: 5px;
     }
+  }
+}
+
+.chunk {
+  @include textStyle.default;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26.5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  &.strong {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-top: 16px;
   }
 }

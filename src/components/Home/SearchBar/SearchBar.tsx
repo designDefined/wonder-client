@@ -1,3 +1,4 @@
+import { navigate } from "../../../libs/Codex";
 import styles from "./SearchBar.module.scss";
 import searchIcon from "/assets/icon/search.svg";
 import classNames from "classnames/bind";
@@ -13,7 +14,8 @@ export default function SearchBar() {
       <button
         className={styles.searchButton}
         onClick={() => {
-          setIsSearching(!isSearching);
+          navigate("/wonders", "slideNext");
+          //setIsSearching(!isSearching);
         }}
       >
         <img src={searchIcon} />
