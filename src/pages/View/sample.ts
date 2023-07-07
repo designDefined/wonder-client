@@ -4,7 +4,7 @@ export type Chunk = {
 };
 
 export const contents: Chunk[][] = [
-  [],
+  [{ type: "strong", content: `new_ISC = ITCT("20th")` }],
   [
     { type: "strong", content: "The Origin : ISAAC (오혁 x VERSEDAY)" },
     { type: "strong", content: "기간" },
