@@ -17,6 +17,7 @@ import { useAccount } from "../../store/account/useAccount";
 import useFetch from "../../libs/ReactAssistant/useFetch";
 import { openTray } from "../../libs/Tray/useTray";
 import ReservationPanel from "../../components/View/ReservationPanel/ReservationPanel";
+import { ChipLoading } from "../../components/common/Chip/Chip";
 
 export default function View() {
   const user = useAccount((state) => state.user);
@@ -26,6 +27,7 @@ export default function View() {
     () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
     [user],
   );
+
   const onLike = useCallback((): void => {
     if (user === null || wonderData === null) {
       alert("먼저 로그인해주세요!");
@@ -43,37 +45,58 @@ export default function View() {
   }, [wonderId]);
 
   if (!wonderData) {
-    return <div></div>;
+    return (
+      <>
+        <DefaultHeader />
+        <main className={styles.ViewEmpty}>
+          <div className={styles.cover} />
+          <div className={styles.content}>
+            <div className={styles.creator} />
+            <div className={styles.tags}>
+              <ChipLoading />
+              <ChipLoading />
+              <ChipLoading />
+            </div>
+            <div className={styles.date} />
+            <div className={styles.divider} />
+            <div className={styles.reserve} />
+          </div>
+        </main>
+      </>
+    );
   }
 
   return (
-    <main className={styles.View}>
+    <>
+      {" "}
       <DefaultHeader />
-      <Cover
-        data={pick(["title", "summary", "thumbnail", "liked"], wonderData)}
-        onLike={onLike}
-      />
-      <div className={styles.main}>
-        <Creator creator={wonderData.creator} />
-        <Tags tags={wonderData.tags} />
-        <Period schedule={wonderData.schedule} />
-
-        <Button
-          label="예약하기"
-          attribute={{ size: "big", theme: "default" }}
-          onClick={() => {
-            if (user) {
-              openTray(() => (
-                <ReservationPanel wonder={wonderData} userId={user.id} />
-              ));
-            }
-          }}
-          className={styles.reserveButton}
+      <main className={styles.View}>
+        <Cover
+          data={pick(["title", "summary", "thumbnail", "liked"], wonderData)}
+          onLike={onLike}
         />
-        <Location />
-        <Schedules schedules={wonderData.schedule} />
-        <Content content={wonderData.content} />
-      </div>
-    </main>
+        <div className={styles.main}>
+          <Creator creator={wonderData.creator} />
+          <Tags tags={wonderData.tags} />
+          <Period schedule={wonderData.schedule} />
+
+          <Button
+            label="예약하기"
+            attribute={{ size: "big", theme: "default" }}
+            onClick={() => {
+              if (user) {
+                openTray(() => (
+                  <ReservationPanel wonder={wonderData} userId={user.id} />
+                ));
+              }
+            }}
+            className={styles.reserveButton}
+          />
+          <Location />
+          <Schedules schedules={wonderData.schedule} />
+          <Content content={wonderData.content} />
+        </div>
+      </main>
+    </>
   );
 }

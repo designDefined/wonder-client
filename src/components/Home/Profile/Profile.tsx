@@ -17,10 +17,6 @@ type Props = {
 };
 
 function DropdownOverlay({ myAccount }: Props) {
-  /* 
-  const myCreators = useFetches<CreatorDisplay>(
-    api.get(`/user/ownedCreator`, { Authorization: getUserToken() ?? "-1" }),
-  ); */
   const [ownedCreators] = useFetch<OwnedCreator[]>(
     () => authedApi.get("/user/ownedCreator"),
     [],

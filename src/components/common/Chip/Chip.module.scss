@@ -24,3 +24,10 @@
     color: color.$black;
   }
 }
+
+.empty {
+  @include color.loading;
+  width: 60px;
+  height: 36px;
+  border-radius: 5px;
+}

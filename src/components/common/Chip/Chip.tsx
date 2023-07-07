@@ -21,3 +21,7 @@ export default function Chip({
     </button>
   );
 }
+
+export function ChipLoading() {
+  return <div className={`${styles.Chip} ${styles.empty}`} />;
+}

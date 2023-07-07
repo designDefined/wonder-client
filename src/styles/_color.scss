@@ -5,3 +5,17 @@ $dark-gray: #6d6d6d;
 $red: #f00000;
 $black: #000000;
 $white: #ffffff;
+
+@mixin loading {
+  background-color: $gray;
+  animation: grayBlink 1s ease-in-out infinite alternate;
+}
+
+@keyframes grayBlink {
+  0% {
+    background-color: $gray;
+  }
+  100% {
+    background-color: #a4a4a4;
+  }
+}

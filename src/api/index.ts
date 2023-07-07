@@ -13,7 +13,7 @@ const get = async <T>(
     cache: "no-cache",
     headers: header,
   }).then((res) => {
-    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+    return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 const post = async <T>(
   url: string,
@@ -30,7 +30,7 @@ const post = async <T>(
     },
     body: JSON.stringify(data),
   }).then(async (res) => {
-    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+    return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
 const authedGet = async <T>(
@@ -43,7 +43,7 @@ const authedGet = async <T>(
     cache: "no-cache",
     headers: { Authorization: `${getUserToken() ?? "no_token"}`, ...header },
   }).then((res) => {
-    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+    return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
 const authedPost = async <T>(
@@ -62,7 +62,7 @@ const authedPost = async <T>(
     },
     body: JSON.stringify(data),
   }).then(async (res) => {
-    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+    return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
 const authedPut = async <T>(
@@ -81,7 +81,7 @@ const authedPut = async <T>(
     },
     body: JSON.stringify(data),
   }).then(async (res) => {
-    return res.ok ? (res.json() as T) : Promise.reject(res.json());
+    return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
 const api = { get, post };
