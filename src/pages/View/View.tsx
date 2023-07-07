@@ -92,7 +92,7 @@ export default function View() {
             }}
             className={styles.reserveButton}
           />
-          <Location />
+          <Location location={wonderData.location} />
           <Schedules schedules={wonderData.schedule} />
           <Content content={wonderData.content} />
         </div>

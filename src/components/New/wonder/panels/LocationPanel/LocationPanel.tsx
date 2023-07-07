@@ -65,7 +65,10 @@ export default function LocationPanel({
                 핀으로 콕 찍어주세요.
               </div>
             </div>
-            <div className={styles.marker}></div>
+            <img
+              className={styles.marker}
+              src={"/assets/icon/location_on.svg"}
+            />
           </div>
         </>
       )}
