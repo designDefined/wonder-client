@@ -12,8 +12,8 @@ export default function Location({ location }: Props) {
   useEffect(() => {
     if (ref.current) {
       setMarked([
-        (location.x / 10000) * (754 - ref.current.offsetWidth),
-        (location.y / 10000) * (1400 - 205),
+        ((location.x - 500) / 10000) * (754 - ref.current.offsetWidth),
+        ((location.y + 420) / 10000) * (1400 - 205),
       ]);
     }
   }, [ref]);
