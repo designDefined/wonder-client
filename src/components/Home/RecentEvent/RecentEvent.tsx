@@ -35,11 +35,16 @@ export default function RecentEvent() {
               }}
             >
               <img className={styles.thumbnail} src={thumbnail?.src ?? ""} />
-              <div className={styles.eventCreator}>
-                <img className={styles.thumb} src={creator.profileImage.src} />
-                <div className={styles.name}>{creator.name}</div>
+              <div className={styles.content}>
+                <div className={styles.eventCreator}>
+                  <img
+                    className={styles.thumb}
+                    src={creator.profileImage.src}
+                  />
+                  <div className={styles.name}>{creator.name}</div>
+                </div>
+                <div className={styles.eventTitle}>{title}</div>
               </div>
-              <div className={styles.eventTitle}>{title}</div>
             </li>
           ))
         )}
