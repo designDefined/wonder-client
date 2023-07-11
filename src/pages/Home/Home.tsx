@@ -46,12 +46,18 @@ export default function Home() {
         {!myAccount && <AboutWonder />}
         <RecentEvent />
         <div className={styles.banners}>
-          <a className={styles.miniBanner}>
+          <a
+            className={styles.miniBanner}
+            href="https://www.instagram.com/with_wonder4/"
+          >
             <img className={styles.background} src={instagram} />
             원더 인스타그램 <br />
             보러 가기
           </a>
-          <a className={styles.miniBanner}>
+          <a
+            className={styles.miniBanner}
+            href="https://hhhyejaaa.notion.site/Beta-Test-596d1430dd82418fbf1fdb00f24c6b38?pvs=4"
+          >
             <img className={styles.background} src={creatorGuide} />
             원더 창작자 가이드 <br />
             보러 가기
