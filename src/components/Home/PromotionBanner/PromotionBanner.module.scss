@@ -13,8 +13,10 @@
 
     .banner {
       width: 100%;
+      aspect-ratio: 3 / 1;
       flex: 0 0 auto;
       scroll-snap-align: start;
+      overflow-y: hidden;
 
       > img {
         width: 100%;

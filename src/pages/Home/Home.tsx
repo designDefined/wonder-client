@@ -6,45 +6,32 @@ import RecentEvent from "../../components/Home/RecentEvent/RecentEvent";
 import creatorGuide from "/assets/illustration/creator_guide.png";
 import instagram from "/assets/illustration/instagram.png";
 import { useAccount } from "../../store/account/useAccount";
-
-const sampleBanners: { id: number; alt: string; thumbnail: string }[] = [
-  {
-    id: 0,
-    alt: "alt",
-    thumbnail: "/assets/sample/promotion_banner_sample.png",
-  },
-  {
-    id: 1,
-    alt: "alt",
-    thumbnail: "/assets/sample/promotion_banner_sample.png",
-  },
-  {
-    id: 2,
-    alt: "alt",
-    thumbnail: "/assets/sample/promotion_banner_sample.png",
-  },
-  {
-    id: 3,
-    alt: "alt",
-    thumbnail: "/assets/sample/promotion_banner_sample.png",
-  },
-  {
-    id: 4,
-    alt: "alt",
-    thumbnail: "/assets/sample/promotion_banner_sample.png",
-  },
-];
+import TextField from "../../components/common/TextField/TextField";
+import { Curation } from "../../types/wonder/curation";
+import useFetch from "../../libs/ReactAssistant/useFetch";
+import api from "../../api";
+import { useEffect } from "react";
+import CurationCarousel from "../../components/Home/CurationCarousel/CurationCarousel";
 
 export default function Home() {
   const myAccount = useAccount((state) => state.user);
+
+  const [curations] = useFetch<Curation[]>(() => api.get("/wonder/home"), []);
+
+  useEffect(() => {
+    console.log(curations);
+  }, [curations]);
 
   return (
     <>
       <DefaultHeader />
       <main className={styles.Home}>
-        <PromotionBanner bannerData={sampleBanners} />
-        {!myAccount && <AboutWonder />}
-        <RecentEvent />
+        <PromotionBanner />
+        {curations &&
+          curations.map((curation) => (
+            <CurationCarousel key={curation.title} curation={curation} />
+          ))}
+        {/*!myAccount && <AboutWonder />*/}
         <div className={styles.banners}>
           <a
             className={styles.miniBanner}
