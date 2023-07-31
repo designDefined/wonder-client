@@ -26,7 +26,7 @@ export default function RecentEvent() {
             <div className={styles.noEvent} />
           </>
         ) : (
-          cards.map(({ id, title, creator, thumbnail }) => (
+          cards.map(({ id, title, thumbnail }) => (
             <li
               key={id}
               className={styles.event}
@@ -37,11 +37,8 @@ export default function RecentEvent() {
               <img className={styles.thumbnail} src={thumbnail?.src ?? ""} />
               <div className={styles.content}>
                 <div className={styles.eventCreator}>
-                  <img
-                    className={styles.thumb}
-                    src={creator.profileImage.src}
-                  />
-                  <div className={styles.name}>{creator.name}</div>
+                  <img className={styles.thumb} src={""} />
+                  <div className={styles.name}></div>
                 </div>
                 <div className={styles.eventTitle}>{title}</div>
               </div>

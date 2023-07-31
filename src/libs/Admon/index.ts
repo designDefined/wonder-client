@@ -1,4 +1,4 @@
-type ValidString = {
+export type ValidString = {
   status: "valid" | "invalid";
   value: string;
 };
