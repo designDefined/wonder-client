@@ -8,6 +8,7 @@ type Props = {
   };
   onClick?: () => void;
   className?: string;
+  isArrow?: boolean;
 };
 
 export default function SectionTitle({
@@ -15,6 +16,7 @@ export default function SectionTitle({
   className,
   attribute,
   onClick,
+  isArrow,
 }: Props) {
   return (
     <div
@@ -24,7 +26,12 @@ export default function SectionTitle({
       onClick={onClick}
     >
       <div className={styles.title}>{title}</div>
-      {onClick && <img src={"/assets/icon/arrow_forward_ios.svg"} />}
+      {onClick &&
+        (isArrow ? (
+          <img src={"/assets/icon/arrow_forward_ios.svg"} />
+        ) : (
+          <span className={styles.more}>더보기</span>
+        ))}
     </div>
   );
 }

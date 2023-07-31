@@ -16,4 +16,10 @@
   .title {
     @include textStyle.default;
   }
+  .more {
+    @include textStyle.default;
+    color: #86858a;
+    font-size: 16px;
+    font-weight: 500;
+  }
 }

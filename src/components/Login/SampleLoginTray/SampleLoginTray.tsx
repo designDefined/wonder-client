@@ -18,6 +18,7 @@ export default function SampleLoginTray() {
           setEmail(e.target.value);
         }}
         placeholder={"예) 나의메일주소@naver.com"}
+        maxLength={30}
       />
       <Button
         label={"확인"}
