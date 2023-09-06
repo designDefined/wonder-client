@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.33.0",
     "@types/ramda": "^0.29.2",
     "@types/react-lottie": "^1.2.6",
     "calend-arr": "0.0.4",
