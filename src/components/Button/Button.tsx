@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { MouseEventHandler, PropsWithChildren, ReactNode } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
