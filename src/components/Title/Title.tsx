@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import { ReactNode } from "react";
 import { navigate } from "../../libs/Codex";
 import styles from "./Title.module.scss";
 
