@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.33.0",
+    "@types/lodash": "^4.14.198",
     "@types/ramda": "^0.29.2",
     "@types/react-lottie": "^1.2.6",
     "calend-arr": "0.0.4",
     "classnames": "^2.3.2",
     "history": "^5.3.0",
+    "lodash": "^4.17.21",
     "msw": "^1.2.1",
     "ramda": "^0.29.0",
     "react": "^18.2.0",
