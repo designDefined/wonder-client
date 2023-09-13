@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import { Button } from "../../components/Button/Button";
+import Chip from "../../components/Chip/Chip";
 import Title from "../../components/Title/Title";
 import styles from "./Dev.module.scss";
 
@@ -28,6 +29,22 @@ export default function Dev() {
         <Title title="Normal Title" />
         <Title.More title="More Title" onClick="/dev" />
         <Title.More title="Arrow Title" onClick="/dev" />
+      </section>
+      <section className={cx("section")}>
+        <Title title="Chips" />
+        <div className={cx("horizontal")}>
+          <Chip.Genre genre="연극" />
+          <Chip.Genre genre="뮤지컬" />
+          <Chip.Genre genre="일일호프" />
+        </div>
+        <div className={cx("horizontal")}>
+          <Chip.Status status="reserveSoon" />
+          <Chip.Status status="reserveNow" />
+          <Chip.Status status="reserveFinished" />
+          <Chip.Status status="soon" />
+          <Chip.Status status="now" />
+          <Chip.Status status="finished" />
+        </div>
       </section>
     </main>
   );

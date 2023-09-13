@@ -1,0 +1,50 @@
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
+
+.Chip {
+  @include textStyle.default;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 18px; /* 180% */
+}
+
+.genre {
+  color: color.$dark-gray;
+  background-color: color.$sub-yellow;
+}
+
+.status {
+  border: 1px solid;
+  &.reserveSoon {
+    border-color: color.$main-blue;
+    color: color.$main-blue;
+  }
+  &.reserveNow {
+    background-color: color.$main-blue;
+    color: color.$white;
+  }
+  &.reserveFinished {
+    border-color: color.$main-blue;
+    background-color: rgba(121, 99, 255, 0.2);
+    color: color.$main-blue;
+  }
+  &.soon {
+    border-color: color.$blue;
+    color: color.$blue;
+  }
+  &.now {
+    background-color: color.$blue;
+    color: color.$white;
+  }
+  &.finished {
+    border-color: color.$dark-gray;
+    background-color: color.$gray;
+    color: color.$dark-gray;
+  }
+}
