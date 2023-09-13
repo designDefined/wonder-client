@@ -11,15 +11,17 @@ export default function Dev() {
       <section className={cx("section")}>
         <Title title="Buttons" />
         <Button isFullWidth isMainColored>
-          주 버튼
+          Big
         </Button>
-        <Button isFullWidth>부 버튼</Button>
-        <Button isMainColored>주 버튼</Button>
-        <Button>부 버튼</Button>
-        <Button isSmallSized isMainColored>
-          주 버튼
-        </Button>
-        <Button isSmallSized>부 버튼</Button>
+        <Button isFullWidth>Big</Button>
+        <Button isMainColored>Normal</Button>
+        <Button>Normal</Button>
+        <div className={cx("horizontal")}>
+          <Button isSmallSized isMainColored>
+            Small
+          </Button>
+          <Button isSmallSized>Small</Button>
+        </div>
       </section>
       <section className={cx("section")}>
         <Title title="Titles" />
