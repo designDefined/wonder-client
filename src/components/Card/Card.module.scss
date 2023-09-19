@@ -1,0 +1,48 @@
+@use "./src/styles/textStyle";
+
+.Vertical {
+  @include textStyle.font;
+  position: relative;
+  width: 145.4px;
+}
+
+.ThumbnailOnly {
+  position: relative;
+  width: 118px;
+}
+
+.thumbnailWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1.414;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.likeButton {
+  position: absolute;
+  bottom: 6px;
+  right: 7px;
+}
+
+.tags {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.schedule {
+  font-size: 14px;
+  font-weight: 400;
+}

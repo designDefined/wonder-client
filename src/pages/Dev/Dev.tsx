@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import { Button } from "../../components/Button/Button";
+import Card from "../../components/Card/Card";
 import Chip from "../../components/Chip/Chip";
 import Title from "../../components/Title/Title";
 import styles from "./Dev.module.scss";
@@ -33,9 +34,9 @@ export default function Dev() {
       <section className={cx("section")}>
         <Title title="Chips" />
         <div className={cx("horizontal")}>
-          <Chip.Genre genre="연극" />
-          <Chip.Genre genre="뮤지컬" />
-          <Chip.Genre genre="일일호프" />
+          <Chip.Genre genre="play" />
+          <Chip.Genre genre="play" />
+          <Chip.Genre genre="play" />
         </div>
         <div className={cx("horizontal")}>
           <Chip.Status status="reserveSoon" />
@@ -45,6 +46,31 @@ export default function Dev() {
           <Chip.Status status="now" />
           <Chip.Status status="finished" />
         </div>
+      </section>
+      <section className={cx("section")}>
+        <Title title="Cards" />
+        <Card.Vertical
+          wonder={{
+            id: 1,
+            title: "모르겠습니다...",
+            tag: { status: "reserveSoon", genre: "play" },
+            thumbnail: {
+              src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
+              altText: "",
+            },
+            liked: false,
+            schedule: [new Date().toString()],
+          }}
+        />
+        <Card.ThumbnailOnly
+          wonder={{
+            id: 2,
+            thumbnail: {
+              src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
+              altText: "",
+            },
+          }}
+        />
       </section>
     </main>
   );
