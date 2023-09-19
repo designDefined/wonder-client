@@ -1478,6 +1478,7 @@ __metadata:
     "@vitejs/plugin-react": ^3.1.0
     calend-arr: 0.0.4
     classnames: ^2.3.2
+    dayjs: ^1.11.10
     eslint: ^8.36.0
     eslint-plugin-react: ^7.32.2
     history: ^5.3.0
@@ -1606,6 +1607,13 @@ __metadata:
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
   languageName: node
   linkType: hard
 
