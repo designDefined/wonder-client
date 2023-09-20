@@ -39,35 +39,37 @@
 
 @keyframes slideFromLeft {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0.9) rotateY(10deg);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1) rotateY(0deg);
   }
 }
 @keyframes slideFromRight {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100%) scale(0.9) rotateY(-10deg);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1) rotateY(0deg);
   }
 }
 @keyframes slideToLeft {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1) rotateY(0deg);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0.9) rotateY(10deg);
   }
 }
 
 @keyframes slideToRight {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
+    opacity: 1;
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%) scale(0.75);
+    opacity: 0.2;
   }
 }
 
