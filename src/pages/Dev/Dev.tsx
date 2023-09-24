@@ -1,4 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
+import { useEffect } from "react";
+import { getWonderDetail, getWonderList } from "../../api/wonder";
 import { Button } from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Chip from "../../components/Chip/Chip";
@@ -8,6 +11,16 @@ import styles from "./Dev.module.scss";
 const cx = classNames.bind(styles);
 
 export default function Dev() {
+  // const { isLoading, data, error } = useQuery(
+  //   getWonderList({ id: { $in: [1, 2] } }),
+  // );
+  const { isLoading, data, error } = useQuery(getWonderDetail(0));
+  useEffect(() => {
+    if (!isLoading) {
+      data && console.log(data);
+      error && console.log(error);
+    }
+  }, [data, error]);
   return (
     <main className={cx("Dev")}>
       <section className={cx("section")}>
@@ -49,24 +62,68 @@ export default function Dev() {
       </section>
       <section className={cx("section")}>
         <Title title="Cards" />
-        <Card.Vertical
-          wonder={{
-            id: 1,
-            title: "모르겠습니다...",
-            tag: { status: "reserveSoon", genre: "play" },
-            thumbnail: {
-              src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
-              altText: "",
-            },
-            liked: false,
-            schedule: [new Date().toString()],
-          }}
-        />
+        <div className={cx("horizontal")}>
+          <Card.Vertical
+            wonder={{
+              id: 1,
+              title: "모르겠습니다...",
+              tag: { status: "reserveSoon", genre: "play" },
+              thumbnail: {
+                src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
+                altText: "",
+              },
+              liked: false,
+              schedule: [new Date().toString()],
+            }}
+          />
+          <Card.Vertical
+            wonder={{
+              id: 1,
+              title: "샘플 2번 카드",
+              tag: { status: "reserveNow", genre: "play" },
+              thumbnail: {
+                src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/1_ohyuk.png",
+                altText: "",
+              },
+              liked: false,
+              schedule: [new Date().toString()],
+            }}
+          />
+        </div>
+        <div className={cx("horizontal")}>
+          <Card.Vertical
+            wonder={{
+              id: 1,
+              title: "모르겠습니다...",
+              tag: { status: "reserveSoon", genre: "play" },
+              thumbnail: {
+                src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
+                altText: "",
+              },
+              liked: true,
+              schedule: [new Date().toString()],
+            }}
+          />
+          <Card.Vertical
+            wonder={{
+              id: 1,
+              title: "샘플 2번 카드",
+              tag: { status: "reserveNow", genre: "play" },
+              thumbnail: {
+                src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/1_ohyuk.png",
+                altText: "",
+              },
+              liked: true,
+              schedule: [new Date().toString()],
+            }}
+          />
+        </div>
+
         <Card.ThumbnailOnly
           wonder={{
             id: 2,
             thumbnail: {
-              src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/wonder_poster_sample.png",
+              src: "https://wonder-image-test.s3.ap-northeast-2.amazonaws.com/1_ohyuk.png",
               altText: "",
             },
           }}
