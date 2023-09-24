@@ -773,6 +773,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qs@npm:^6.9.8":
+  version: 6.9.8
+  resolution: "@types/qs@npm:6.9.8"
+  checksum: c28e07d00d07970e5134c6eed184a0189b8a4649e28fdf36d9117fe671c067a44820890de6bdecef18217647a95e9c6aebdaaae69f5fe4b0bec9345db885f77e
+  languageName: node
+  linkType: hard
+
 "@types/ramda@npm:^0.29.2":
   version: 0.29.2
   resolution: "@types/ramda@npm:0.29.2"
@@ -1468,6 +1475,7 @@ __metadata:
   dependencies:
     "@tanstack/react-query": ^4.33.0
     "@types/lodash": ^4.14.198
+    "@types/qs": ^6.9.8
     "@types/ramda": ^0.29.2
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
@@ -1487,6 +1495,7 @@ __metadata:
     msw: ^1.2.1
     prettier: ^2.8.7
     prop-types: ^15.8.1
+    qs: ^6.11.2
     ramda: ^0.29.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3748,6 +3757,15 @@ __metadata:
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.11.2":
+  version: 6.11.2
+  resolution: "qs@npm:6.11.2"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
   languageName: node
   linkType: hard
 
