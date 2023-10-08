@@ -1,35 +1,26 @@
 import { Creator } from "../creator/creator";
+import { GenreTag, StatusTag } from "./tag";
 import { Reservation } from "../reservation/reservation";
 import { User } from "../user/user";
 import { DateInformation, StoredImage } from "../utility/utility";
 
-export type WonderTag = { isPrimary: boolean; value: string };
-export type WonderContent = string;
-export type WonderSchedule = {
-  date: [number, number, number];
-  time: [number, number][];
-};
-export type WonderLocation = { x: number; y: number; name: string };
-export type WonderReservationProcess =
-  | false
-  | {
-      requireName: boolean;
-      requirePhoneNumber: boolean;
-      requireEmail: boolean;
-    };
-
 export type Wonder = {
   id: number;
   title: string;
-  tags: WonderTag[];
+  tag: { status: StatusTag; genre: GenreTag };
   creator: Creator;
   thumbnail: StoredImage;
   summary: string;
-  content: WonderContent;
-  schedule: WonderSchedule[];
-  location: WonderLocation;
-  reservationProcess: WonderReservationProcess;
+  content: string;
+  schedule: Date[]; // sorted
+  location: {
+    coordinates: { x: number; y: number };
+    name: string;
+    description: string;
+  };
+  reservationProcess: null;
   dateInformation: DateInformation;
+  liked: boolean;
   likedUsers: User[];
   reservations: Reservation[];
 };

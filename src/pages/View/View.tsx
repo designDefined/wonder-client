@@ -1,33 +1,28 @@
 import styles from "./View.module.scss";
-import { useCodex, useParams } from "../../libs/Codex";
-import api, { authedApi } from "../../api";
+import { useParams } from "../../libs/Codex";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
-import Cover from "../../components/View/Cover/Cover";
-import { pick } from "ramda";
-import Creator from "../../components/View/Creator/Creator";
-import Button from "../../components/common/Button/Button";
-import Tags from "../../components/View/Tags/Tags";
-import Period from "../../components/View/Period/Period";
-import Location from "../../components/View/Location/Location";
-import Schedules from "../../components/View/Schedules/Schedules";
-import Content from "../../components/View/Content/Content";
-import { useCallback, useEffect } from "react";
-import { WonderDetail } from "../../types/wonder/wonderDetail";
+import { useEffect } from "react";
 import { useAccount } from "../../store/account/useAccount";
-import useFetch from "../../libs/ReactAssistant/useFetch";
-import { openTray } from "../../libs/Tray/useTray";
-import ReservationPanel from "../../components/View/ReservationPanel/ReservationPanel";
 import { ChipLoading } from "../../components/common/Chip/Chip";
-import { contents } from "./sample";
+import { useQuery } from "@tanstack/react-query";
+import { getWonderDetail } from "../../api/wonder";
+import classNames from "classnames/bind";
+import Cover from "../../modules/View/Cover/Cover";
+import Title from "../../modules/View/Title/Title";
+
+const cx = classNames.bind(styles);
 
 export default function View() {
-  const user = useAccount((state) => state.user);
+  // const user = useAccount((state) => state.user);
   const wonderId = useParams()?.wonder_id;
 
-  const [wonderData, , refetchWonderData] = useFetch<WonderDetail>(
-    () => authedApi.get<WonderDetail>(`/wonder/${wonderId ?? "-1"}`),
-    [user],
-  );
+  const {
+    isLoading,
+    data: wonderData,
+    error,
+  } = useQuery(getWonderDetail(Number(wonderId) ?? -1));
+
+  /*
 
   const onLike = useCallback((): void => {
     if (user === null || wonderData === null) {
@@ -41,45 +36,47 @@ export default function View() {
     }
   }, [user, wonderData]);
 
-  useEffect(() => {
-    console.log(wonderId);
-  }, [wonderId]);
+  */
 
-  if (!wonderData) {
-    return (
-      <>
-        <DefaultHeader />
-        <main className={styles.ViewEmpty}>
-          <div className={styles.cover} />
-          <div className={styles.content}>
-            <div className={styles.creator} />
-            <div className={styles.tags}>
-              <ChipLoading />
-              <ChipLoading />
-              <ChipLoading />
-            </div>
-            <div className={styles.date} />
-            <div className={styles.divider} />
-            <div className={styles.reserve} />
-          </div>
-        </main>
-      </>
-    );
-  }
+  if (isLoading) return "!";
+  // return (
+  //   <>
+  //     <DefaultHeader />
+  //     <main className={styles.ViewEmpty}>
+  //       <div className={styles.cover} />
+  //       <div className={styles.content}>
+  //         <div className={styles.creator} />
+  //         <div className={styles.tags}>
+  //           <ChipLoading />
+  //           <ChipLoading />
+  //           <ChipLoading />
+  //         </div>
+  //         <div className={styles.date} />
+  //         <div className={styles.divider} />
+  //         <div className={styles.reserve} />
+  //       </div>
+  //     </main>
+  //   </>
+  // );
+
+  if (!wonderData) return "에러!";
 
   return (
     <>
       <DefaultHeader />
-      <main className={styles.View}>
-        <Cover
-          data={pick(["title", "summary", "thumbnail", "liked"], wonderData)}
-          onLike={onLike}
+      <main className={cx("View")}>
+        <Cover thumbnail={wonderData.thumbnail} tag={wonderData.tag} />
+        <Title
+          title={wonderData.title}
+          summary={wonderData.summary}
+          schedule={wonderData.schedule}
+          reservationProcess={wonderData.reservationProcess}
         />
         <div className={styles.main}>
-          <Creator creator={wonderData.creator} />
-          <Tags tags={wonderData.tags} />
-          <Period schedule={wonderData.schedule} />
-
+          {/* <Creator creator={wonderData.creator} /> */}
+          {/* <Tags tags={wonderData.tags} /> */}
+          {/* <Period schedule={wonderData.schedule} /> */}
+          {/* 
           <Button
             label="예약하기"
             attribute={{ size: "big", theme: "default" }}
@@ -88,9 +85,6 @@ export default function View() {
                 if (wonderData.reservationProcess === false) {
                   alert("예매가 필요 없는 이벤트입니다!");
                 } else {
-                  openTray(() => (
-                    <ReservationPanel wonder={wonderData} userId={user.id} />
-                  ));
                 }
               }
             }}
@@ -103,7 +97,7 @@ export default function View() {
             <div key={i} className={`${styles.chunk} ${styles[type]}`}>
               {content}
             </div>
-          ))}
+          ))} */}
           {/*<Content content={wonderData.content} />*/}
         </div>
       </main>

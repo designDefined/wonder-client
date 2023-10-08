@@ -1,0 +1,80 @@
+// Common Styles
+
+.titleArea {
+  padding: 0 20px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  padding: 0 20px; // default padding
+  scroll-padding: 20px; // default scroll padding
+}
+.sliderItem {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.placeholder {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.navigator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #d9d9d9;
+  border-radius: 50%x;
+}
+
+// HomeVertical Style
+.HomeVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .slider {
+    gap: 8px;
+  }
+}
+
+// ThumbnailOnly Style
+.ThumbnailOnly {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .slider {
+    gap: 4px;
+    padding-left: 20px;
+  }
+}
+
+// ThumbnailZoomed Style
+.ThumbnailZoomed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .slider {
+    gap: 12px;
+    .sliderItem {
+      width: 180px;
+      height: 261px;
+      scroll-snap-align: center;
+    }
+    .placeholder {
+      scroll-snap-align: center;
+    }
+  }
+}

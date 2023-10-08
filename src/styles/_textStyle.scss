@@ -1,5 +1,11 @@
 @use "color";
 
+@mixin font {
+  font-family: "Pretendard", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-style: normal;
+}
+
 @mixin default {
   font-family: "Pretendard", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;

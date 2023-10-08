@@ -675,6 +675,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:4.33.0":
+  version: 4.33.0
+  resolution: "@tanstack/query-core@npm:4.33.0"
+  checksum: fae325f1d79b936435787797c32367331d5b8e9c5ced84852bf2085115e3aafef57a7ae530a6b0af46da4abafb4b0afaef885926b71715a0e6f166d74da61c7f
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^4.33.0":
+  version: 4.33.0
+  resolution: "@tanstack/react-query@npm:4.33.0"
+  dependencies:
+    "@tanstack/query-core": 4.33.0
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-native: "*"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: b3cf4afa427435e464e077b3f23c891e38e5f78873518f15c1d061ad55f1464d6241ecd92d796a5dbc9412b4fd7eb30b01f2a9cfc285ee9f30dfdd2ca0ecaf4b
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -719,6 +745,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.198":
+  version: 4.14.198
+  resolution: "@types/lodash@npm:4.14.198"
+  checksum: b290e4480707151bcec738bca40527915defe52a0d8e26c83685c674163a265e1a88cb2ee56b0fb587a89819d0cd5df86ada836aec3e9c2e4bf516e7d348d524
+  languageName: node
+  linkType: hard
+
 "@types/ms@npm:*":
   version: 0.7.31
   resolution: "@types/ms@npm:0.7.31"
@@ -737,6 +770,13 @@ __metadata:
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
+  languageName: node
+  linkType: hard
+
+"@types/qs@npm:^6.9.8":
+  version: 6.9.8
+  resolution: "@types/qs@npm:6.9.8"
+  checksum: c28e07d00d07970e5134c6eed184a0189b8a4649e28fdf36d9117fe671c067a44820890de6bdecef18217647a95e9c6aebdaaae69f5fe4b0bec9345db885f77e
   languageName: node
   linkType: hard
 
@@ -1433,6 +1473,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:."
   dependencies:
+    "@tanstack/react-query": ^4.33.0
+    "@types/lodash": ^4.14.198
+    "@types/qs": ^6.9.8
     "@types/ramda": ^0.29.2
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
@@ -1443,11 +1486,16 @@ __metadata:
     "@vitejs/plugin-react": ^3.1.0
     calend-arr: 0.0.4
     classnames: ^2.3.2
+    dayjs: ^1.11.10
     eslint: ^8.36.0
     eslint-plugin-react: ^7.32.2
     history: ^5.3.0
+    lodash: ^4.17.21
+    lottie-react: ^2.4.0
     msw: ^1.2.1
     prettier: ^2.8.7
+    prop-types: ^15.8.1
+    qs: ^6.11.2
     ramda: ^0.29.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -1570,6 +1618,13 @@ __metadata:
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
   languageName: node
   linkType: hard
 
@@ -3025,7 +3080,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lottie-web@npm:^5.1.3":
+"lottie-react@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "lottie-react@npm:2.4.0"
+  dependencies:
+    lottie-web: ^5.10.2
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: e9ea4a89be90a29bde4a83956f76a80d1f8031882f18ea38ef5271d2aafd8e68348ae6297f185ed85b149ca4896fe33aee7faf9780b88a1b289b8e146f477448
+  languageName: node
+  linkType: hard
+
+"lottie-web@npm:^5.1.3, lottie-web@npm:^5.10.2":
   version: 5.12.2
   resolution: "lottie-web@npm:5.12.2"
   checksum: af5bc3bc405fd760de8b17a36158d5a8c3e8c586c711d0c63681ddf056b65bc6b54ea36b1fcad782fb02dbe12e696a40e0ba72daf41b8f10ab5b5d1113793636
@@ -3690,6 +3757,15 @@ __metadata:
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.11.2":
+  version: 6.11.2
+  resolution: "qs@npm:6.11.2"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
   languageName: node
   linkType: hard
 
@@ -4544,7 +4620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:1.2.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:

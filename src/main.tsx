@@ -14,6 +14,8 @@ import Register from "./pages/Register/Register";
 import Liked from "./pages/MyPage/Liked/Liked";
 import Reserved from "./pages/MyPage/Reserved/Reserved";
 import Wonders from "./pages/Wonders/Wonders";
+import Dev from "./pages/Dev/Dev";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const codex: Codex = {
   _index: <Home />,
@@ -28,9 +30,11 @@ const codex: Codex = {
   view: { _index: <View />, _params: ["wonder_id"] },
   me: { _index: <MyPage />, liked: <Liked />, reserved: <Reserved /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },
+  dev: <Dev />,
   _error: <div>error page</div>,
 };
 
+const queryClient = new QueryClient();
 /*
 if (process.env.NODE_ENV === "development") {
   await initMocks();
@@ -38,5 +42,7 @@ if (process.env.NODE_ENV === "development") {
  */
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <CodexProvider provider={codex} />,
+  <QueryClientProvider client={queryClient}>
+    <CodexProvider provider={codex} />
+  </QueryClientProvider>,
 );
