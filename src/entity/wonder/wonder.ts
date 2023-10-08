@@ -12,7 +12,7 @@ export type Wonder = {
   thumbnail: StoredImage;
   summary: string;
   content: string;
-  schedule: string[];
+  schedule: Date[]; // sorted
   location: {
     coordinates: { x: number; y: number };
     name: string;

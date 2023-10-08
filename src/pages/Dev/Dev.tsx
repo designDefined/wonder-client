@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useEffect } from "react";
-import { getWonderDetail, getWonderList } from "../../api/wonder";
+import { getWonderDetail } from "../../api/wonder";
 import { Button } from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Chip from "../../components/Chip/Chip";
@@ -73,7 +73,7 @@ export default function Dev() {
                 altText: "",
               },
               liked: false,
-              schedule: [new Date().toString()],
+              schedule: [new Date()],
             }}
           />
           <Card.Vertical
@@ -86,7 +86,7 @@ export default function Dev() {
                 altText: "",
               },
               liked: false,
-              schedule: [new Date().toString()],
+              schedule: [new Date()],
             }}
           />
         </div>
@@ -101,7 +101,7 @@ export default function Dev() {
                 altText: "",
               },
               liked: true,
-              schedule: [new Date().toString()],
+              schedule: [new Date()],
             }}
           />
           <Card.Vertical
@@ -114,7 +114,7 @@ export default function Dev() {
                 altText: "",
               },
               liked: true,
-              schedule: [new Date().toString()],
+              schedule: [new Date()],
             }}
           />
         </div>

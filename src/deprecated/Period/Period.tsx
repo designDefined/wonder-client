@@ -19,7 +19,7 @@ export default function Period({ schedule }: { schedule: Wonder["schedule"] }) {
   const [dateStart, dateEnd] = useMemo(
     () =>
       pipe(
-        map((schedule: { date: [number, number, number] }) => schedule.date),
+        map((schedule) => schedule.date),
         sort(sortDate),
         map(([y, m, d]) => `${y}. ${m}. ${d}`),
         (dates) => [dates[0], dates[dates.length - 1]],

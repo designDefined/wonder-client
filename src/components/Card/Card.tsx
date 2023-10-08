@@ -5,10 +5,7 @@ import Link from "../../libs/Codex/components/Link/Link";
 import Chip from "../Chip/Chip";
 import { parseWonderScheduleString } from "../../entity/wonder/wonderFunction";
 import { IconLike } from "../../assets/wonder/like";
-import * as likeLottie from "../../assets/wonder/likeLottie.json";
-import { useLottie } from "lottie-react";
 
-console.log(likeLottie);
 const cx = classNames.bind(styles);
 
 type BasicProps = {
@@ -26,12 +23,6 @@ function Vertical({
   wonder: { id, title, tag, thumbnail, liked, schedule },
   className,
 }: VerticalProps) {
-  const options: Parameters<typeof useLottie>[0] = {
-    animationData: JSON.parse(JSON.stringify(likeLottie)),
-    loop: true,
-  };
-
-  const { View } = useLottie(options);
   return (
     <Link className={cx("Vertical", className)} to={`/view/${id}`}>
       <div className={cx("thumbnailWrapper")}>

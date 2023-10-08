@@ -1,9 +1,27 @@
 import dayjs from "dayjs";
 import { GenreTag, StatusTag } from "./tag";
 import { Wonder } from "./wonder";
+import { WonderRemote } from "./wonderRemote";
+
+export const parseWonderRemote: (remote: WonderRemote) => Wonder = (remote) => {
+  const { schedule, ...rest } = remote;
+  return {
+    ...rest,
+    schedule: schedule.map((dateString) => dayjs(dateString).toDate()),
+    tag: {
+      genre: remote.genre,
+      status: "reserveNow",
+    },
+  };
+};
 
 export const translateWonderGenre = (genre: GenreTag): string => {
   if (genre === "play") return "연극";
+  if (genre === "exhibition") return "전시";
+  if (genre === "concert") return "공연";
+  if (genre === "musical") return "뮤지컬";
+  if (genre === "sports") return "체육";
+  if (genre === "etc") return "기타";
   return "잘못된 장르";
 };
 
