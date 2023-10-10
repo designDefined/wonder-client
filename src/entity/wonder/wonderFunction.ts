@@ -34,18 +34,3 @@ export const translateWonderStatus = (status: StatusTag): string => {
   if (status === "finished") return "종료";
   return "상태 오류";
 };
-
-export const parseWonderScheduleString = (
-  schedule: Wonder["schedule"],
-): string => {
-  const startDate = schedule[0];
-  const endDate = schedule[schedule.length - 1];
-
-  if (startDate === endDate) {
-    return dayjs(startDate).format("MM.DD");
-  }
-
-  return `${dayjs(startDate).format("MM.DD")}-${dayjs(endDate).format(
-    "MM.DD",
-  )}`;
-};

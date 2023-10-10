@@ -3,8 +3,8 @@ import { Wonder } from "../../entity/wonder/wonder";
 import styles from "./Card.module.scss";
 import Link from "../../libs/Codex/components/Link/Link";
 import Chip from "../Chip/Chip";
-import { parseWonderScheduleString } from "../../entity/wonder/wonderFunction";
 import { IconLike } from "../../assets/wonder/like";
+import { parseScheduleToPeriodString } from "../../functions/parse/parseSchedule";
 
 const cx = classNames.bind(styles);
 
@@ -47,7 +47,7 @@ function Vertical({
       </div>
       <div className={cx("title")}>{title}</div>
       <div className={cx("schedule")}>
-        {parseWonderScheduleString(schedule)}
+        {parseScheduleToPeriodString(schedule, "MM.DD", "-")}
       </div>
     </Link>
   );
