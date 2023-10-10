@@ -1,0 +1,33 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/reset";
+
+.Chip {
+  @include reset.button;
+  @include textStyle.default;
+  padding: 2px 10px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+
+  &.default {
+    background: color.$main-blue;
+    color: color.$white;
+  }
+  &.white {
+    background: color.$white;
+    color: color.$black;
+    border: 1px solid color.$gray;
+  }
+  &.gray {
+    background: color.$gray;
+    color: color.$black;
+  }
+}
+
+.empty {
+  @include color.loading;
+  width: 60px;
+  height: 36px;
+  border-radius: 5px;
+}

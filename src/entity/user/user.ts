@@ -1,18 +1,22 @@
-export type UserPlatformType = "ADMIN" | "NAVER";
-export type UserId = string;
-export type UserName = string;
-export type UserNickname = string | undefined | null;
-export type UserPhoneNumber = string | undefined | null;
-export type UserEmail = string;
-export type UserDate = Date;
+import { Creator } from "../creator/creator";
+import { Reservation } from "../reservation/reservation";
+import { DateInformation, StoredImage } from "../utility/utility";
+import { Wonder } from "../wonder/wonder";
+
+export type UserPlatformType = "NAVER" | "KAKAO" | "GOOGLE" | "TEST" | "ADMIN";
 
 export type User = {
+  id: number;
   platformType: UserPlatformType;
-  id: UserId;
-  name?: UserName;
-  nickname?: UserNickname;
-  phoneNumber?: UserPhoneNumber;
-  email: UserEmail;
-  created_at: UserDate;
-  last_modified_at: UserDate;
+  socialId: string;
+  name: string;
+  nickname: string;
+  phoneNumber: string;
+  email: string;
+  profileImage: StoredImage;
+  dateInformation: DateInformation;
+  likedWonders: Wonder[];
+  reservedWonders: Reservation[];
+  ticketBook: Reservation[];
+  ownedCreators: Creator[];
 };

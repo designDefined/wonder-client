@@ -1,9 +1,17 @@
+@use "./styles/reset";
+@use "./styles/textStyle";
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  @include textStyle.default;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,6 +25,7 @@ body {
 
 #root {
   width: 100%;
+  height: auto;
 }
 
 /***** css reset *****/
@@ -28,4 +37,9 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+ul,
+ol {
+  @include reset.uol;
 }

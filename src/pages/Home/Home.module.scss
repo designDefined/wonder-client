@@ -1,0 +1,47 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/layout";
+
+.Home {
+  @include layout.defaultBottomPadding;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  // justify-content: space-between;
+
+  // justify-content: center;
+  // gap: 7px;
+}
+
+.banners {
+  @include layout.defaultSidePadding;
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  .miniBanner {
+    @include textStyle.default;
+    position: relative;
+    height: 68px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      border-radius: 5px;
+    }
+  }
+}

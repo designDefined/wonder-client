@@ -1,0 +1,7 @@
+@use "/src/styles/layout";
+
+.Liked {
+  @include layout.defaultSidePadding;
+  @include layout.defaultBottomPadding;
+  padding-top: 23px;
+}

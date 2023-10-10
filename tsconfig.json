@@ -17,5 +17,6 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
+  "exclude": ["src/deprecated/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

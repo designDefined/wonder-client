@@ -1,0 +1,22 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/layout";
+@use "/src/styles/color";
+
+.MyPageSubHeader {
+  @include textStyle.default;
+  @include layout.defaultSidePadding;
+  background-color: color.$main-blue;
+  padding-top: 47px;
+  padding-bottom: 38px;
+  color: color.$white;
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+  .description {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}

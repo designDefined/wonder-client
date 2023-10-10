@@ -1,0 +1,38 @@
+@use "/src/styles/color";
+@use "/src/styles/textStyle";
+
+.TextField {
+  @include textStyle.description;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  .title {
+    @include textStyle.subtitle;
+    color: color.$black !important;
+  }
+  .input {
+    padding: 10px;
+    font: inherit;
+    color: inherit;
+    border-radius: 5px;
+    border: 1px solid color.$black;
+    border-color: inherit;
+    background: color.$white;
+  }
+
+  // theme
+  &.idle {
+    color: color.$gray;
+    border-color: color.$gray;
+  }
+  &.invalid {
+    color: color.$red;
+    border-color: color.$red;
+  }
+  &.disabled {
+    color: color.$dark-gray;
+    border: none;
+    background: color.$gray;
+  }
+}

@@ -1,0 +1,38 @@
+@use "./src/styles/color";
+@use "./src/styles/reset";
+
+.Title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: normal;
+  line-height: normal;
+
+  &.withoutMore {
+    justify-content: flex-start;
+  }
+}
+
+.label {
+  color: color.$black;
+  font-family: "Pretendard", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-style: normal;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.more {
+  &a {
+    @include reset.a;
+  }
+  &button {
+    @include reset.button;
+  }
+
+  color: #86858a;
+  font-family: "Pretendard", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}

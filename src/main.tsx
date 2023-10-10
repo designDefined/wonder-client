@@ -1,36 +1,48 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import HomeLayout from "./pages/HomeLayout/HomeLayout";
-import Home from "./pages/HomeLayout/Home/Home";
-import New from "./pages/HomeLayout/New/New";
-import Dev from "./pages/NoLayout/Dev/Dev";
-import Login from "./pages/HomeLayout/Login/Login";
-import LoggingIn from "./pages/NoLayout/LoggingIn/LoggingIn";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomeLayout />,
-    errorElement: <div>errorLayout</div>,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        index: true,
-      },
-      { path: "new", element: <New /> },
-      { path: "login", element: <Login /> },
-    ],
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import { Codex } from "./libs/Codex/types";
+import CodexProvider from "./libs/Codex/components/Provider/CodexProvider";
+import View from "./pages/View/View";
+import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
+import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
+import CreatorPage from "./pages/Creator/CreatorPage";
+import MyPage from "./pages/MyPage/MyPage";
+import Register from "./pages/Register/Register";
+import Liked from "./pages/MyPage/Liked/Liked";
+import Reserved from "./pages/MyPage/Reserved/Reserved";
+import Wonders from "./pages/Wonders/Wonders";
+import Dev from "./pages/Dev/Dev";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const codex: Codex = {
+  _index: <Home />,
+  new: {
+    _index: <NewWonderPage />,
+    wonder: <NewWonderPage />,
+    creator: <NewCreatorPage />,
   },
-  { path: "register", element: <div>register</div> },
-  { path: "dev", element: <Dev /> },
-  { path: "naver", element: <LoggingIn provider={"naver"} /> },
-]);
+  login: <Login />,
+  register: <Register />,
+  wonders: <Wonders />,
+  view: { _index: <View />, _params: ["wonder_id"] },
+  me: { _index: <MyPage />, liked: <Liked />, reserved: <Reserved /> },
+  creator: { _index: <CreatorPage />, _params: ["creator_id"] },
+  dev: <Dev />,
+  _error: <div>error page</div>,
+};
+
+const queryClient = new QueryClient();
+/*
+if (process.env.NODE_ENV === "development") {
+  await initMocks();
+}
+ */
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <CodexProvider provider={codex} />
+  </QueryClientProvider>,
 );

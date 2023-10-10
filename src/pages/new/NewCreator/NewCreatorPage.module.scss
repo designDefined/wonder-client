@@ -1,0 +1,26 @@
+@use "/src/styles/color";
+@use "/src/styles/textStyle";
+
+.NewCreatorPage {
+  position: relative;
+  width: 100%;
+  padding: 26px 20px;
+  padding-bottom: 80px;
+
+  .title {
+    @include textStyle.title;
+  }
+  .description {
+    @include textStyle.default;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 15px;
+  }
+  .forms {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+}

@@ -1,30 +1,26 @@
-export type WonderId = number | null;
-export type WonderTitle = string;
-export type WonderTag = string;
-export type WonderSummary = string;
-export type WonderContent = string;
-export type WonderSchedule = string;
-export type WonderLocation = string;
-export type WonderReservationProcess = null;
+import { Creator } from "../creator/creator";
+import { GenreTag, StatusTag } from "./tag";
+import { Reservation } from "../reservation/reservation";
+import { User } from "../user/user";
+import { DateInformation, StoredImage } from "../utility/utility";
 
 export type Wonder = {
-  id: WonderId;
-  title: WonderTitle;
-  tags: WonderTag[];
-  summary: WonderSummary;
-  content: WonderContent;
-  schedule: WonderSchedule;
-  location: WonderLocation;
-  reservationProcess: WonderReservationProcess;
-};
-
-export const initialWonder: Wonder = {
-  id: null,
-  title: "",
-  tags: [],
-  summary: "",
-  content: "",
-  schedule: "",
-  location: "",
-  reservationProcess: null,
+  id: number;
+  title: string;
+  tag: { status: StatusTag; genre: GenreTag };
+  creator: Creator;
+  thumbnail: StoredImage;
+  summary: string;
+  content: string;
+  schedule: Date[]; // sorted
+  location: {
+    coordinates: { x: number; y: number };
+    name: string;
+    description: string;
+  };
+  reservationProcess: null;
+  dateInformation: DateInformation;
+  liked: boolean;
+  likedUsers: User[];
+  reservations: Reservation[];
 };

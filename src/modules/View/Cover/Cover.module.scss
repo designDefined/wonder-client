@@ -1,0 +1,44 @@
+@use "/src/styles/layout";
+@use "/src/styles/color";
+
+.Cover {
+}
+
+.thumbnailBackground {
+  @include layout.defaultSidePadding;
+  width: 100%;
+  height: 131px;
+  background: #d9d9d9;
+  padding-top: 15px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 67px;
+}
+
+.thumbnail {
+  width: 115px;
+  height: 168px;
+  border-radius: 5px;
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 124px;
+  width: 100%;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.likeIcon {
+  width: 30px;
+  height: 30px;
+}

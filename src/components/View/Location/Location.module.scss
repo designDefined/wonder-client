@@ -1,0 +1,32 @@
+@use "/src/styles/color";
+@use "/src/styles/textStyle";
+@use "/src/styles/utility";
+
+.Location {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 28px;
+  .label {
+    @include textStyle.subtitle;
+    margin-bottom: 8px;
+  }
+  .map {
+    @include utility.loading;
+    position: relative;
+    width: 100%;
+    height: 205px;
+    background: gray;
+    border-radius: 12px;
+    border: 1px color.$gray solid;
+    overflow: hidden;
+
+    .mapImage {
+      position: absolute;
+    }
+    .marker {
+      position: absolute;
+      top: calc(50% - 25px);
+      left: calc(50% - 25px);
+    }
+  }
+}

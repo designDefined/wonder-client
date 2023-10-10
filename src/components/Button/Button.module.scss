@@ -1,0 +1,32 @@
+@use "./src/styles/color";
+@use "./src/styles/textStyle";
+
+.Button {
+  @include textStyle.subtitle;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 176px;
+  padding: 12px 10px;
+  border: 1px solid color.$gray;
+  border-radius: 5px;
+  color: color.$dark-gray;
+  background-color: color.$white;
+
+  &.isSmallSized {
+    @include textStyle.moreDescriptive;
+    display: inline-flex !important;
+    width: 72px;
+    height: 25px;
+    padding: 12px 10px;
+  }
+  &.isFullWidth {
+    display: flex;
+    width: 100%;
+  }
+  &.isMainColored {
+    color: color.$white;
+    background-color: color.$main-blue;
+    border: none;
+  }
+}

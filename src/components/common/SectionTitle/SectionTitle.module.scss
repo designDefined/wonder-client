@@ -1,0 +1,25 @@
+@use "/src/styles/textStyle";
+.SectionTitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &.big {
+  }
+  &.medium {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &.clickable {
+    cursor: pointer;
+  }
+  .title {
+    @include textStyle.default;
+  }
+  .more {
+    @include textStyle.default;
+    color: #86858a;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}

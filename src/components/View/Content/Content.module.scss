@@ -1,0 +1,8 @@
+@use "/src/styles/textStyle";
+.Content {
+  @include textStyle.description;
+  margin-bottom: 22px;
+  white-space: pre-wrap;
+}
+.noContent {
+}

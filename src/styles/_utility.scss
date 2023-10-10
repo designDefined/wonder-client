@@ -1,0 +1,58 @@
+@use "./color";
+
+@mixin stretchWidth() {
+  position: relative;
+  width: 100%;
+}
+
+@mixin stretchWidthAndHeight() {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin centerAlign() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+$figma-vw: 393px;
+$min-vw: 370px;
+$max-vw: 500px;
+
+@function pxToVw($input-px) {
+  @return calc(($input-px / $figma-vw) * 100vw);
+}
+
+@function pxToMinVw($input-px) {
+  @return calc(($input-px / $figma-vw) * $min-vw);
+}
+
+@function pxToMaxVw($input-px) {
+  @return calc(($input-px / $figma-vw) * $max-vw);
+}
+
+@mixin responsivePx($width, $height) {
+  width: pxToVw($width);
+  min-width: pxToMinVw($width);
+  max-width: pxToMaxVw($width);
+  height: pxToVw($height);
+  min-height: pxToMinVw($height);
+  max-height: pxToMaxVw($height);
+}
+
+@mixin loading {
+  background-color: color.$gray;
+  animation: grayBlink 1s ease-in-out infinite alternate;
+}
+
+@keyframes grayBlink {
+  0% {
+    background-color: color.$gray;
+  }
+  100% {
+    background-color: #a4a4a4;
+  }
+}

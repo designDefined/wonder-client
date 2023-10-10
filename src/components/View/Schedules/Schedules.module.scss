@@ -1,0 +1,36 @@
+@use "/src/styles/reset";
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+
+.Schedules {
+  width: 100%;
+  margin-bottom: 30px;
+  .label {
+    @include textStyle.subtitle;
+    margin-bottom: 5px;
+  }
+  .scheduleContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    overflow: auto;
+    .scheduleCard {
+      width: calc(100% / 3);
+      padding: 8px 0;
+      border-radius: 5px;
+      border: 1px solid color.$gray;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .date {
+        @include textStyle.subtitle;
+        text-align: center;
+      }
+      .time {
+        @include textStyle.description;
+        text-align: center;
+      }
+    }
+  }
+}

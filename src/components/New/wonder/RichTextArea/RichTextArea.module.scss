@@ -1,0 +1,37 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+@use "/src/styles/reset";
+
+.RichTextArea {
+  width: 100%;
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 17px;
+  }
+  .textAreaWrapper {
+    width: 100%;
+    height: 330px;
+    border-radius: 12px;
+    border: 1px solid color.$gray;
+
+    .controller {
+      width: 100%;
+      height: 85px;
+      border-bottom: 1px solid color.$gray;
+    }
+
+    .textArea {
+      @include reset.textArea;
+      @include textStyle.default;
+      width: 100%;
+      height: 245px;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 22px;
+      background-color: transparent;
+    }
+  }
+}

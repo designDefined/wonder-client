@@ -1,0 +1,22 @@
+@use "/src/styles/textStyle";
+
+.Register {
+  position: relative;
+  width: 100%;
+  padding: 0 5%;
+}
+.title {
+  @include textStyle.title;
+  width: 100%;
+  margin-top: 24px;
+}
+.description {
+  @include textStyle.description;
+  margin-bottom: 13px;
+}
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
