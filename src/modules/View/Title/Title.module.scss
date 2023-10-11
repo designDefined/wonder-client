@@ -2,10 +2,6 @@
 @use "/src/styles/layout";
 @use "/src/styles/color";
 
-.Title {
-  @include layout.defaultSidePadding;
-}
-
 .titleText {
   @include textStyle.title;
 }
@@ -16,11 +12,5 @@
   margin-bottom: 7px;
 }
 .schedule {
-  margin-bottom: 12px;
-}
-
-.divider {
-  width: 100%;
-  border-top: 1px solid color.$gray;
-  margin-top: 24px;
+  @include textStyle.subtitle;
 }
