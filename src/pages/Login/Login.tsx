@@ -1,36 +1,24 @@
 import styles from "./Login.module.scss";
 import kakao_icon from "/assets/icon/kakao_icon.png";
 import naver_icon from "/assets/icon/naver_icon.png";
-
-import back_icon from "/assets/icon/arrow_back.svg";
-import { navigate } from "../../libs/Codex";
+import google_icon from "/assets/icon/google_icon.png";
 
 import { openTray } from "../../libs/Tray/useTray";
 
 import SampleLoginTray from "../../components/Login/SampleLoginTray/SampleLoginTray";
+import LoginHeader from "../../components/headers/LoginHeader/LoginHeader";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
 
 export default function Login() {
   return (
-    <main className={styles.Login}>
-      <div className={styles.header}>
-        <h2>Login</h2>
+    <main className={cx("Login")}>
+      <LoginHeader />
+      <h2 className={cx("title")}>SNS 계정으로 간편 로그인</h2>
+      <div className={cx("buttons")}>
         <button
-          className={styles.backButton}
-          onClick={() => {
-            navigate("/", "slidePrevious");
-          }}
-        >
-          <img src={back_icon} />
-        </button>
-      </div>
-      <div className={styles.illustration}>
-        일러스트 이미지 하나 들어감...
-        <br />
-        비워주세엿
-      </div>
-      <div className={styles.loginButtons}>
-        <button
-          className={styles.kakaoLogin}
+          className={cx("kakaoLogin")}
           onClick={() => {
             /*
             api
@@ -45,22 +33,33 @@ export default function Login() {
             openTray(() => <SampleLoginTray />);
           }}
         >
-          <img src={kakao_icon} />
+          <img src={kakao_icon} alt="kakao icon" />
           <div>카카오 계정으로 로그인하기</div>
         </button>
         <button
-          className={styles.naverLogin}
+          className={cx("naverLogin")}
           onClick={() => {
             const url =
               "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=ea1D05CBMzfotDOECOFw&state=naver&redirect_uri=http://localhost:5173/naver";
             location.href = url;
           }}
         >
-          <img src={naver_icon} />
+          <img src={naver_icon} alt="naver icon" />
           <div>네이버 계정으로 로그인하기</div>
         </button>
         <button
-          className={styles.googleLogin}
+          className={cx("googleLogin")}
+          onClick={() => {
+            const url =
+              "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=ea1D05CBMzfotDOECOFw&state=naver&redirect_uri=http://localhost:5173/naver";
+            location.href = url;
+          }}
+        >
+          <img src={google_icon} alt="google icon" />
+          <div> 구글 계정으로 로그인하기</div>
+        </button>
+        <button
+          className={cx("googleLogin")}
           onClick={() => {
             openTray(() => <SampleLoginTray />);
           }}
