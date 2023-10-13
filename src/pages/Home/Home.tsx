@@ -13,19 +13,19 @@ export default function Home() {
       <DefaultHeader />
       <main className={cx("Home")}>
         <Carousel.ThumbnailZoomed
-          classNames={cx("curation")}
+          className={cx("curation")}
           queryName="default"
         />
-        <Carousel.ThumbnailOnly classNames={cx("curation")} queryName="default">
+        <Carousel.ThumbnailOnly className={cx("curation")} queryName="default">
           <Title.More title="새로 올라왔어요" onClick="/dev" />
         </Carousel.ThumbnailOnly>
-        <Carousel.HomeVertical classNames={cx("curation")} queryName="default">
+        <Carousel.HomeVertical className={cx("curation")} queryName="default">
           <Title.More title="기획 2" onClick="/dev" />
         </Carousel.HomeVertical>
         <Link className={cx("banner")} to="/dev">
           <img src="/assets/illustration/banner1.png" />
         </Link>
-        <Carousel.HomeVertical classNames={cx("curation")} queryName="default">
+        <Carousel.HomeVertical className={cx("curation")} queryName="default">
           <Title.More title="기획 3" onClick="/dev" />
         </Carousel.HomeVertical>
         <Link className={cx("banner")} to="/dev">

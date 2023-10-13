@@ -10,7 +10,7 @@ import styles from "./Carousel.module.scss";
 const cx = classNames.bind(styles);
 
 type BasicProps = PropsWithChildren & {
-  classNames?: string;
+  className?: string;
   filter?: Record<keyof Wonder, unknown>;
   queryName: string;
   amountOfPlaceholder?: number;
@@ -21,12 +21,12 @@ function HomeVertical({
   queryName,
   amountOfPlaceholder = 5,
   children,
-  classNames,
+  className,
 }: BasicProps) {
   const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
 
   return (
-    <div className={cx("carousel", "HomeVertical", classNames)}>
+    <div className={cx("carousel", "HomeVertical", className)}>
       <div className={cx("titleArea")}>{children}</div>
       {error ? (
         <div>에러 발생</div>
@@ -55,12 +55,12 @@ function ThumbnailOnly({
   queryName,
   amountOfPlaceholder = 5,
   children,
-  classNames,
+  className,
 }: BasicProps) {
   const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
 
   return (
-    <div className={cx("carousel", "ThumbnailOnly", classNames)}>
+    <div className={cx("carousel", "ThumbnailOnly", className)}>
       <div className={cx("titleArea")}>{children}</div>
       {error ? (
         <div>에러 발생</div>
@@ -88,12 +88,12 @@ function ThumbnailZoomed({
   filter,
   queryName,
   amountOfPlaceholder = 5,
-  classNames,
+  className,
 }: BasicProps) {
   const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
 
   return (
-    <div className={cx("carousel", "ThumbnailZoomed", classNames)}>
+    <div className={cx("carousel", "ThumbnailZoomed", className)}>
       {error ? (
         <div>에러 발생</div>
       ) : (
