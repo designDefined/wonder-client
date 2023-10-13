@@ -1,0 +1,11 @@
+@use "/src/styles/textStyle";
+
+.Location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  @include textStyle.subtitle;
+}

@@ -3,7 +3,7 @@ import { Wonder } from "../../entity/wonder/wonder";
 
 export const parseScheduleToPeriodString = (
   schedule: Wonder["schedule"],
-  format: "MM.DD" | "YYYY.MM.DD",
+  format: string,
   connector: string,
 ): string => {
   const startDate = schedule[0];

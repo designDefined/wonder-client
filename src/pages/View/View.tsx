@@ -1,14 +1,13 @@
 import styles from "./View.module.scss";
 import { useParams } from "../../libs/Codex";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
-import { useEffect } from "react";
-import { useAccount } from "../../store/account/useAccount";
-import { ChipLoading } from "../../components/common/Chip/Chip";
 import { useQuery } from "@tanstack/react-query";
 import { getWonderDetail } from "../../api/wonder";
 import classNames from "classnames/bind";
 import Cover from "../../modules/View/Cover/Cover";
 import Title from "../../modules/View/Title/Title";
+import Content from "../../modules/View/Content/Content";
+import Location from "../../modules/View/Location/Location";
 
 const cx = classNames.bind(styles);
 
@@ -38,26 +37,17 @@ export default function View() {
 
   */
 
-  if (isLoading) return "!";
-  // return (
-  //   <>
-  //     <DefaultHeader />
-  //     <main className={styles.ViewEmpty}>
-  //       <div className={styles.cover} />
-  //       <div className={styles.content}>
-  //         <div className={styles.creator} />
-  //         <div className={styles.tags}>
-  //           <ChipLoading />
-  //           <ChipLoading />
-  //           <ChipLoading />
-  //         </div>
-  //         <div className={styles.date} />
-  //         <div className={styles.divider} />
-  //         <div className={styles.reserve} />
-  //       </div>
-  //     </main>
-  //   </>
-  // );
+  if (isLoading)
+    return (
+      <>
+        <DefaultHeader />
+        <main className={cx("View")}>
+          <div className={cx("mainContent")}>
+            <Title.Placeholder />
+          </div>
+        </main>
+      </>
+    );
 
   if (!wonderData) return "에러!";
 
@@ -66,13 +56,20 @@ export default function View() {
       <DefaultHeader />
       <main className={cx("View")}>
         <Cover thumbnail={wonderData.thumbnail} tag={wonderData.tag} />
-        <Title
-          title={wonderData.title}
-          summary={wonderData.summary}
-          schedule={wonderData.schedule}
-          reservationProcess={wonderData.reservationProcess}
-        />
-        <div className={styles.main}>
+        <div className={cx("mainContent")}>
+          <Title
+            title={wonderData.title}
+            summary={wonderData.summary}
+            schedule={wonderData.schedule}
+            reservationProcess={wonderData.reservationProcess}
+          />
+          <div className={cx("divider")} />
+          <Content content={wonderData.content} />
+          <div className={cx("divider")} />
+          <Location location={wonderData.location} />
+          <div className={cx("divider")} />
+          {/* <Creator /> */}
+
           {/* <Creator creator={wonderData.creator} /> */}
           {/* <Tags tags={wonderData.tags} /> */}
           {/* <Period schedule={wonderData.schedule} /> */}
