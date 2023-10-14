@@ -1,22 +1,25 @@
+@use "/src/styles/layout";
 @use "/src/styles/textStyle";
 
 .Register {
+  @include layout.defaultSidePadding;
   position: relative;
   width: 100%;
-  padding: 0 5%;
+  padding-top: 24px;
 }
 .title {
   @include textStyle.title;
   width: 100%;
   margin-top: 24px;
+  margin-bottom: 12px;
 }
 .description {
   @include textStyle.description;
-  margin-bottom: 13px;
+  margin-bottom: 40px;
 }
-.forms {
+.form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 48px;
 }
