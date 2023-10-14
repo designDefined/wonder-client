@@ -4,3 +4,7 @@ export type QueryType<T> = {
   cacheTime?: number;
   staleTime?: number;
 };
+
+export type MutationType<T, Q> = {
+  mutationFn: (data: Q) => Promise<T>;
+};

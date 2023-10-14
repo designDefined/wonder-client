@@ -29,6 +29,7 @@
   color: color.$gray;
   font: inherit;
   transition: inherit;
+  min-height: calc(1em + 8px);
 }
 
 .error {

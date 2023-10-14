@@ -8,6 +8,7 @@ import { openTray } from "../../libs/Tray/useTray";
 import SampleLoginTray from "../../components/Login/SampleLoginTray/SampleLoginTray";
 import LoginHeader from "../../components/headers/LoginHeader/LoginHeader";
 import classNames from "classnames/bind";
+import Form from "../../modules/Login/Form/Form";
 
 const cx = classNames.bind(styles);
 
@@ -61,7 +62,7 @@ export default function Login() {
         <button
           className={cx("googleLogin")}
           onClick={() => {
-            openTray(() => <SampleLoginTray />);
+            openTray(() => <Form />);
           }}
         >
           <div>테스트 계정으로 로그인하기</div>

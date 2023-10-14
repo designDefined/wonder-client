@@ -50,7 +50,11 @@ function Text({
     message: string | null;
   }>(() => {
     const error = onValidateError(value);
-    if (error) return { isError: !focus, message: error };
+    if (error)
+      return {
+        isError: !focus && value.length > 0,
+        message: focus && maxLength ? `${value.length} / ${maxLength}` : error,
+      };
     if (maxLength)
       return value.length <= maxLength
         ? { isError: false, message: `${value.length} / ${maxLength}` }

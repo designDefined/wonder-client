@@ -12,7 +12,7 @@ type ButtonProps = PropsWithChildren & {
   isMainColored?: boolean;
 };
 
-export function Button({
+function Button({
   children,
   className,
   onClick,
@@ -33,3 +33,29 @@ export function Button({
     </button>
   );
 }
+
+type SubmitProps = Omit<ButtonProps, "onClick" | "children"> & { name: string };
+
+function Submit({
+  name,
+  className,
+  isSmallSized,
+  isFullWidth,
+  isMainColored,
+}: SubmitProps) {
+  return (
+    <input
+      type="submit"
+      className={cx(
+        "Button",
+        { isSmallSized, isFullWidth, isMainColored },
+        className,
+      )}
+      value={name}
+    />
+  );
+}
+
+Button.Submit = Submit;
+
+export default Button;

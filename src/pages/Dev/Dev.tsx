@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { getWonderDetail } from "../../api/wonder";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Chip from "../../components/Chip/Chip";
 import Input from "../../components/Input/Input";
