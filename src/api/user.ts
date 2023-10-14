@@ -1,6 +1,7 @@
 import api from ".";
 import { UserMyInfo } from "../entity/user/myInfo";
-import { MutationType } from "./types";
+import { MutationType, QueryType } from "./types";
+import { authedApi } from "./index";
 
 type LoginResult =
   | { needLogin: false; token: string }
@@ -9,6 +10,11 @@ type LoginResult =
       type: "test";
       email: string;
     };
+
+export const getUser: QueryType<UserMyInfo> = {
+  queryKey: ["user", "me"],
+  queryFn: () => authedApi.get<UserMyInfo>("/user/me"),
+};
 
 export const postUserLogin = (
   type: "test" | "naver",

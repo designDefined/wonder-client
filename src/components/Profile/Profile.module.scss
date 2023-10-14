@@ -1,0 +1,71 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/layout";
+
+.Profile {
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+  .thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
+
+.DropdownOverlay {
+  position: absolute;
+  width: 176px;
+  background-color: color.$white;
+  top: 16px;
+  right: 16px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(color.$black, 0.25);
+  z-index: layout.$level-6-menu;
+
+  .profile {
+    display: flex;
+    gap: 14px;
+    margin-top: 29px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    .thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .name {
+      @include textStyle.default;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+    }
+  }
+  .tab {
+    padding: 9px 15px;
+  }
+  .creator {
+    color: color.$main-blue;
+    padding: 9px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .emptyCreator {
+    @include color.loading;
+    width: 100%;
+    height: 42px;
+    opacity: 0.5;
+  }
+  .divider {
+    width: 100%;
+    border-bottom: 1px solid color.$gray;
+  }
+}

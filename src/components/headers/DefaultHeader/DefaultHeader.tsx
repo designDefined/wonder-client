@@ -1,32 +1,33 @@
 import styles from "./DefaultHeader.module.scss";
-import shuffleIcon from "/assets/icon/shuffle.svg";
 import HeaderLogo from "../../logos/HeaderLogo/HeaderLogo";
 import classNames from "classnames/bind";
-import SearchBar from "../../Home/SearchBar/SearchBar";
-import Profile from "../../Home/Profile/Profile";
+import searchIcon from "/assets/icon/search.svg";
 import { navigate } from "../../../libs/Codex";
-import { useEffect } from "react";
-import { autoLoginUser, useAccount } from "../../../store/account/useAccount";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "../../../api/user";
+import Profile from "../../Profile/Profile";
 
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
-  const myAccount = useAccount((state) => state.user);
-
-  useEffect(() => {
-    if (!myAccount) void autoLoginUser();
-  }, []);
+  const { isLoading, data } = useQuery(getUser);
 
   return (
     <header className={cx("DefaultHeader")}>
       <HeaderLogo />
-      <div className={styles.tools}>
-        <SearchBar />
-        <button className={styles.shuffle}>
-          <img src={shuffleIcon} />
+      <div className={cx("buttons")}>
+        <button
+          className={cx("search")}
+          onClick={() => {
+            navigate("/wonders", "slideNext");
+          }}
+        >
+          <img src={searchIcon} />
         </button>
-        {myAccount ? (
-          <Profile myAccount={myAccount} />
+        {isLoading ? (
+          <div className={cx("placeholder")} />
+        ) : data ? (
+          <Profile.Me myInfo={data} />
         ) : (
           <button
             className={styles.login}

@@ -2,6 +2,7 @@
 @use "./src/styles/textStyle";
 @use "./src/styles/color";
 @use "./src/styles/layout";
+@use "./src/styles/utility";
 
 .DefaultHeader {
   position: relative;
@@ -20,13 +21,22 @@
   height: auto;
 }
 
-.tools {
+.buttons {
   position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 90%;
   height: 100%;
+  gap: 20px;
+}
+
+.search {
+  @include reset.button;
+  > img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .login {
@@ -36,13 +46,17 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
-  margin-left: 27px;
   width: 48px;
+  cursor: pointer;
 }
-.shuffle {
-  @include reset.button;
-  margin-left: 15px;
+
+.placeholder {
+  @include utility.loading;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
+
 .LoginHeader {
   //  @include fontStyle.label;
   position: absolute;
@@ -52,9 +66,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.isLogin {
-  overflow-x: visible;
-  transform: translateX(-100%);
 }
