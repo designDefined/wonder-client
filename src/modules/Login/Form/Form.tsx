@@ -19,7 +19,7 @@ export default function Form() {
       if (res.needLogin) {
         navigate("/register", "slideNext");
       } else {
-        queryClient.invalidateQueries(["user"]).catch(console.error);
+        void queryClient.invalidateQueries(["user"]);
         navigate("/", "slidePrevious");
       }
     },
