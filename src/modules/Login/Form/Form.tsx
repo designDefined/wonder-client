@@ -3,10 +3,11 @@ import { useState } from "react";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import classNames from "classnames/bind";
-import { closeTray } from "../../../libs/Tray/useTray";
 import { navigate } from "../../../libs/Codex";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postUserLogin } from "../../../api/user";
+import { saveToken } from "../../../functions/storage/token";
+import { saveRegisterInformation } from "../../../functions/storage/registerInformation";
 
 const cx = classNames.bind(styles);
 
@@ -15,10 +16,14 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const { mutate } = useMutation({
     ...postUserLogin("test"),
-    onSuccess: (res) => {
-      if (res.needLogin) {
+    onSuccess: (response) => {
+      if (response.needLogin) {
+        const { email, type } = response;
+        saveRegisterInformation({ email, type });
         navigate("/register", "slideNext");
       } else {
+        const { token } = response;
+        saveToken(token);
         void queryClient.invalidateQueries(["user"]);
         navigate("/", "slidePrevious");
       }

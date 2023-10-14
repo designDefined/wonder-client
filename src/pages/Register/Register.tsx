@@ -1,28 +1,45 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames/bind";
+import { postUserRegister } from "../../api/user";
 import Button from "../../components/Button/Button";
 import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
 import Input from "../../components/Input/Input";
 import Progress from "../../components/Progress/Progress";
+import { getRegisterInformation } from "../../functions/storage/registerInformation";
+import { saveToken } from "../../functions/storage/token";
+import { navigate } from "../../libs/Codex";
 import useEnhancedState from "../../libs/ReactAssistant/useEnhancedState";
 import {
   isValidRegisterEmail,
   isValidRegisterName,
   isValidRegisterPhoneNumber,
 } from "../../libs/validator";
-import { registerUser, useAccount } from "../../store/account/useAccount";
-import { UserRegisterForm } from "../../types/user/userAuthorization";
 import styles from "./Register.module.scss";
 
 const cx = classNames.bind(styles);
 
 export default function Register() {
-  const preparedEmail = useAccount((state) => state.registerEmail);
-  const [registerForm, , setRegisterFormValue] =
-    useEnhancedState<UserRegisterForm>({
-      email: preparedEmail ?? "",
-      name: "",
-      phoneNumber: "",
-    });
+  const preparedInformation = getRegisterInformation();
+  const [registerForm, , setRegisterFormValue] = useEnhancedState({
+    name: "",
+    phoneNumber: "",
+  });
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...postUserRegister,
+    onSuccess: ({ token }) => {
+      saveToken(token);
+      void queryClient.invalidateQueries(["user"]);
+      alert("회원가입이 완료되었습니다.");
+      navigate("/");
+    },
+  });
+
+  if (!preparedInformation) {
+    alert("이메일 정보가 없습니다.");
+    navigate("/login", "slidePrevious");
+    return <div />;
+  }
 
   return (
     <>
@@ -40,11 +57,15 @@ export default function Register() {
           onSubmit={(e) => {
             e.preventDefault();
             if (
-              isValidRegisterEmail(registerForm.email) &&
+              isValidRegisterEmail(preparedInformation.email) &&
               isValidRegisterName(registerForm.name) &&
               isValidRegisterPhoneNumber(registerForm.phoneNumber)
             ) {
-              void registerUser(registerForm);
+              console.log("!");
+              mutate({
+                type: preparedInformation.type,
+                data: { ...registerForm, email: preparedInformation.email },
+              });
             } else {
               alert("회원가입 정보가 올바르지 않습니다.");
             }
@@ -66,8 +87,8 @@ export default function Register() {
             }
             maxLength={30}
           />
+          <Button.Submit name="완료!" isFullWidth isMainColored />
         </form>
-        <Button.Submit name="완료!" isFullWidth isMainColored />
       </main>
     </>
   );
