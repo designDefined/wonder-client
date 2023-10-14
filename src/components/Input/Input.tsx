@@ -56,7 +56,6 @@ function Text({
         ? { isError: false, message: `${value.length} / ${maxLength}` }
         : { isError: true, message: `${maxLength}자를 초과했어요` };
     return { isError: false, message: null };
-    console.log(error);
   }, [value, onValidateError, maxLength, focus]);
   return (
     <div
