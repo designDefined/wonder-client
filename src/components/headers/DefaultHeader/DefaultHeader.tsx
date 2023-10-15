@@ -4,13 +4,13 @@ import classNames from "classnames/bind";
 import searchIcon from "/assets/icon/search.svg";
 import { navigate } from "../../../libs/Codex";
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "../../../api/user";
+import { getMe } from "../../../api/user";
 import Profile from "../../Profile/Profile";
 
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
-  const { isLoading, data } = useQuery(getUser);
+  const { isLoading, data } = useQuery(getMe);
 
   return (
     <header className={cx("DefaultHeader")}>

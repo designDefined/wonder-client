@@ -123,8 +123,31 @@ function ThumbnailZoomed({
   );
 }
 
+type LikedVerticalProps = PropsWithChildren & {
+  wonders: Wonder[];
+  className?: string;
+};
+
+function LikedVertical({ wonders, children, className }: LikedVerticalProps) {
+  return (
+    <div className={cx("carousel", "LikedVertical", className)}>
+      <div className={cx("titleArea")}>{children}</div>
+      <div className={cx("slider")}>
+        {wonders.map((wonder) => (
+          <Card.Vertical
+            className={cx("sliderItem")}
+            key={wonder.id}
+            wonder={wonder}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const Carousel = {
   HomeVertical,
+  LikedVertical,
   ThumbnailOnly,
   ThumbnailZoomed,
 };

@@ -9,13 +9,13 @@ import View from "./pages/View/View";
 import NewWonderPage from "./pages/new/NewWonder/NewWonderPage";
 import NewCreatorPage from "./pages/new/NewCreator/NewCreatorPage";
 import CreatorPage from "./pages/Creator/CreatorPage";
-import MyPage from "./pages/MyPage/MyPage";
 import Register from "./pages/Register/Register";
 import Liked from "./pages/MyPage/Liked/Liked";
 import Reserved from "./pages/MyPage/Reserved/Reserved";
 import Wonders from "./pages/Wonders/Wonders";
 import Dev from "./pages/Dev/Dev";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Me from "./pages/Me/Me";
 
 const codex: Codex = {
   _index: <Home />,
@@ -28,7 +28,7 @@ const codex: Codex = {
   register: <Register />,
   wonders: <Wonders />,
   view: { _index: <View />, _params: ["wonder_id"] },
-  me: { _index: <MyPage />, liked: <Liked />, reserved: <Reserved /> },
+  me: { _index: <Me />, liked: <Liked />, reserved: <Reserved /> },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },
   dev: <Dev />,
   _error: <div>error page</div>,

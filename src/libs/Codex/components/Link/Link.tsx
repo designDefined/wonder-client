@@ -21,7 +21,7 @@ export default function Link({
       className={cx("Link", className)}
       onClick={(e) => {
         e.preventDefault();
-        navigate(to);
+        navigate(to, "slideNext");
       }}
     >
       {children}

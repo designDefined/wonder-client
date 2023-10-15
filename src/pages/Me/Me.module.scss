@@ -1,0 +1,55 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/layout";
+@use "./src/styles/color";
+
+.Me {
+  @include layout.defaultBottomPadding;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.profile {
+  @include layout.defaultSidePadding;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.profileImg {
+  width: 92px;
+  height: 92px;
+  border: 1px solid color.$dark-gray;
+  border-radius: 50%;
+}
+.name {
+  @include textStyle.subtitle;
+}
+.email {
+  @include textStyle.moreDescriptive;
+  color: color.$dark-gray;
+}
+
+.section {
+  @include layout.defaultSidePadding;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.divider {
+  width: 90%;
+  height: 1px;
+  background-color: color.$gray;
+  margin-left: 5%;
+  &.big {
+    width: 100%;
+    height: 9px;
+    margin: 0;
+  }
+}
