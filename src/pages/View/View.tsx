@@ -8,6 +8,7 @@ import Cover from "../../modules/View/Cover/Cover";
 import Title from "../../modules/View/Title/Title";
 import Content from "../../modules/View/Content/Content";
 import Location from "../../modules/View/Location/Location";
+import Creator from "../../modules/View/Creator/Creator";
 
 const cx = classNames.bind(styles);
 
@@ -67,6 +68,7 @@ export default function View() {
           <div className={cx("divider")} />
           <Location location={wonderData.location} />
           <div className={cx("divider")} />
+          <Creator creator={wonderData.creator} />
           {/* <Creator /> */}
 
           {/* <Creator creator={wonderData.creator} /> */}

@@ -1,0 +1,40 @@
+@use "/src/styles/color";
+@use "/src/styles/textStyle";
+@use "/src/styles/utility";
+
+.Creator {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.label {
+  @include textStyle.subtitle;
+  margin-bottom: 8px;
+}
+.profile {
+  display: flex;
+  gap: 29px;
+}
+.profileImage {
+  width: 66px;
+  height: 66px;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.name {
+  @include textStyle.default;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px; /* 137.5% */
+}
+.summary {
+  @include textStyle.default;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+  color: color.$dark-gray;
+}

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { WonderDetail } from "../../../types/wonder/wonderDetail";
+import { Wonder } from "../../../entity/wonder/wonder";
 import styles from "./Location.module.scss";
 
-type Props = { location: WonderDetail["location"] };
+type Props = { location: Wonder["location"] };
 
 export default function Location({ location }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,8 +12,9 @@ export default function Location({ location }: Props) {
   useEffect(() => {
     if (ref.current) {
       setMarked([
-        ((location.x - 500) / 10000) * (754 - ref.current.offsetWidth),
-        ((location.y + 420) / 10000) * (1400 - 205),
+        ((location.coordinates.x - 500) / 10000) *
+          (754 - ref.current.offsetWidth),
+        ((location.coordinates.y + 420) / 10000) * (1400 - 205),
       ]);
     }
   }, [ref]);
