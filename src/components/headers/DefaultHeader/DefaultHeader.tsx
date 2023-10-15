@@ -10,7 +10,7 @@ import Profile from "../../Profile/Profile";
 const cx = classNames.bind(styles);
 
 export default function DefaultHeader() {
-  const { isLoading, data } = useQuery(getMe);
+  const { data, isFetched } = useQuery(getMe);
 
   return (
     <header className={cx("DefaultHeader")}>
@@ -24,7 +24,7 @@ export default function DefaultHeader() {
         >
           <img src={searchIcon} />
         </button>
-        {isLoading ? (
+        {!isFetched ? (
           <div className={cx("placeholder")} />
         ) : data ? (
           <Profile.Me myInfo={data} />

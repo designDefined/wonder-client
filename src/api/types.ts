@@ -1,6 +1,7 @@
 export type QueryType<T> = {
   queryKey: (string | number | undefined)[];
   queryFn: () => Promise<T>;
+  retry?: number;
   cacheTime?: number;
   staleTime?: number;
 };

@@ -15,11 +15,14 @@ type LoginResult =
 export const getMe: QueryType<UserMyInfo> = {
   queryKey: ["user", "me"],
   queryFn: () => authedApi.get<UserMyInfo>("/user/me"),
+  retry: 1,
+  staleTime: 5000,
 };
 
 export const getMeDetail: QueryType<User> = {
   queryKey: ["user", "me", "detail"],
   queryFn: () => authedApi.get<User>("/user/me/detail"),
+  retry: 1,
 };
 
 export const postUserLogin = (
