@@ -1,5 +1,7 @@
 @use "./src/styles/textStyle";
+@use "./src/styles/color";
 
+// Vertical & ThumbanilOnly
 .Vertical {
   @include textStyle.font;
   position: relative;
@@ -46,4 +48,43 @@
 .schedule {
   font-size: 14px;
   font-weight: 400;
+}
+
+// Reserved & ReservedSimple
+.Reserved {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  .thumbnail {
+    width: 82px;
+    height: 119px;
+  }
+  .tags {
+    margin-bottom: 3px;
+  }
+  .title {
+    @include textStyle.descriptionBold;
+    margin-bottom: 0;
+  }
+}
+.contents {
+  display: flex;
+  flex-direction: column;
+}
+.summary {
+  @include textStyle.moreDescriptive;
+  color: color.$dark-gray;
+  margin-bottom: 14px;
+}
+.time {
+  @include textStyle.description;
+  color: color.$main-blue;
+}
+.location {
+  @include textStyle.moreDescriptive;
+}
+.simple {
+  .contents {
+    justify-content: center;
+  }
 }

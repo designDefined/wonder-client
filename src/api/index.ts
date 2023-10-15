@@ -1,12 +1,9 @@
-import { getUserToken } from "../libs/AutoLogin/autoLogin";
+import { getToken } from "../functions/storage/token";
 
 const isDev = true;
 const baseURL = isDev ? "http://localhost:8000" : "https://mywondererserver.de";
 
-const get = async <T>(
-  url: string,
-  header: Record<string, any> = {},
-): Promise<T> =>
+const get = <T>(url: string, header: Record<string, string> = {}): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "GET",
     mode: "cors",
@@ -15,10 +12,10 @@ const get = async <T>(
   }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res);
   });
-const post = async <T>(
+const post = <T>(
   url: string,
   data: object = {},
-  header: Record<string, any> = {},
+  header: Record<string, string> = {},
 ): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "POST",
@@ -29,27 +26,27 @@ const post = async <T>(
       ...header,
     },
     body: JSON.stringify(data),
-  }).then(async (res) => {
+  }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
-const authedGet = async <T>(
+const authedGet = <T>(
   url: string,
-  header: Record<string, any> = {},
+  header: Record<string, string> = {},
 ): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
-    headers: { Authorization: `${getUserToken() ?? "no_token"}`, ...header },
+    headers: { Authorization: `${getToken() ?? "no_token"}`, ...header },
   }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
-const authedPost = async <T>(
+const authedPost = <T>(
   url: string,
   data: object = {},
-  header: Record<string, any> = {},
+  header: Record<string, string> = {},
 ): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "POST",
@@ -57,18 +54,18 @@ const authedPost = async <T>(
     cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${getUserToken() ?? "no_token"}`,
+      Authorization: `${getToken() ?? "no_token"}`,
       ...header,
     },
     body: JSON.stringify(data),
-  }).then(async (res) => {
+  }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 
-const authedPut = async <T>(
+const authedPut = <T>(
   url: string,
   data: object = {},
-  header: Record<string, any> = {},
+  header: Record<string, string> = {},
 ): Promise<T> =>
   fetch(`${baseURL}${url}`, {
     method: "PUT",
@@ -76,11 +73,11 @@ const authedPut = async <T>(
     cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${getUserToken() ?? "no_token"}`,
+      Authorization: `${getToken() ?? "no_token"}`,
       ...header,
     },
     body: JSON.stringify(data),
-  }).then(async (res) => {
+  }).then((res) => {
     return res.ok ? (res.json() as T) : Promise.reject(res);
   });
 

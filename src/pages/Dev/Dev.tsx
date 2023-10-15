@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getWonderDetail } from "../../api/wonder";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Chip from "../../components/Chip/Chip";
+import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
 import styles from "./Dev.module.scss";
 
 const cx = classNames.bind(styles);
 
 export default function Dev() {
+  const [text, setText] = useState("");
   // const { isLoading, data, error } = useQuery(
   //   getWonderList({ id: { $in: [1, 2] } }),
   // );
@@ -118,7 +120,6 @@ export default function Dev() {
             }}
           />
         </div>
-
         <Card.ThumbnailOnly
           wonder={{
             id: 2,
@@ -127,6 +128,20 @@ export default function Dev() {
               altText: "",
             },
           }}
+        />
+      </section>
+      <section className={cx("section")}>
+        <Title title="Inputs" />
+        <Input.Text
+          title="텍스트 입력"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="15자 이내로 작성해주세요."
+          maxLength={15}
+          onValidateError={(value) =>
+            value.startsWith(" ") ? "공백으로 시작할 수 없습니다." : null
+          }
+          isHintAvailable
         />
       </section>
     </main>

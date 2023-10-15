@@ -5,6 +5,8 @@ import Link from "../../libs/Codex/components/Link/Link";
 import Chip from "../Chip/Chip";
 import { IconLike } from "../../assets/wonder/like";
 import { parseScheduleToPeriodString } from "../../functions/parse/parseSchedule";
+import { Reservation } from "../../entity/reservation/reservation";
+import { parseDateToPeriodString } from "../../functions/parse/parseDate";
 
 const cx = classNames.bind(styles);
 
@@ -58,7 +60,7 @@ type ThumbnailOnlyProps = BasicProps & {
   className?: string;
 };
 
-export function ThumbnailOnly({
+function ThumbnailOnly({
   wonder: { id, thumbnail },
   className,
 }: ThumbnailOnlyProps) {
@@ -73,9 +75,51 @@ export function ThumbnailOnly({
   );
 }
 
+type ReservedProps = BasicProps & {
+  wonder: Pick<
+    Wonder,
+    "id" | "title" | "tag" | "summary" | "thumbnail" | "location"
+  >;
+  reservation: Reservation;
+  isSimple: boolean;
+  isPassedReservation: boolean;
+};
+
+function Reserved({
+  wonder: { id, title, tag, summary, thumbnail, location },
+  reservation: { time },
+  isSimple,
+  isPassedReservation,
+}: ReservedProps) {
+  return (
+    <Link className={cx("Reserved", { simple: isSimple })} to={`/view/${id}`}>
+      <img
+        className={cx("thumbnail")}
+        src={thumbnail.src}
+        alt={thumbnail.altText}
+      />
+      <div className={cx("contents")}>
+        {!isSimple && (
+          <div className={cx("tags")}>
+            <Chip.Genre genre={tag.genre} />
+          </div>
+        )}
+        <div className={cx("title")}>{title}</div>
+        {!isSimple && <div className={cx("summary")}>{summary}</div>}
+        <div className={cx("time")}>{`${parseDateToPeriodString(
+          time,
+          "YYYY. MM. DD | hh:mm",
+        )}${isPassedReservation ? "" : " 예약"}`}</div>
+        {!isSimple && <div className={cx("location")}>{location.name}</div>}
+      </div>
+    </Link>
+  );
+}
+
 const Card = {
   Vertical,
   ThumbnailOnly,
+  Reserved,
 };
 
 export default Card;

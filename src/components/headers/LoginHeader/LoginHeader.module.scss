@@ -1,0 +1,25 @@
+@use "/src/styles/textStyle";
+
+.LoginHeader {
+  @include textStyle.default;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+
+  > h2 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+  .back {
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: none;
+  }
+}

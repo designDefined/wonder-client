@@ -1,0 +1,51 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+
+.Progress {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  position: relative;
+  display: flex;
+  gap: 30px;
+  &.amount-2 {
+    gap: 50px;
+  }
+}
+.line {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  top: 16.5px;
+  background-color: color.$main-blue;
+  z-index: -1;
+}
+.step {
+  @include textStyle.description;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passed {
+  background-color: color.$white;
+  border: 3px solid color.$main-blue;
+  color: color.$main-blue;
+}
+
+.current {
+  background-color: color.$main-blue;
+  color: color.$white;
+}
+
+.left {
+  background-color: color.$white;
+  border: 3px solid color.$main-blue;
+  color: color.$main-blue;
+}

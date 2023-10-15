@@ -12,7 +12,6 @@ import Location from "../../modules/View/Location/Location";
 const cx = classNames.bind(styles);
 
 export default function View() {
-  // const user = useAccount((state) => state.user);
   const wonderId = useParams()?.wonder_id;
 
   const {
@@ -49,7 +48,7 @@ export default function View() {
       </>
     );
 
-  if (!wonderData) return "에러!";
+  if (!wonderData) return <div>에러!</div>;
 
   return (
     <>
