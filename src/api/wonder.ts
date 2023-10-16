@@ -12,8 +12,9 @@ export const getWonderList: (
   queryKey: ["wonder", "list", name],
   queryFn: () =>
     api.get<Wonder[]>(
-      `/wonder/list${queryParams ? "?" + stringify(queryParams) : ""}`,
+      `/wonder/list${queryParams ? "?" + stringify(queryParams, {}) : ""}`,
     ),
+  retry: 1,
 });
 
 export const getWonderDetail: (id: number) => QueryType<Wonder> = (id) => ({

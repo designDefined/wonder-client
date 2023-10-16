@@ -19,7 +19,7 @@ export default function DefaultHeader() {
         <button
           className={cx("search")}
           onClick={() => {
-            navigate("/wonders", "slideNext");
+            navigate("/search", "slideNext");
           }}
         >
           <img src={searchIcon} />

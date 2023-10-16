@@ -1,10 +1,14 @@
 export type GenreTag =
-  | "play"
   | "exhibition"
-  | "concert"
-  | "musical"
-  | "sports"
+  | "hof"
+  | "festival"
+  | "play"
+  | "lecture"
+  | "booth"
+  | "band"
+  | "dance"
   | "etc";
+
 export type StatusTag =
   | "reserveSoon"
   | "reserveNow"

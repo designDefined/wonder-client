@@ -116,10 +116,45 @@ function Reserved({
   );
 }
 
+type SearchedProps = BasicProps & {
+  wonder: Pick<
+    Wonder,
+    "id" | "title" | "tag" | "summary" | "thumbnail" | "schedule"
+  >;
+};
+
+function Searched({
+  wonder: { id, title, tag, summary, thumbnail, schedule },
+  className,
+}: SearchedProps) {
+  return (
+    <Link className={cx("Searched", className)} to={`/view/${id}`}>
+      <img
+        className={cx("thumbnail")}
+        src={thumbnail.src}
+        alt={thumbnail.altText}
+      />
+      <div className={cx("contents")}>
+        <div className={cx("information")}>
+          <div className={cx("tags")}>
+            <Chip.Genre genre={tag.genre} />
+          </div>
+          <div className={cx("title")}>{title}</div>
+          <div className={cx("summary")}>{summary}</div>
+        </div>
+        <div className={cx("period")}>
+          {parseScheduleToPeriodString(schedule, "MM.DD", " - ")}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 const Card = {
   Vertical,
   ThumbnailOnly,
   Reserved,
+  Searched,
 };
 
 export default Card;

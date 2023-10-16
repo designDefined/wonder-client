@@ -88,3 +88,42 @@
     justify-content: center;
   }
 }
+
+// searched
+.Searched {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  .thumbnail {
+    width: 82px;
+    height: 119px;
+  }
+  .tags {
+    margin-bottom: 3px;
+  }
+  .title {
+    @include textStyle.descriptionBold;
+    margin-bottom: 0;
+    max-height: 1.2em;
+    overflow-y: hidden;
+  }
+  .contents {
+    justify-content: space-between;
+  }
+  .summary {
+    margin-bottom: 0;
+  }
+}
+
+.period {
+  @include textStyle.description;
+  color: color.$dark-gray;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: calc(119px - 25px);
+  overflow-y: hidden;
+}
