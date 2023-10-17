@@ -52,7 +52,7 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
       <div className={cx("recent")}>
         <h2 className={cx("label")}>최근 검색</h2>
         <div className={cx("keywords")}>
-          <div className={cx("keyword")}>
+          {/* <div className={cx("keyword")}>
             <span> 최근 검색어 1</span>
             <button className={cx("delete")}>
               <img src={cx("assets/icon/close.svg")} />
@@ -61,7 +61,7 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
           <div className={cx("keyword")}>최근 검색어 1</div>
           <div className={cx("keyword")}>최근 검색어 1</div>
           <div className={cx("keyword")}>최근 검색어 1</div>
-          <div className={cx("keyword")}>최근 검색어 1</div>
+          <div className={cx("keyword")}>최근 검색어 1</div> */}
         </div>
       </div>
     </div>
