@@ -1,6 +1,6 @@
 import { getToken } from "../functions/storage/token";
 
-const isDev = true;
+const isDev = false;
 const baseURL = isDev ? "http://localhost:8000" : "https://mywondererserver.de";
 
 const get = <T>(url: string, header: Record<string, string> = {}): Promise<T> =>
