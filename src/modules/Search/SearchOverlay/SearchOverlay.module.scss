@@ -1,0 +1,65 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/layout";
+@use "/src/styles/color";
+
+.SearchOverlay {
+  @include layout.defaultSidePadding;
+
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  position: absolute;
+  top: 56px;
+  transition: 0.8s ease;
+  opacity: 1;
+  background-color: white;
+  padding-top: 30px;
+  border-radius: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tags {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  .tag {
+    @include textStyle.description;
+    padding: 4px 10px;
+    border-radius: 5px;
+  }
+  .status {
+    color: color.$white;
+  }
+}
+
+.recent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.label {
+  @include textStyle.subtitle;
+}
+.keyword {
+  @include textStyle.description;
+  border-top: 1px solid color.$gray;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  &:first-child {
+    border: none;
+  }
+}
+
+.isClose {
+  transform: translateY(calc(100vh - 56px));
+  opacity: 0;
+}

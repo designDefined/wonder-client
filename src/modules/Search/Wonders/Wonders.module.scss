@@ -1,0 +1,40 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/layout";
+@use "/src/styles/color";
+
+.Wonders {
+  @include layout.defaultSidePadding;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  @include textStyle.subtitle;
+}
+
+.card {
+  @include textStyle.description;
+  border-top: 1px solid color.$gray;
+  padding: 14px 0;
+  &:first-child {
+    border: none;
+  }
+}
+
+.bar {
+  @include textStyle.moreDescriptive;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  background-color: color.$gray;
+  padding: 8px;
+  border-radius: 44px;
+}
+
+.sort {
+  color: color.$dark-gray;
+}

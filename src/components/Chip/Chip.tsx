@@ -1,30 +1,36 @@
 import classNames from "classnames/bind";
+import { MouseEventHandler } from "react";
 import { Wonder } from "../../entity/wonder/wonder";
-import {
-  translateWonderGenre,
-  translateWonderStatus,
-} from "../../entity/wonder/wonderFunction";
+import { translateWonderStatus } from "../../entity/wonder/wonderFunction";
+import translateGenre from "../../functions/translate/genre";
 import styles from "./Chip.module.scss";
 
 const cx = classNames.bind(styles);
 
-type GenreChipProps = {
+type BaseProps = {
+  className?: string;
+  onClick?: MouseEventHandler<HTMLSpanElement>;
+};
+
+type GenreChipProps = BaseProps & {
   genre: Wonder["tag"]["genre"];
 };
 
-type StatusChipProps = {
+type StatusChipProps = BaseProps & {
   status: Wonder["tag"]["status"];
 };
 
-function Genre({ genre }: GenreChipProps) {
+function Genre({ genre, className, onClick }: GenreChipProps) {
   return (
-    <span className={cx("Chip", "genre")}>{translateWonderGenre(genre)}</span>
+    <span className={cx("Chip", "genre", className)} onClick={onClick}>
+      {translateGenre.engToKr(genre)}
+    </span>
   );
 }
 
-function Status({ status }: StatusChipProps) {
+function Status({ status, className, onClick }: StatusChipProps) {
   return (
-    <span className={cx("Chip", "status", status)}>
+    <span className={cx("Chip", "status", status, className)} onClick={onClick}>
       {translateWonderStatus(status)}
     </span>
   );

@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Chip from "../../../components/Chip/Chip";
 import { Wonder } from "../../../entity/wonder/wonder";
+import { navigate } from "../../../libs/Codex";
 import styles from "./Cover.module.scss";
 
 const cx = classNames.bind(styles);
@@ -25,7 +26,12 @@ export default function Cover({ thumbnail, tag }: CoverProps) {
             <Chip.Genre genre={tag.genre} />
           </div>
           <div className={cx("buttons")}>
-            <button>
+            <button
+              onClick={() => {
+                alert("로그인이 필요합니다.");
+                navigate("/login", "slideNext");
+              }}
+            >
               <img
                 className={cx("likeIcon")}
                 src={"/assets/icon/heart/likeEmpty.svg"}

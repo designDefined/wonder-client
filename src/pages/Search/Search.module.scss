@@ -1,0 +1,47 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/layout";
+@use "/src/styles/color";
+
+.Search {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bar {
+  @include layout.defaultSidePadding;
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  height: 37px;
+}
+.searchInput {
+  @include textStyle.description;
+  width: 100%;
+  height: 100%;
+  border: 1px solid color.$gray;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+.searchButton {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+.searchTags {
+  position: absolute;
+  display: flex;
+  gap: 4px;
+  top: 10px;
+  left: 10px;
+}

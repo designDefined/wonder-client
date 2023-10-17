@@ -1,11 +1,45 @@
+@use "/src/styles/color";
 @use "/src/styles/textStyle";
+@use "/src/styles/utility";
 
 .Location {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
+  .label {
+    @include textStyle.subtitle;
+  }
+  .map {
+    @include utility.loading;
+    position: relative;
+    width: 100%;
+    height: 205px;
+    background: gray;
+    border-radius: 12px;
+    border: 1px color.$gray solid;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.label {
-  @include textStyle.subtitle;
+    .mapImage {
+      position: absolute;
+    }
+    .label {
+      @include textStyle.default;
+      position: relative;
+      top: -45px;
+      background-color: color.$white;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 22px; /* 137.5% */
+    }
+    .marker {
+      position: absolute;
+      top: calc(50% - 25px);
+      left: calc(50% - 25px);
+    }
+  }
 }

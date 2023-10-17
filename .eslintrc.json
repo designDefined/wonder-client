@@ -8,14 +8,13 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "react/function-component-definition": "error",
     "react/react-in-jsx-scope": "off",
     "require-await": "warn",
-    "@typescript-eslint/no-floating-promises": "warn"
+    "@typescript-eslint/no-floating-promises": "warn",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "root": true
 }
