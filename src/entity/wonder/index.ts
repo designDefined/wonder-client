@@ -1,7 +1,7 @@
-import { Creator } from "../creator/creator";
+import { Creator } from "../creator";
 import { GenreTag, StatusTag } from "./tag";
-import { Reservation } from "../reservation/reservation";
-import { User } from "../user/user";
+import { Reservation } from "../reservation";
+import { User } from "../user";
 import { DateInformation, StoredImage } from "../utility/utility";
 
 export type Wonder = {
@@ -20,7 +20,6 @@ export type Wonder = {
   };
   reservationProcess: null;
   dateInformation: DateInformation;
-  liked: boolean;
   likedUsers: User[];
   reservations: Reservation[];
 };

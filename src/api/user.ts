@@ -1,8 +1,8 @@
 import api from ".";
-import { UserMyInfo } from "../entity/user/myInfo";
 import { MutationType, QueryType } from "./types";
 import { authedApi } from "./index";
-import { User } from "../entity/user/user";
+import { UserDisplay } from "../entity/user/display";
+import { UserMySummary } from "../types/user/userSummary";
 
 type LoginResult =
   | { needLogin: false; token: string }
@@ -12,16 +12,16 @@ type LoginResult =
       email: string;
     };
 
-export const getMe: QueryType<UserMyInfo> = {
+export const getMe: QueryType<UserMySummary> = {
   queryKey: ["user", "me"],
-  queryFn: () => authedApi.get<UserMyInfo>("/user/me"),
+  queryFn: () => authedApi.get<UserDisplay>("/user/me"),
   retry: 1,
   staleTime: 5000,
 };
 
-export const getMeDetail: QueryType<User> = {
+export const getMeDetail: QueryType<UserDisplay> = {
   queryKey: ["user", "me", "detail"],
-  queryFn: () => authedApi.get<User>("/user/me/detail"),
+  queryFn: () => authedApi.get<UserDisplay>("/user/me/detail"),
   retry: 1,
 };
 

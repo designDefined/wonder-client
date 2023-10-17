@@ -1,24 +1,25 @@
 import api from ".";
 import { stringify } from "qs";
 import { QueryType } from "./types";
-import { Wonder } from "../entity/wonder/wonder";
-import { parseWonderRemote } from "../entity/wonder/wonderFunction";
-import { WonderRemote } from "../entity/wonder/wonderRemote";
+import { WonderDisplay } from "../entity/wonder/display";
+import { WonderSummary } from "../entity/wonder/summary";
 
 export const getWonderList: (
   queryParams?: Record<string, unknown>,
   name?: string | number,
-) => QueryType<Wonder[]> = (queryParams = {}, name) => ({
+) => QueryType<WonderSummary[]> = (queryParams = {}, name) => ({
   queryKey: ["wonder", "list", name],
   queryFn: () =>
-    api.get<Wonder[]>(
+    api.get<WonderSummary[]>(
       `/wonder/list${queryParams ? "?" + stringify(queryParams, {}) : ""}`,
     ),
   retry: 1,
 });
 
-export const getWonderDetail: (id: number) => QueryType<Wonder> = (id) => ({
+export const getWonderDetail: (id: number) => QueryType<WonderDisplay> = (
+  id,
+) => ({
   queryKey: ["wonder", "detail", id],
-  queryFn: () =>
-    api.get<WonderRemote>(`/wonder/detail/${id}`).then(parseWonderRemote),
+  queryFn: () => api.get<WonderDisplay>(`/wonder/detail/${id}`),
+  retry: 1,
 });

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 
 type Adapter<T extends Wonder> = {
   title: T["title"];
@@ -32,9 +32,8 @@ const adaptWonder = ({
 });
 
 export const useNewWonderStore = create<NewWonderStore>()(
-  (set) =>
-    null,
-    /*
+  (set) => null,
+  /*
   {
   ...adaptWonder({
     id: 0,

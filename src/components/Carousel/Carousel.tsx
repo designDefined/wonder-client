@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { range } from "ramda";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { getWonderList } from "../../api/wonder";
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 import Card, { ThumbnailOnlyProps } from "../Card/Card";
 import styles from "./Carousel.module.scss";
 

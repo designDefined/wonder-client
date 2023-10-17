@@ -1,4 +1,4 @@
-import { User } from "../../entity/user/user";
+import { User } from "../../entity/user";
 
 export type UserLoggedIn = Pick<
   User,

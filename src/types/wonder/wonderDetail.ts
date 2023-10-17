@@ -1,4 +1,4 @@
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 import { CreatorInWonderDetail } from "../creator/creatorDisplay";
 
 export type WonderDetail = Omit<

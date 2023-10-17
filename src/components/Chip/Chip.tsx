@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import { MouseEventHandler } from "react";
-import { Wonder } from "../../entity/wonder/wonder";
-import { translateWonderStatus } from "../../entity/wonder/wonderFunction";
+import { Wonder } from "../../entity/wonder";
 import translateGenre from "../../functions/translate/genre";
+import translateStatus from "../../functions/translate/status";
 import styles from "./Chip.module.scss";
 
 const cx = classNames.bind(styles);
@@ -31,7 +31,7 @@ function Genre({ genre, className, onClick }: GenreChipProps) {
 function Status({ status, className, onClick }: StatusChipProps) {
   return (
     <span className={cx("Chip", "status", status, className)} onClick={onClick}>
-      {translateWonderStatus(status)}
+      {translateStatus.engToKr(status)}
     </span>
   );
 }

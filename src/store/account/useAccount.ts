@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Creator } from "../../entity/creator/creator";
+import { Creator } from "../../entity/creator";
 import {
   UserLoggedIn,
   UserNeedRegister,

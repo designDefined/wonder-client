@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { Wonder } from "../../../entity/wonder";
 import styles from "./Location.module.scss";
 
 type Props = { location: Wonder["location"] };

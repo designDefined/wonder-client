@@ -1,4 +1,4 @@
-import { Creator } from "../../entity/creator/creator";
+import { Creator } from "../../entity/creator";
 
 export type CreatorInWonderCard = Pick<Creator, "id" | "name" | "profileImage">;
 export type CreatorInWonderDetail = Pick<

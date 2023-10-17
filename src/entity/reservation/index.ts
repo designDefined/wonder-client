@@ -1,10 +1,8 @@
-import { User } from "../user/user";
+import { User } from "../user";
 import { DateInformation } from "../utility/utility";
-import { Wonder } from "../wonder/wonder";
+import { Wonder } from "../wonder";
 
 export type ReservationData = {
-  wonderId: Wonder["id"];
-  userId: User["id"];
   name?: User["name"];
   phoneNumber?: User["phoneNumber"];
   email?: User["email"];

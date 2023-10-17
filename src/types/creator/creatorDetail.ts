@@ -1,4 +1,4 @@
-import { Creator } from "../../entity/creator/creator";
+import { Creator } from "../../entity/creator";
 
 export type CreatorDetail = Pick<
   Creator,

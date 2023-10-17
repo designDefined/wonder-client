@@ -1,5 +1,5 @@
 import styles from "./Tags.module.scss";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { Wonder } from "../../../entity/wonder";
 import Chip from "../../common/Chip/Chip";
 
 export default function Tags({ tags }: { tags: Wonder["tags"] }) {

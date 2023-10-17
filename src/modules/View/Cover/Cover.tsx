@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import Chip from "../../../components/Chip/Chip";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { Wonder } from "../../../entity/wonder";
 import { navigate } from "../../../libs/Codex";
 import styles from "./Cover.module.scss";
 

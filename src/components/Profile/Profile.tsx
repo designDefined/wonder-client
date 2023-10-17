@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { useState } from "react";
-import { UserMyInfo } from "../../entity/user/myInfo";
+import { UserDisplay } from "../../entity/user/display";
 import { navigate } from "../../libs/Codex";
 import { useOverlay } from "../../store/overlay/useOverlay";
 import styles from "./Profile.module.scss";
@@ -8,7 +8,7 @@ import styles from "./Profile.module.scss";
 const cx = classNames.bind(styles);
 
 type DropdownProps = {
-  myInfo: UserMyInfo;
+  myInfo: UserDisplay;
 };
 
 function DropdownOverlay({
@@ -67,7 +67,7 @@ function DropdownOverlay({
 }
 
 type MeProps = {
-  myInfo: UserMyInfo;
+  myInfo: UserDisplay;
 };
 
 function Me({ myInfo }: MeProps) {

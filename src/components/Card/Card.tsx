@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 import styles from "./Card.module.scss";
 import Link from "../../libs/Codex/components/Link/Link";
 import Chip from "../Chip/Chip";
 import { IconLike } from "../../assets/wonder/like";
 import { parseScheduleToPeriodString } from "../../functions/parse/parseSchedule";
-import { Reservation } from "../../entity/reservation/reservation";
+import { Reservation } from "../../entity/reservation";
 import { parseDateToPeriodString } from "../../functions/parse/parseDate";
 
 const cx = classNames.bind(styles);

@@ -1,13 +1,12 @@
-import { Creator } from "../creator/creator";
-import { Reservation } from "../reservation/reservation";
+import { Creator } from "../creator";
+import { Reservation } from "../reservation";
 import { DateInformation, StoredImage } from "../utility/utility";
-import { Wonder } from "../wonder/wonder";
-
-export type UserPlatformType = "NAVER" | "KAKAO" | "GOOGLE" | "TEST" | "ADMIN";
+import { Wonder } from "../wonder";
+import { PlatformType } from "./platform";
 
 export type User = {
   id: number;
-  platformType: UserPlatformType;
+  platformType: PlatformType;
   socialId: string;
   name: string;
   nickname: string;

@@ -2,7 +2,7 @@
  * Register
  */
 
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 import { NewWonder } from "../../types/wonder/newWonder";
 
 export const isValidRegisterEmail = (input: string): boolean =>

@@ -1,4 +1,4 @@
-import { Creator } from "../../entity/creator/creator";
+import { Creator } from "../../entity/creator";
 import { findByProperty, FindByProperty } from "./DBManipulator";
 
 export const creatorDB: Creator[] = [

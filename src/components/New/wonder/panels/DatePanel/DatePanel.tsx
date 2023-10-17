@@ -5,7 +5,7 @@ import Calendar from "../../../../common/Calendar/Calendar";
 import { getMonthlyCalendar, getSampleCalendar } from "calend-arr";
 import BarButton from "../../BarButton/BarButton";
 import { NewWonder } from "../../../../../types/wonder/newWonder";
-import { WonderSchedule } from "../../../../../entity/wonder/wonder";
+import { WonderSchedule } from "../../../../../entity/wonder";
 import { requestTrayResize } from "../../../../../libs/Tray/useTray";
 import useEnhancedState from "../../../../../libs/ReactAssistant/useEnhancedState";
 import SelectDifferentTime from "./TimeSelect";

@@ -1,4 +1,4 @@
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 
 export type MyWonderSummary = {
   liked: WonderSummaryTitleOnly | null;

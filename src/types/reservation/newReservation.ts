@@ -1,6 +1,6 @@
-import { ReservationTime } from "../../entity/reservation/reservation";
-import { User } from "../../entity/user/user";
-import { Wonder } from "../../entity/wonder/wonder";
+import { ReservationTime } from "../../entity/reservation";
+import { User } from "../../entity/user";
+import { Wonder } from "../../entity/wonder";
 
 export type ReservationProvidableData = "name" | "phoneNumber" | "email";
 

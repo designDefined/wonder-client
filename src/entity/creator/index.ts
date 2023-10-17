@@ -1,6 +1,6 @@
-import { User } from "../user/user";
+import { User } from "../user";
 import { DateInformation, StoredImage } from "../utility/utility";
-import { Wonder } from "../wonder/wonder";
+import { Wonder } from "../wonder";
 
 export type Creator = {
   id: number;

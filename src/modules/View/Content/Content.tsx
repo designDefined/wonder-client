@@ -1,5 +1,5 @@
 import styles from "./Content.module.scss";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { Wonder } from "../../../entity/wonder";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);

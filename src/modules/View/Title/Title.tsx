@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import Button from "../../../components/Button/Button";
-import { Wonder } from "../../../entity/wonder/wonder";
+import { Wonder } from "../../../entity/wonder";
 import { parseScheduleToPeriodString } from "../../../functions/parse/parseSchedule";
 import styles from "./Title.module.scss";
 

@@ -1,4 +1,4 @@
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 import { delayedReturn, findByProperty, FindByProperty } from "./DBManipulator";
 import { findIndex, map, pick, pipe, propEq, reverse, slice } from "ramda";
 import { NewWonder } from "../../types/wonder/newWonder";

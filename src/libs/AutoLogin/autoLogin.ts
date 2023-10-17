@@ -1,5 +1,5 @@
 import api from "../../api";
-import { User } from "../../entity/user/user";
+import { User } from "../../entity/user";
 import { useAccount } from "../../store/account/useAccount";
 
 const STORAGE = "wonderTokenV2";

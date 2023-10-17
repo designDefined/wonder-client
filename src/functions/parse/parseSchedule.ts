@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Wonder } from "../../entity/wonder/wonder";
+import { Wonder } from "../../entity/wonder";
 
 export const parseScheduleToPeriodString = (
   schedule: Wonder["schedule"],
