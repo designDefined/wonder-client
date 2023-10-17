@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { range } from "ramda";
-import { PropsWithChildren, useEffect, useMemo, useRef, useState } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { getWonderList } from "../../api/wonder";
 import { Wonder } from "../../entity/wonder/wonder";
 import Card, { ThumbnailOnlyProps } from "../Card/Card";
 import styles from "./Carousel.module.scss";
-import { debounce } from "lodash";
 
 const cx = classNames.bind(styles);
 
