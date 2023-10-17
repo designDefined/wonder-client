@@ -55,7 +55,7 @@ function Vertical({
   );
 }
 
-type ThumbnailOnlyProps = BasicProps & {
+export type ThumbnailOnlyProps = BasicProps & {
   wonder: Pick<Wonder, "id" | "thumbnail">;
   className?: string;
 };

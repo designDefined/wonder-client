@@ -1,5 +1,5 @@
+@use "/src/styles/color.scss";
 // Common Styles
-
 .titleArea {
   padding: 0 20px;
 }
@@ -24,19 +24,6 @@
 .placeholder {
   flex-shrink: 0;
   scroll-snap-align: start;
-}
-.navigator {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.dot {
-  width: 12px;
-  height: 12px;
-  background-color: #d9d9d9;
-  border-radius: 50%x;
 }
 
 // HomeVertical Style
@@ -66,19 +53,56 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow-y: visible;
+
   .slider {
+    padding: 0 200px;
     gap: 12px;
+    overflow-y: visible;
+    align-items: flex-start;
+    padding-bottom: 12px;
     .sliderItem {
+      position: relative;
+      display: flex;
       width: 180px;
       height: 261px;
       scroll-snap-align: center;
+      transform: scale(1);
+
+      .zoomable {
+        transform-origin: top center;
+        transition: 0.5s ease;
+      }
+      > a {
+        width: 180px;
+      }
+      .current {
+        transform: scale(1.05);
+        // opacity: 0.5;
+      }
     }
     .placeholder {
       scroll-snap-align: center;
     }
   }
 }
-
+.navigator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  transition: 0.5s ease;
+  &.currentDot {
+    background-color: color.$main-blue;
+  }
+}
 // LikedVertical
 
 .LikedVertical {
