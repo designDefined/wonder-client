@@ -2,7 +2,7 @@ import api from ".";
 import { MutationType, QueryType } from "./types";
 import { authedApi } from "./index";
 import { UserDisplay } from "../entity/user/display";
-import { UserMySummary } from "../types/user/userSummary";
+import { UserMySummary } from "../entity/user/summary";
 
 type LoginResult =
   | { needLogin: false; token: string }

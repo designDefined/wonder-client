@@ -1,5 +1,5 @@
 import { Wonder } from ".";
-import { CreatorDisplay } from "../creator/display";
+import { CreatorSummary } from "../creator/summary";
 import { User } from "../user";
 
 export type WonderDisplay = Pick<
@@ -14,6 +14,6 @@ export type WonderDisplay = Pick<
   | "location"
   | "reservationProcess"
 > & {
-  creator: CreatorDisplay;
+  creator: CreatorSummary;
   likedUsers: User["id"][];
 };
