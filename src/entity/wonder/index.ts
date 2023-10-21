@@ -18,7 +18,13 @@ export type Wonder = {
     name: string;
     description: string;
   };
-  reservationProcess: null;
+  reservationProcess: {
+    startsAt: Date;
+    endsAt: Date;
+    amount?: number;
+    phone?: boolean;
+    email?: boolean;
+  } | null;
   dateInformation: DateInformation;
   likedUsers: User[];
   reservations: Reservation[];
