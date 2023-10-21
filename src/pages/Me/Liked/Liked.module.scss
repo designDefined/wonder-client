@@ -1,0 +1,18 @@
+@use "/src/styles/layout";
+
+.Liked {
+  @include layout.defaultSidePadding;
+  @include layout.defaultBottomPadding;
+  padding-top: 23px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 7px;
+  row-gap: 18px;
+  justify-content: space-between;
+}
+.item {
+  width: 173px;
+}
