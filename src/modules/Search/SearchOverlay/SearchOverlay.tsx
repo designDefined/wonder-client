@@ -41,7 +41,9 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
               key={genre}
               genre={genre}
               className={cx("tag")}
-              onClick={() => navigate(`search?${stringify({ genre })}`)}
+              onClick={() =>
+                navigate(`search?${stringify({ filter: { genre } })}`)
+              }
             />
           ))}
         </div>
@@ -76,7 +78,17 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
 
                         navigate(
                           `search?${stringify({
-                            $text: { $search: keyword },
+                            text: {
+                              text: {
+                                query: keyword,
+                                path: [
+                                  "title",
+                                  "creator",
+                                  "summary",
+                                  "content",
+                                ],
+                              },
+                            },
                           })}`,
                         );
                       }}
@@ -90,7 +102,6 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
                         const deletedRecents = recents.filter(
                           (_, i) => i !== indexToDelete,
                         );
-                        console.log(deletedRecents);
                         saveRecentKeywords(deletedRecents);
                         setRecents(getRecentKeywords());
                       }}

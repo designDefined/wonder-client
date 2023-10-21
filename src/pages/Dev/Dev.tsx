@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
+import api from "../../api";
 import { getWonderDetail } from "../../api/wonder";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
@@ -25,6 +26,15 @@ export default function Dev() {
   }, [data, error]);
   return (
     <main className={cx("Dev")}>
+      <Button
+        isFullWidth
+        isMainColored
+        onClick={() => {
+          api.post("/dbinsert").then(console.log).catch(console.error);
+        }}
+      >
+        api 보내기
+      </Button>
       <section className={cx("section")}>
         <Title title="Buttons" />
         <Button isFullWidth isMainColored>

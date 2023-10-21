@@ -20,13 +20,13 @@ export default function Home() {
           <Title.More title="새로 올라왔어요" onClick="/dev" />
         </Carousel.ThumbnailOnly>
         <Carousel.HomeVertical className={cx("curation")} queryName="default">
-          <Title.More title="기획 2" onClick="/dev" />
+          <Title.More title="Editor의 픽" onClick="/dev" />
         </Carousel.HomeVertical>
         <Link className={cx("banner")} to="/dev">
           <img src="/assets/illustration/banner1.png" />
         </Link>
         <Carousel.HomeVertical className={cx("curation")} queryName="default">
-          <Title.More title="기획 3" onClick="/dev" />
+          <Title.More title="인기 이벤트" onClick="/dev" />
         </Carousel.HomeVertical>
         <Link className={cx("banner")} to="/dev">
           <img src="/assets/illustration/banner2.png" />

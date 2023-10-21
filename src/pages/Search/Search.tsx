@@ -86,7 +86,14 @@ export default function Search() {
                 ? saveRecentKeywords([...recents, searchValue])
                 : saveRecentKeywords([searchValue]);
               navigate(
-                `search?${stringify({ $text: { $search: searchValue } })}`,
+                `search?${stringify({
+                  text: {
+                    text: {
+                      query: searchValue,
+                      path: ["title", "creator", "summary", "content"],
+                    },
+                  },
+                })}`,
               );
             }
           }}
