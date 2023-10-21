@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
 import { range } from "ramda";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { getMe } from "../../api/user";
 import { getWonderList } from "../../api/wonder";
 import { Wonder } from "../../entity/wonder";
+import { WonderSummary } from "../../entity/wonder/summary";
 import Card, { ThumbnailOnlyProps } from "../Card/Card";
 import styles from "./Carousel.module.scss";
 
@@ -23,6 +25,7 @@ function HomeVertical({
   children,
   className,
 }: BasicProps) {
+  const { data: me } = useQuery(getMe);
   const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
 
   return (
@@ -42,6 +45,7 @@ function HomeVertical({
                 className={cx("sliderItem")}
                 key={index}
                 wonder={wonder}
+                liked={!!me && wonder.likedUsers.includes(me.id)}
               />
             ))}
         </div>
@@ -75,7 +79,7 @@ function ThumbnailOnly({
               <Card.ThumbnailOnly
                 className={cx("sliderItem")}
                 key={index}
-                wonder={{ id: wonder.id, thumbnail: wonder.thumbnail }}
+                wonder={wonder}
               />
             ))}
         </div>
@@ -119,7 +123,7 @@ function ZoomedCardWrapper({
       ref={ref}
     >
       <Card.ThumbnailOnly
-        wonder={{ id: wonder.id, thumbnail: wonder.thumbnail }}
+        wonder={wonder}
         className={cx("zoomable", { current: isCurrent })}
       />
     </div>
@@ -189,11 +193,12 @@ function ThumbnailZoomed({
 }
 
 type LikedVerticalProps = PropsWithChildren & {
-  wonders: Wonder[];
+  wonders: WonderSummary[];
   className?: string;
 };
 
 function LikedVertical({ wonders, children, className }: LikedVerticalProps) {
+  const { data: me } = useQuery(getMe);
   return (
     <div className={cx("carousel", "LikedVertical", className)}>
       <div className={cx("titleArea")}>{children}</div>
@@ -203,6 +208,7 @@ function LikedVertical({ wonders, children, className }: LikedVerticalProps) {
             className={cx("sliderItem")}
             key={wonder.id}
             wonder={wonder}
+            liked={!!me && wonder.likedUsers.includes(me.id)}
           />
         ))}
       </div>

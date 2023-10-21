@@ -3,6 +3,10 @@ import { parse, stringify } from "qs";
 import { useEffect, useState } from "react";
 import Chip from "../../components/Chip/Chip";
 import { GenreTag } from "../../entity/wonder/tag";
+import {
+  getRecentKeywords,
+  saveRecentKeywords,
+} from "../../functions/storage/recentKeywords";
 import { navigate } from "../../libs/Codex";
 import SearchOverlay from "../../modules/Search/SearchOverlay/SearchOverlay";
 import Wonders from "../../modules/Search/Wonders/Wonders";
@@ -77,8 +81,19 @@ export default function Search() {
             if (!searchValue) {
               navigate(`search?all=true`);
             } else {
+              const recents = getRecentKeywords();
+              recents
+                ? saveRecentKeywords([...recents, searchValue])
+                : saveRecentKeywords([searchValue]);
               navigate(
-                `search?${stringify({ $text: { $search: searchValue } })}`,
+                `search?${stringify({
+                  text: {
+                    text: {
+                      query: searchValue,
+                      path: ["title", "creator", "summary", "content"],
+                    },
+                  },
+                })}`,
               );
             }
           }}

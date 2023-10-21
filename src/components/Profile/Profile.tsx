@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useState } from "react";
 import { UserDisplay } from "../../entity/user/display";
+import { UserMySummary } from "../../entity/user/summary";
 import { navigate } from "../../libs/Codex";
 import { useOverlay } from "../../store/overlay/useOverlay";
 import styles from "./Profile.module.scss";
@@ -8,11 +9,11 @@ import styles from "./Profile.module.scss";
 const cx = classNames.bind(styles);
 
 type DropdownProps = {
-  myInfo: UserDisplay;
+  myInfo: UserMySummary;
 };
 
 function DropdownOverlay({
-  myInfo: { name, profileImage, ownedCreators },
+  myInfo: { nickname, profileImage, ownedCreators },
 }: DropdownProps) {
   return (
     <div
@@ -30,7 +31,7 @@ function DropdownOverlay({
           src={profileImage.src}
           alt={profileImage.altText}
         />
-        <div className={cx("name")}>{name}</div>
+        <div className={cx("name")}>{nickname}</div>
       </div>
       <div className={cx("divider")} />
       <div className={cx("tab")} onClick={() => navigate("/me", "slideNext")}>
@@ -67,7 +68,7 @@ function DropdownOverlay({
 }
 
 type MeProps = {
-  myInfo: UserDisplay;
+  myInfo: UserMySummary;
 };
 
 function Me({ myInfo }: MeProps) {

@@ -1,12 +1,12 @@
 import classNames from "classnames/bind";
-import { Wonder } from "../../entity/wonder";
 import styles from "./Card.module.scss";
 import Link from "../../libs/Codex/components/Link/Link";
 import Chip from "../Chip/Chip";
 import { IconLike } from "../../assets/wonder/like";
 import { parseScheduleToPeriodString } from "../../functions/parse/parseSchedule";
-import { Reservation } from "../../entity/reservation";
 import { parseDateToPeriodString } from "../../functions/parse/parseDate";
+import { WonderSummary } from "../../entity/wonder/summary";
+import { ReservationForUser } from "../../entity/reservation/forUser";
 
 const cx = classNames.bind(styles);
 
@@ -15,14 +15,13 @@ type BasicProps = {
 };
 
 type VerticalProps = BasicProps & {
-  wonder: Pick<
-    Wonder,
-    "id" | "title" | "tag" | "thumbnail" | "liked" | "schedule"
-  >;
+  wonder: WonderSummary;
+  liked: boolean;
 };
 
 function Vertical({
-  wonder: { id, title, tag, thumbnail, liked, schedule },
+  wonder: { id, title, tag, thumbnail, schedule },
+  liked,
   className,
 }: VerticalProps) {
   return (
@@ -56,7 +55,7 @@ function Vertical({
 }
 
 export type ThumbnailOnlyProps = BasicProps & {
-  wonder: Pick<Wonder, "id" | "thumbnail">;
+  wonder: WonderSummary;
   className?: string;
 };
 
@@ -76,11 +75,8 @@ function ThumbnailOnly({
 }
 
 type ReservedProps = BasicProps & {
-  wonder: Pick<
-    Wonder,
-    "id" | "title" | "tag" | "summary" | "thumbnail" | "location"
-  >;
-  reservation: Reservation;
+  wonder: WonderSummary;
+  reservation: ReservationForUser;
   isSimple: boolean;
   isPassedReservation: boolean;
 };
@@ -117,10 +113,7 @@ function Reserved({
 }
 
 type SearchedProps = BasicProps & {
-  wonder: Pick<
-    Wonder,
-    "id" | "title" | "tag" | "summary" | "thumbnail" | "schedule"
-  >;
+  wonder: WonderSummary;
 };
 
 function Searched({
