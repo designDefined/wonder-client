@@ -9,17 +9,17 @@ import Title from "../../modules/View/Title/Title";
 import Content from "../../modules/View/Content/Content";
 import Location from "../../modules/View/Location/Location";
 import Creator from "../../modules/View/Creator/Creator";
+import { getMe } from "../../api/user";
 
 const cx = classNames.bind(styles);
 
 export default function View() {
+  const { data: me } = useQuery(getMe);
   const wonderId = useParams()?.wonder_id;
 
-  const {
-    isLoading,
-    data: wonderData,
-    error,
-  } = useQuery(getWonderDetail(Number(wonderId) ?? -1));
+  const { isLoading, data: wonderData } = useQuery(
+    getWonderDetail(Number(wonderId) ?? -1),
+  );
 
   /*
 
@@ -55,7 +55,12 @@ export default function View() {
     <>
       <DefaultHeader />
       <main className={cx("View")}>
-        <Cover thumbnail={wonderData.thumbnail} tag={wonderData.tag} />
+        <Cover
+          id={wonderData.id}
+          thumbnail={wonderData.thumbnail}
+          tag={wonderData.tag}
+          liked={wonderData.likedUsers.includes(me?.id ?? -1)}
+        />
         <div className={cx("mainContent")}>
           <Title
             title={wonderData.title}

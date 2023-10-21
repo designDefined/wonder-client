@@ -7,6 +7,10 @@ import { parseScheduleToPeriodString } from "../../functions/parse/parseSchedule
 import { parseDateToPeriodString } from "../../functions/parse/parseDate";
 import { WonderSummary } from "../../entity/wonder/summary";
 import { ReservationForUser } from "../../entity/reservation/forUser";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { postWonderLike } from "../../api/wonder";
+import { navigate } from "../../libs/Codex";
+import { getMe } from "../../api/user";
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +28,15 @@ function Vertical({
   liked,
   className,
 }: VerticalProps) {
+  const { data: me } = useQuery(getMe);
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...postWonderLike(id),
+    onSuccess: () => {
+      void queryClient.invalidateQueries(["wonder", "list"]);
+      void queryClient.invalidateQueries(["user", "me"]);
+    },
+  });
   return (
     <Link className={cx("Vertical", className)} to={`/view/${id}`}>
       <div className={cx("thumbnailWrapper")}>
@@ -37,6 +50,12 @@ function Vertical({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            if (!me) {
+              alert("로그인이 필요합니다.");
+              navigate("/login", "slideNext");
+              return;
+            }
+            mutate(!liked);
           }}
         >
           <IconLike filled={liked} />

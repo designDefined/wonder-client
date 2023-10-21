@@ -30,6 +30,7 @@ export default function Search() {
       plainObjects: true,
       ignoreQueryPrefix: true,
     });
+    console.dir(parsedQuery);
     if (window.location.search) {
       setIsOverlayOpen(false);
     }

@@ -32,7 +32,7 @@ function More({ title, className, onClick }: TitleProps) {
           className={cx("more")}
           onClick={(e) => {
             e.preventDefault();
-            navigate(onClick);
+            navigate(onClick, "slideNext");
           }}
         >
           더보기
@@ -55,7 +55,7 @@ function Arrow({ title, className, onClick }: TitleProps) {
           className={cx("more")}
           onClick={(e) => {
             e.preventDefault();
-            navigate(onClick);
+            navigate(onClick, "slideNext");
           }}
         >
           <img src="assets/icon/arrow_forward_ios.svg" alt="right arrow icon" />

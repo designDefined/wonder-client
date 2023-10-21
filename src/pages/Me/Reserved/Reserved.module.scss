@@ -1,0 +1,11 @@
+@use "/src/styles/layout";
+
+.Reserved {
+  @include layout.defaultSidePadding;
+  @include layout.defaultBottomPadding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 23px;
+  gap: 38px;
+}

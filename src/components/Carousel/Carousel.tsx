@@ -4,7 +4,6 @@ import { range } from "ramda";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { getMe } from "../../api/user";
 import { getWonderList } from "../../api/wonder";
-import { Wonder } from "../../entity/wonder";
 import { WonderSummary } from "../../entity/wonder/summary";
 import Card, { ThumbnailOnlyProps } from "../Card/Card";
 import styles from "./Carousel.module.scss";
@@ -13,7 +12,7 @@ const cx = classNames.bind(styles);
 
 type BasicProps = PropsWithChildren & {
   className?: string;
-  filter?: Record<keyof Wonder, unknown>;
+  filter?: Record<string, unknown>;
   queryName: string;
   amountOfPlaceholder?: number;
 };
@@ -26,7 +25,9 @@ function HomeVertical({
   className,
 }: BasicProps) {
   const { data: me } = useQuery(getMe);
-  const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
+  const { isLoading, data, error } = useQuery(
+    getWonderList({ filter }, queryName),
+  );
 
   return (
     <div className={cx("carousel", "HomeVertical", className)}>
@@ -61,7 +62,9 @@ function ThumbnailOnly({
   children,
   className,
 }: BasicProps) {
-  const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
+  const { isLoading, data, error } = useQuery(
+    getWonderList({ filter }, queryName),
+  );
 
   return (
     <div className={cx("carousel", "ThumbnailOnly", className)}>
@@ -130,16 +133,26 @@ function ZoomedCardWrapper({
   );
 }
 
+const sortWonders = (a: WonderSummary, b: WonderSummary) => {
+  const aDate = new Date(a.schedule[0]);
+  const bDate = new Date(b.schedule[0]);
+  return aDate.getTime() - bDate.getTime();
+};
+
 function ThumbnailZoomed({
   filter,
   queryName,
   amountOfPlaceholder = 5,
   className,
 }: BasicProps) {
-  const { isLoading, data, error } = useQuery(getWonderList(filter, queryName));
+  const { isLoading, data, error } = useQuery(
+    getWonderList({ filter }, queryName),
+  );
   const [scrollLeft, setScrollLeft] = useState(0);
   const [current, setCurrent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  //function that sort WonderSummary by schedule[0]
 
   return (
     <div className={cx("carousel", "ThumbnailZoomed", className)}>
@@ -160,22 +173,26 @@ function ThumbnailZoomed({
               <div key={key} className={cx("placeholder")} />
             ))}
           {data &&
-            data.map((wonder, index) => (
-              <ZoomedCardWrapper
-                key={wonder.id}
-                wonder={wonder}
-                index={index}
-                scrollLeft={scrollLeft}
-                isCurrent={current === index}
-                setCurrent={() => {
-                  setCurrent(index);
-                }}
-              />
-            ))}
+            data
+              .slice()
+              .sort(sortWonders)
+              .slice(0, 5)
+              .map((wonder, index) => (
+                <ZoomedCardWrapper
+                  key={wonder.id}
+                  wonder={wonder}
+                  index={index}
+                  scrollLeft={scrollLeft}
+                  isCurrent={current === index}
+                  setCurrent={() => {
+                    setCurrent(index);
+                  }}
+                />
+              ))}
         </div>
       )}
       <div className={cx("navigator")}>
-        {range(0, data?.length || 0).map((key) => (
+        {range(0, Math.min(data?.length ?? 0, 5) || 0).map((key) => (
           <div
             key={key}
             className={cx("dot", { currentDot: key === current })}

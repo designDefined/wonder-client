@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
-import { Wonder } from "../../../entity/wonder";
+import { CreatorSummary } from "../../../entity/creator/summary";
 import styles from "./Creator.module.scss";
 
 const cx = classNames.bind(styles);
 
 type CreatorProps = {
-  creator: Wonder["creator"];
+  creator: CreatorSummary;
 };
 
 export default function Creator({ creator }: CreatorProps) {
