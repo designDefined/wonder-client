@@ -1,0 +1,79 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/color";
+@use "./src/styles/utility";
+@use "./src/styles/layout";
+
+.ReservationPanel {
+  @include layout.defaultSidePadding;
+
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 30px;
+
+  .notSelectable {
+    background-color: color.$gray;
+  }
+
+  .selectable {
+    background-color: color.$white;
+  }
+  .selected {
+    background-color: color.$main-blue;
+  }
+  .wrapper {
+    @include textStyle.default;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .alert {
+      @include textStyle.subtitle;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title {
+        @include textStyle.title;
+        text-align: center;
+      }
+      .schedule {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    }
+    .notice {
+      padding: 0 20px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 26.5px;
+    }
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+}
+
+.times {
+  height: 37px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+}
+.time {
+  @include textStyle.description;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid color.$dark-gray;
+  background: color.$white;
+  &.selected {
+    background: color.$main-blue;
+    color: color.$white;
+  }
+}

@@ -14,3 +14,21 @@
 .schedule {
   @include textStyle.subtitle;
 }
+
+.reservation {
+  margin-top: 12px;
+}
+
+.reservationTimer {
+  @include textStyle.description;
+  color: color.$dark-gray;
+  margin-top: 4px;
+}
+
+.reserveNow {
+  color: color.$red;
+}
+
+.bold {
+  font-weight: 600;
+}

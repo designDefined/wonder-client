@@ -63,9 +63,11 @@ export default function View() {
         />
         <div className={cx("mainContent")}>
           <Title
+            id={wonderData.id}
             title={wonderData.title}
             summary={wonderData.summary}
             schedule={wonderData.schedule}
+            location={wonderData.location}
             reservationProcess={wonderData.reservationProcess}
           />
           <div className={cx("divider")} />
