@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import Button from "../../../components/Button/Button";
 import { parseReservationProcessPeriod } from "../../../functions/parse/parseReservation";
 import { parseScheduleToPeriodString } from "../../../functions/parse/parseSchedule";
+import { navigate } from "../../../libs/Codex";
 import { openTray } from "../../../libs/Tray/useTray";
 import { WonderDetail } from "../../../types/wonder/wonderDetail";
 import ReservationForm from "../ReservationForm/ReservationForm";
@@ -13,7 +14,7 @@ const cx = classNames.bind(styles);
 type TitleProps = Pick<
   WonderDetail,
   "id" | "title" | "summary" | "schedule" | "location" | "reservationProcess"
->;
+> & { isLoggedIn: boolean };
 
 function Title({
   id,
@@ -22,6 +23,7 @@ function Title({
   schedule,
   location,
   reservationProcess,
+  isLoggedIn,
 }: TitleProps) {
   const parsedPeriod = useMemo(
     () => parseReservationProcessPeriod(reservationProcess),
@@ -40,17 +42,22 @@ function Title({
             className={cx("reservation")}
             isFullWidth
             isMainColored
-            onClick={() =>
-              openTray(() => (
-                <ReservationForm
-                  id={id}
-                  title={title}
-                  schedule={schedule}
-                  location={location}
-                  reservationProcess={reservationProcess}
-                />
-              ))
-            }
+            onClick={() => {
+              if (isLoggedIn) {
+                openTray(() => (
+                  <ReservationForm
+                    id={id}
+                    title={title}
+                    schedule={schedule}
+                    location={location}
+                    reservationProcess={reservationProcess}
+                  />
+                ));
+              } else {
+                alert("로그인이 필요합니다.");
+                navigate("/login", "slideNext");
+              }
+            }}
           >
             예약하기
           </Button>

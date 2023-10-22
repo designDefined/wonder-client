@@ -69,6 +69,7 @@ export default function View() {
             schedule={wonderData.schedule}
             location={wonderData.location}
             reservationProcess={wonderData.reservationProcess}
+            isLoggedIn={!!me}
           />
           <div className={cx("divider")} />
           <Content content={wonderData.content} />
