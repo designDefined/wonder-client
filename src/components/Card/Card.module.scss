@@ -127,3 +127,21 @@
   max-height: calc(119px - 25px);
   overflow-y: hidden;
 }
+
+.Creator {
+  width: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  .profileImage {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+  }
+  .title {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+}

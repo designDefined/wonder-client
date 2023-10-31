@@ -1,0 +1,43 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/layout";
+@use "./src/styles/color";
+
+.Modify {
+  @include layout.defaultSidePadding;
+  @include layout.defaultBottomPadding;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.toPrevious {
+  @include textStyle.subtitle;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profileArea {
+  display: flex;
+  justify-content: center;
+  margin-top: 33px;
+  margin-bottom: 50px;
+}
+
+.profileImg {
+  width: 92px;
+  height: 92px;
+  border: 1px solid color.$dark-gray;
+  border-radius: 50%;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: color.$gray;
+  width: 100%;
+}

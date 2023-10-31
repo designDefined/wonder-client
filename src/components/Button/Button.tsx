@@ -10,6 +10,7 @@ type ButtonProps = PropsWithChildren & {
   isFullWidth?: boolean;
   isSmallSized?: boolean;
   isMainColored?: boolean;
+  isDisabled?: boolean;
 };
 
 function Button({
@@ -19,15 +20,16 @@ function Button({
   isSmallSized,
   isFullWidth,
   isMainColored,
+  isDisabled,
 }: ButtonProps) {
   return (
     <button
       className={cx(
         "Button",
-        { isSmallSized, isFullWidth, isMainColored },
+        { isSmallSized, isFullWidth, isMainColored, isDisabled },
         className,
       )}
-      onClick={onClick}
+      onClick={isDisabled ? () => null : onClick}
     >
       {children}
     </button>

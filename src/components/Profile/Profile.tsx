@@ -13,7 +13,7 @@ type DropdownProps = {
 };
 
 function DropdownOverlay({
-  myInfo: { nickname, profileImage, ownedCreators },
+  myInfo: { name, profileImage, ownedCreators },
 }: DropdownProps) {
   return (
     <div
@@ -31,7 +31,7 @@ function DropdownOverlay({
           src={profileImage.src}
           alt={profileImage.altText}
         />
-        <div className={cx("name")}>{nickname}</div>
+        <div className={cx("name")}>{name}</div>
       </div>
       <div className={cx("divider")} />
       <div className={cx("tab")} onClick={() => navigate("/me", "slideNext")}>

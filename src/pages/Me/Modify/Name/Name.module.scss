@@ -1,0 +1,23 @@
+@use "./src/styles/textStyle";
+@use "./src/styles/layout";
+@use "./src/styles/color";
+
+.Name {
+  @include layout.defaultSidePadding;
+  @include layout.defaultBottomPadding;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.toPrevious {
+  @include textStyle.subtitle;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.input {
+  margin-bottom: 30px;
+}

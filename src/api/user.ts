@@ -40,3 +40,21 @@ export const postUserRegister: MutationType<
 > = {
   mutationFn: ({ type, data }) => api.post(`/user/register?type=${type}`, data),
 };
+
+export const putMeName: MutationType<
+  {
+    success: boolean;
+  },
+  { name: string }
+> = {
+  mutationFn: (data) => authedApi.put(`/user/me/name`, data),
+};
+
+export const putMePhone: MutationType<
+  {
+    success: boolean;
+  },
+  { phoneNumber: string }
+> = {
+  mutationFn: (data) => authedApi.put(`/user/me/phone`, data),
+};

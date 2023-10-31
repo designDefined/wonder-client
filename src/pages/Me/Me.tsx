@@ -7,6 +7,7 @@ import { getMeDetail } from "../../api/user";
 import Card from "../../components/Card/Card";
 import Title from "../../components/Title/Title";
 import Button from "../../components/Button/Button";
+import { navigate } from "../../libs/Codex";
 
 const cx = classNames.bind(styles);
 
@@ -32,7 +33,11 @@ export default function Me() {
               <div className={cx("email")}>{data.email}</div>
             </div>
           </div>
-          <Button isMainColored={false} isFullWidth>
+          <Button
+            isMainColored={false}
+            isFullWidth
+            onClick={() => navigate("/me/modify")}
+          >
             프로필 수정하기
           </Button>
         </div>
@@ -66,6 +71,22 @@ export default function Me() {
               isSimple={false}
             />
           ))}
+        </div>
+        <div className={cx("divider")} />
+
+        <div className={cx("section")}>
+          <Title.Plus title="크리에이터 계정" onClick="/new/creator" />
+          <div className={cx("carousel")}>
+            <div className={cx("slider")}>
+              {data.ownedCreators.map((creator) => (
+                <Card.Creator
+                  key={creator.id}
+                  creator={creator}
+                  className={cx("sliderItem")}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </>

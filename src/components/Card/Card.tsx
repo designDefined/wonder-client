@@ -11,6 +11,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { postWonderLike } from "../../api/wonder";
 import { navigate } from "../../libs/Codex";
 import { getMe } from "../../api/user";
+import { CreatorSummary } from "../../entity/creator/summary";
 
 const cx = classNames.bind(styles);
 
@@ -162,11 +163,32 @@ function Searched({
   );
 }
 
+type CreatorProps = BasicProps & {
+  creator: CreatorSummary;
+};
+
+function Creator({
+  creator: { id, name, profileImage },
+  className,
+}: CreatorProps) {
+  return (
+    <Link className={cx("Creator", className)} to={`/creator/${id}`}>
+      <img
+        className={cx("profileImage")}
+        src={profileImage.src}
+        alt={profileImage.altText}
+      />
+      <div className={cx("title")}>{name}</div>
+    </Link>
+  );
+}
+
 const Card = {
   Vertical,
   ThumbnailOnly,
   Reserved,
   Searched,
+  Creator,
 };
 
 export default Card;

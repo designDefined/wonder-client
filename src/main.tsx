@@ -17,6 +17,9 @@ import Dev from "./pages/Dev/Dev";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Me from "./pages/Me/Me";
 import Search from "./pages/Search/Search";
+import Modify from "./pages/Me/Modify/Modify";
+import Name from "./pages/Me/Modify/Name/Name";
+import Phone from "./pages/Me/Modify/Phone/Phone";
 
 const codex: Codex = {
   _index: <Home />,
@@ -30,7 +33,12 @@ const codex: Codex = {
   search: <Search />,
   wonders: <Wonders />,
   view: { _index: <View />, _params: ["wonder_id"] },
-  me: { _index: <Me />, liked: <Liked />, reserved: <Reserved /> },
+  me: {
+    _index: <Me />,
+    liked: <Liked />,
+    reserved: <Reserved />,
+    modify: { _index: <Modify />, name: <Name />, phone: <Phone /> },
+  },
   creator: { _index: <CreatorPage />, _params: ["creator_id"] },
   dev: <Dev />,
   _error: <div>error page</div>,
