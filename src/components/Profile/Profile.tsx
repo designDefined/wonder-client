@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import { useState } from "react";
-import { UserDisplay } from "../../entity/user/display";
 import { UserMySummary } from "../../entity/user/summary";
 import { navigate } from "../../libs/Codex";
 import { useOverlay } from "../../store/overlay/useOverlay";
