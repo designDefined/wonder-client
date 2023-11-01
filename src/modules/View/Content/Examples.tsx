@@ -53,6 +53,7 @@ Example[0] = `
 
 `;
 
+Example[1] = ``;
 // const Example: ReactNode[] = [];
 
 // Example[0] = (
