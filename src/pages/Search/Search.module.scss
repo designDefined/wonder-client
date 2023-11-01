@@ -8,7 +8,11 @@
   flex-direction: column;
   gap: 37px;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &.overlay {
+    overflow-y: hidden;
+  }
 }
 
 .bar {

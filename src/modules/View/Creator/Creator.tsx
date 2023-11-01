@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import { CreatorSummary } from "../../../entity/creator/summary";
+import { navigate } from "../../../libs/Codex";
 import styles from "./Creator.module.scss";
 
 const cx = classNames.bind(styles);
@@ -10,7 +11,10 @@ type CreatorProps = {
 
 export default function Creator({ creator }: CreatorProps) {
   return (
-    <div className={cx("Creator")}>
+    <div
+      className={cx("Creator")}
+      onClick={(e) => navigate("/creator/1", "slideNext")}
+    >
       <div className={cx("label")}>크리에이터</div>
       <div className={cx("profile")}>
         <img

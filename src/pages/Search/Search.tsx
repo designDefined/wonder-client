@@ -58,7 +58,7 @@ export default function Search() {
   }, [window.location.search]);
 
   return (
-    <main className={cx("Search")}>
+    <main className={cx("Search", { overlay: isOverlayOpen })}>
       <header className={cx("bar")}>
         <button
           className={cx("back")}
