@@ -53,6 +53,7 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
               key={status}
               status={status}
               className={cx("tag", "status")}
+              onClick={() => navigate(`search?${stringify({ status })}`)}
             />
           ))}
         </div>
@@ -73,7 +74,7 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
                           ...recents.filter((_, i) => i !== indexToDelete),
                           keyword,
                         ];
-                        saveRecentKeywords(updatedRecents);
+                        saveRecentKeywords(updatedRecents.slice(0, 5));
                         setRecents(getRecentKeywords());
 
                         navigate(
@@ -102,7 +103,7 @@ export default function SearchOverlay({ isClose }: SearchOverlayProps) {
                         const deletedRecents = recents.filter(
                           (_, i) => i !== indexToDelete,
                         );
-                        saveRecentKeywords(deletedRecents);
+                        saveRecentKeywords(deletedRecents.slice(0, 5));
                         setRecents(getRecentKeywords());
                       }}
                     >

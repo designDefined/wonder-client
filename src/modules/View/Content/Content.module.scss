@@ -6,6 +6,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  p {
+    margin: 0;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+  }
 
   h1 {
     @include textStyle.title;

@@ -84,8 +84,8 @@ export default function Search() {
             } else {
               const recents = getRecentKeywords();
               recents
-                ? saveRecentKeywords([...recents, searchValue])
-                : saveRecentKeywords([searchValue]);
+                ? saveRecentKeywords([...recents, searchValue].slice(-5))
+                : saveRecentKeywords([searchValue].slice(-5));
               navigate(
                 `search?${stringify({
                   text: {

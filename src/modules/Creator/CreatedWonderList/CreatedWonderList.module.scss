@@ -1,0 +1,55 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+@use "/src/styles/reset";
+@use "/src/styles/layout";
+
+.CreatedWonderList {
+}
+.tabs {
+  @include layout.defaultSidePadding;
+  width: 100%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid color.$light-gray;
+}
+.tab {
+  position: relative;
+  @include textStyle.subtitle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  color: color.$dark-gray;
+}
+.current {
+  color: color.$black;
+}
+.underline {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: color.$black;
+  bottom: -8px;
+}
+.noList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 89px;
+  gap: 39px;
+}
+.list {
+  @include layout.defaultSidePadding;
+}
+
+.card {
+  @include textStyle.description;
+  border-top: 1px solid color.$gray;
+  padding: 14px 0;
+  &:first-child {
+    border: none;
+  }
+}

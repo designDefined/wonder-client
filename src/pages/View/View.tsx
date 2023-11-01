@@ -72,7 +72,7 @@ export default function View() {
             isLoggedIn={!!me}
           />
           <div className={cx("divider")} />
-          <Content content={wonderData.content} />
+          <Content id={wonderData.id} content={wonderData.content} />
           <div className={cx("divider")} />
           <Location location={wonderData.location} />
           <div className={cx("divider")} />

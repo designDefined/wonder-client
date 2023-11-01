@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames/bind";
-import { parse, ParsedQs, stringify } from "qs";
+import { stringify } from "qs";
 import { getWonderList } from "../../../api/wonder";
 import Card from "../../../components/Card/Card";
 import styles from "./Wonders.module.scss";
@@ -29,7 +29,13 @@ export default function Wonders({ query }: WondersProps) {
     <div className={cx("Wonders")}>
       <h2 className={cx("title")}>검색</h2>
       <div className={cx("bar")}>
-        <div className={cx("status")}>진행 중</div>
+        <div className={cx("status")}>
+          {query.status
+            ? query.status === "now"
+              ? "진행 중"
+              : "예약 중"
+            : "전체"}
+        </div>
         <div className={cx("sort")}>최근 등록된 순</div>
       </div>
       <div className={cx("wonderList")}>

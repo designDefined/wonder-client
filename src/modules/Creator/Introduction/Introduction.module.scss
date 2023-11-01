@@ -1,0 +1,68 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+@use "/src/styles/reset";
+@use "/src/styles/layout";
+
+.Introduction {
+  @include layout.defaultSidePadding;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 10px solid color.$light-gray;
+}
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.imageAndName {
+  display: flex;
+  gap: 18px;
+}
+
+.profileImage {
+  width: 78px;
+  height: 78px;
+}
+.names {
+  padding-right: 10px;
+}
+.name {
+  @include textStyle.subtitle;
+}
+.summary {
+  @include textStyle.default;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px; /* 150% */
+  letter-spacing: 0;
+  color: color.$dark-gray;
+  word-break: keep-all;
+}
+.modify {
+  @include textStyle.default;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px; /* 150% */
+  letter-spacing: 0;
+  cursor: pointer;
+  background-color: color.$gray;
+  width: 86px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  .button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}

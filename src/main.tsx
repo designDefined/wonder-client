@@ -20,6 +20,7 @@ import Search from "./pages/Search/Search";
 import Modify from "./pages/Me/Modify/Modify";
 import Name from "./pages/Me/Modify/Name/Name";
 import Phone from "./pages/Me/Modify/Phone/Phone";
+import CreatorModify from "./pages/Creator/Modify/CreatorModify";
 
 const codex: Codex = {
   _index: <Home />,
@@ -39,7 +40,11 @@ const codex: Codex = {
     reserved: <Reserved />,
     modify: { _index: <Modify />, name: <Name />, phone: <Phone /> },
   },
-  creator: { _index: <CreatorPage />, _params: ["creator_id"] },
+  creator: {
+    _index: <CreatorPage />,
+    modify: { _index: <CreatorModify />, _params: ["creator_id"] },
+    _params: ["creator_id"],
+  },
   dev: <Dev />,
   _error: <div>error page</div>,
 };
