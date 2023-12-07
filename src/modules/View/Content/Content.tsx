@@ -1,8 +1,8 @@
 import styles from "./Content.module.scss";
 import { Wonder } from "../../../entity/wonder";
 import classNames from "classnames/bind";
-import Example from "./Examples";
-import Markdown from "react-markdown";
+import draftToHtml from "draftjs-to-html";
+import { RawDraftContentState } from "react-draft-wysiwyg";
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +14,11 @@ type ContentProps = {
 function Content({ id, content }: ContentProps) {
   return (
     <div className={cx("Content")}>
-      <Markdown>{Example[id] ?? Example[0]}</Markdown>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: draftToHtml(JSON.parse(content) as RawDraftContentState),
+        }}
+      />
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function Creator({ creator }: CreatorProps) {
   return (
     <div
       className={cx("Creator")}
-      onClick={(e) => navigate("/creator/1", "slideNext")}
+      onClick={(e) => navigate(`/creator/${creator.id}`, "slideNext")}
     >
       <div className={cx("label")}>크리에이터</div>
       <div className={cx("profile")}>

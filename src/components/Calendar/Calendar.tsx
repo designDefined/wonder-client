@@ -87,7 +87,8 @@ const groupDatesByWeeks = (
   ];
   let weekNumber = 2;
   for (let i = 0; i < dates.length; i++) {
-    if (i >= weekBeginsWith && i % 7 === weekBeginsWith) {
+    const iDay = dates[0].getDay() + i;
+    if (iDay >= weekBeginsWith && iDay % 7 === weekBeginsWith) {
       weeks.push({ weekNumber, days: [] });
       weekNumber++;
     }

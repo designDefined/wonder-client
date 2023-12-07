@@ -32,15 +32,15 @@ export default function Home() {
             })}`}
           />
         </Carousel.HomeVertical>
-        <Link className={cx("banner")} to="/">
+        <Link
+          className={cx("banner")}
+          to="https://hhhyejaaa.notion.site/w-nder-596d1430dd82418fbf1fdb00f24c6b38?pvs=4"
+        >
           <img src="/assets/illustration/banner1.png" />
         </Link>
         <Carousel.HomeVertical className={cx("curation")} queryName="default">
           <Title.More title="인기 이벤트" onClick="/search?all=true" />
         </Carousel.HomeVertical>
-        <Link className={cx("banner")} to="/dev">
-          <img src="/assets/illustration/banner2.png" />
-        </Link>
       </main>
     </>
   );

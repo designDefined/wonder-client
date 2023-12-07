@@ -6,19 +6,35 @@
 
 .thumbnailBackground {
   @include layout.defaultSidePadding;
+  position: relative;
   width: 100%;
   height: 131px;
-  background: #d9d9d9;
+  background: black;
   padding-top: 15px;
   display: flex;
   gap: 12px;
   margin-bottom: 67px;
 }
 
+.thumbnailTop {
+  position: absolute;
+  width: 100%;
+  height: 131px;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0.5;
+  overflow-y: hidden;
+  img {
+    width: 100%;
+  }
+}
+
 .thumbnail {
   width: 115px;
   height: 168px;
   border-radius: 5px;
+  z-index: 2;
 }
 
 .info {

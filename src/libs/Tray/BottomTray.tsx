@@ -101,7 +101,7 @@ export default function BottomTray() {
           <div className={cx("bar")} />
         </div>
         <div className={cx("targetWrapper")}>{target && target()}</div>
-        <div className={cx("hider")} />
+        {/* <div className={cx("hider")} /> */}
       </div>
     </div>
   );

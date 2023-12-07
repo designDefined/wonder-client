@@ -47,7 +47,10 @@ function Arrow({ title, className, onClick, currentValue }: TitleProps) {
       {typeof onClick === "function" ? (
         <button className={cx("arrow")} onClick={onClick}>
           <div className={cx("currentValue")}>{currentValue}</div>
-          <img src="assets/icon/arrow_forward_ios.svg" alt="right arrow icon" />
+          <img
+            src="/assets/icon/arrow_forward_ios.svg"
+            alt="right arrow icon"
+          />
         </button>
       ) : (
         <Link className={cx("arrow")} to={onClick}>

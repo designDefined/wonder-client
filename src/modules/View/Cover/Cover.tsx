@@ -29,6 +29,9 @@ export default function Cover({ id, thumbnail, tag, liked }: CoverProps) {
   return (
     <div className={cx("Cover")}>
       <div className={cx("thumbnailBackground")}>
+        <div className={cx("thumbnailTop")}>
+          <img src={thumbnail.src} alt={thumbnail.altText} />
+        </div>
         <img
           className={cx("thumbnail")}
           src={thumbnail.src}
