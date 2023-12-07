@@ -1,0 +1,12 @@
+@use "/src/styles/color";
+
+.Stage0 {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding-top: 43px;
+}
+
+.selected {
+  border: 1px solid color.$main-blue;
+}

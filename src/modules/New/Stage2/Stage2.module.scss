@@ -1,0 +1,54 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+
+.Stage2 {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.name {
+  @include textStyle.subtitle;
+  margin-bottom: 6px;
+}
+
+.calendar {
+  border: 1px solid var(--gray, #e6e6e6);
+  border-radius: 16px;
+}
+
+.selected {
+  background-color: color.$main-blue !important;
+  color: color.$white !important;
+}
+
+.label {
+  @include textStyle.default;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.408px;
+  margin-bottom: 22px;
+}
+
+.timeSlider {
+  display: flex;
+  overflow-x: scroll;
+  gap: 5px;
+}
+
+.timeChip {
+  @include textStyle.description;
+  display: flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid color.$dark-gray;
+  background: color.$white;
+}

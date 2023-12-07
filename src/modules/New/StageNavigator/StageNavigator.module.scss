@@ -1,0 +1,38 @@
+@use "/src/styles/color";
+@use "/src/styles/layout";
+@use "/src/styles/textStyle";
+
+.StageNavigator {
+}
+
+.stageName {
+  @include textStyle.subtitle;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.bars {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.bar {
+  width: calc(25% - 2px);
+  height: 2px;
+  background-color: color.$gray;
+
+  &.current {
+    background-color: color.$main-blue;
+  }
+}
+
+.title {
+  @include textStyle.title;
+}
+.description {
+  @include textStyle.moreDescriptive;
+  color: color.$dark-gray;
+}

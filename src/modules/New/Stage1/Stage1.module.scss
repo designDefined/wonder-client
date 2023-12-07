@@ -1,0 +1,98 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+
+.Stage1 {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  padding-top: 15px;
+}
+
+.thumbnail {
+  position: relative;
+  display: flex;
+  gap: 12px;
+}
+
+.thumbnailInput {
+  cursor: pointer;
+}
+
+.fileInput {
+  position: abosolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.fileLabel {
+  display: block;
+  position: absolute;
+  width: 82px;
+  height: 118px;
+  top: 0;
+  left: 0;
+}
+
+.thumbnailTitle {
+  @include textStyle.default;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px; /* 155.556% */
+  letter-spacing: -0.408px;
+}
+
+.thumbnailPreview {
+  object-fit: cover;
+  width: 82px;
+  height: 118px;
+}
+
+.thumbnailDescription {
+  @include textStyle.moreDescriptive;
+  color: color.$dark-gray;
+}
+
+.name {
+  @include textStyle.subtitle;
+  margin-bottom: 3px;
+}
+
+.tags {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  .tag {
+    @include textStyle.description;
+    padding: 4px 10px;
+    border-radius: 5px;
+  }
+  .status {
+    color: color.$white;
+  }
+  .selected {
+    background-color: color.$main-blue;
+    color: color.$white;
+  }
+}
+
+.editor-wrapper {
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  .rdw-editor-main {
+    height: 1000px;
+  }
+
+  .editor-toolbar {
+    display: flex;
+    > div {
+      display: flex;
+    }
+  }
+  .editor-main {
+    height: 120px;
+    padding: 5px;
+  }
+}

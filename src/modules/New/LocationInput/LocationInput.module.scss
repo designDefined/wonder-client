@@ -1,0 +1,61 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+
+.LocationInput {
+  max-height: calc(90vh - 60px);
+  overflow: scroll;
+}
+.location {
+  position: relative;
+}
+
+.map {
+  position: relative;
+}
+.marker {
+  position: absolute;
+  top: -40px;
+  left: -25px;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 63.02%,
+    rgba(0, 0, 0, 0.5) 84.9%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-bottom: 41px;
+  pointer-events: none;
+}
+
+.textOverlay {
+  @include textStyle.default;
+  color: #fff;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.5px; /* 130.952% */
+  letter-spacing: -0.408px;
+}
+
+.buttonOverlay {
+  pointer-events: all;
+}
+
+.name {
+  padding: 0 20px;
+  padding-bottom: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
