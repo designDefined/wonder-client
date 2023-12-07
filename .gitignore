@@ -40,3 +40,6 @@ dist-ssr
 
 # and uncomment the following lines
 # .pnp.*
+
+# env
+.env.local

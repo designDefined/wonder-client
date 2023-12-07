@@ -62,7 +62,7 @@ export default function Me() {
         <div className={cx("divider")} />
         <div className={cx("section")}>
           <Title.Arrow title="내 티켓북" onClick={"/me/ticketBook"} />
-          {data.reservedWonders.slice(0, 3).map((reservation) => (
+          {data.ticketBook.slice(0, 3).map((reservation) => (
             <Card.Reserved
               key={reservation.id}
               wonder={reservation.wonder}

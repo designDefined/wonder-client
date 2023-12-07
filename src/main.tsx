@@ -21,6 +21,7 @@ import Modify from "./pages/Me/Modify/Modify";
 import Name from "./pages/Me/Modify/Name/Name";
 import Phone from "./pages/Me/Modify/Phone/Phone";
 import CreatorModify from "./pages/Creator/Modify/CreatorModify";
+import TicketBook from "./pages/Me/TicketBook/TicketBook";
 
 const codex: Codex = {
   _index: <Home />,
@@ -38,6 +39,7 @@ const codex: Codex = {
     _index: <Me />,
     liked: <Liked />,
     reserved: <Reserved />,
+    ticketBook:<TicketBook/>,
     modify: { _index: <Modify />, name: <Name />, phone: <Phone /> },
   },
   creator: {

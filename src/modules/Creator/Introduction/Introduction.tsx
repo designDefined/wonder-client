@@ -49,7 +49,8 @@ export default function Introduction({
         {/* <Button className={cx("button")} isMainColored isFullWidth>
           이어서 작성하기
         </Button> */}
-        <Button className={cx("button")} isFullWidth>
+        <Button className={cx("button")} isFullWidth 
+        onClick={()=>navigate("/new/wonder","slideNext")}>
           새로 작성하기
         </Button>
       </div>
