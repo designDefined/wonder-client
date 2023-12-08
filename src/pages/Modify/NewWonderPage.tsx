@@ -188,7 +188,11 @@ export default function ModifyWonderPage() {
                   )
                 ) {
                   const creatorId = localStorage.getItem("CREATOR_ID");
-                  mutate({ data, creatorId: Number(creatorId) });
+                  mutate({
+                    data,
+                    creatorId: Number(creatorId),
+                    wonderId: Number(wonderId),
+                  });
                 }
               }
             }}
