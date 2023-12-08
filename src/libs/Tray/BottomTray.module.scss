@@ -8,6 +8,8 @@
   height: 100%;
   background-color: rgba(color.$black, 0.5);
   animation: 0.7s ease reveal;
+  overflow-y: hidden;
+  z-index: 100;
 
   &.notDragging {
     transition: 0.7s ease;
