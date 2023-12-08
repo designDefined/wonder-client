@@ -1,6 +1,11 @@
 import classNames from "classnames/bind";
-import { convertToRaw, EditorState } from "draft-js";
-import { useState } from "react";
+import {
+  convertFromRaw,
+  convertToRaw,
+  EditorState,
+  RawDraftContentState,
+} from "draft-js";
+import { useEffect, useRef, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import Chip from "../../../components/Chip/Chip";
 import Input from "../../../components/Input/Input";
@@ -37,18 +42,36 @@ export default function Stage1({
   data: Data;
   setter: (data: Partial<Data>) => void;
 }) {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const isDataExisted = useRef(false);
+  const [editorState, setEditorState] = useState(
+    data.content
+      ? EditorState.createWithContent(
+          convertFromRaw(JSON.parse(data.content) as RawDraftContentState),
+        )
+      : EditorState.createEmpty(),
+  );
+
   const onEditorStateChange = (editorState: EditorState) => {
     // editorState에 값 설정
     setEditorState(editorState);
     setter({
       content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     });
-    console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
   };
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     data.thumbnail?.src ?? null,
   );
+  useEffect(() => {
+    if (isDataExisted.current) return;
+    if (data.content) {
+      setEditorState(
+        EditorState.createWithContent(
+          convertFromRaw(JSON.parse(data.content) as RawDraftContentState),
+        ),
+      );
+      isDataExisted.current = true;
+    }
+  }, [data]);
   return (
     <div className={cx("Stage1")}>
       <div className={cx("thumbnail")}>
