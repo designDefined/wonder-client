@@ -3,6 +3,9 @@ import { stringify } from "qs";
 import { MutationType, QueryType } from "./types";
 import { WonderDisplay } from "../entity/wonder/display";
 import { WonderSummary } from "../entity/wonder/summary";
+import { NewWonderInput } from "../pages/new/NewWonder/NewWonderPage";
+import { Creator } from "../entity/creator";
+import { Wonder } from "../entity/wonder";
 
 export const getWonderList: (
   queryParams?: Record<string, unknown>,
@@ -31,4 +34,26 @@ export const postWonderLike = (
     authedApi.post<{ message: "success" }>(
       `/wonder/like/${id}?${stringify({ is })}`,
     ),
+});
+
+export const postNewWonder = (): MutationType<
+  { wonderId: Wonder["id"] },
+  {
+    data: NewWonderInput;
+    creatorId: Creator["id"];
+  }
+> => ({
+  mutationFn: (body) =>
+    authedApi.post<{ wonderId: Wonder["id"] }>(`/wonder/new`, body),
+});
+
+export const putNewWonder = (): MutationType<
+  { success: boolean },
+  {
+    data: NewWonderInput;
+    creatorId: Creator["id"];
+    wonderId: Wonder["id"];
+  }
+> => ({
+  mutationFn: (body) => authedApi.put(`/wonder/${body.wonderId}/modify`, body),
 });

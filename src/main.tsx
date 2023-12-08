@@ -22,6 +22,7 @@ import Name from "./pages/Me/Modify/Name/Name";
 import Phone from "./pages/Me/Modify/Phone/Phone";
 import CreatorModify from "./pages/Creator/Modify/CreatorModify";
 import TicketBook from "./pages/Me/TicketBook/TicketBook";
+import ModifyWonderPage from "./pages/Modify/NewWonderPage";
 
 const codex: Codex = {
   _index: <Home />,
@@ -35,11 +36,12 @@ const codex: Codex = {
   search: <Search />,
   wonders: <Wonders />,
   view: { _index: <View />, _params: ["wonder_id"] },
+  modify: { _index: <ModifyWonderPage />, _params: ["wonder_id"] },
   me: {
     _index: <Me />,
     liked: <Liked />,
     reserved: <Reserved />,
-    ticketBook:<TicketBook/>,
+    ticketBook: <TicketBook />,
     modify: { _index: <Modify />, name: <Name />, phone: <Phone /> },
   },
   creator: {

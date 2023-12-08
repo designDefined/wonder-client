@@ -1,0 +1,36 @@
+@use "/src/styles/color";
+@use "/src/styles/layout";
+@use "/src/styles/textStyle";
+
+.NewWonderPage {
+  @include layout.defaultSidePadding;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 152px);
+  padding-bottom: 100px;
+
+  &.noScroll {
+    overflow-y: hidden;
+  }
+}
+
+.buttons {
+  @include layout.defaultSidePadding;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  left: 0;
+  bottom: 0;
+  padding-bottom: 27px;
+  background-color: white;
+  z-index: 99;
+}
+
+.previousButton {
+  width: 30%;
+}
+
+.nextButton {
+  width: 70%;
+}

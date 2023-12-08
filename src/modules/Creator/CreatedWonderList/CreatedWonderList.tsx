@@ -3,6 +3,8 @@ import classNames from "classnames/bind";
 import { CreatorDisplay } from "../../../entity/creator/display";
 import { useMemo, useState } from "react";
 import Card from "../../../components/Card/Card";
+import Button from "../../../components/Button/Button";
+import { navigate } from "../../../libs/Codex";
 
 const cx = classNames.bind(styles);
 
@@ -51,11 +53,20 @@ export default function CreatedWonderList({
       )}
       <div className={cx("list")}>
         {filteredWonder[currentTab].map((wonder) => (
-          <Card.Searched
-            className={cx("card")}
-            key={wonder.id}
-            wonder={wonder}
-          />
+          <>
+            <Card.Searched
+              className={cx("card")}
+              key={wonder.id}
+              wonder={wonder}
+            />
+            <Button
+              isFullWidth
+              isSmallSized
+              onClick={() => navigate(`/modify/${wonder.id}`)}
+            >
+              이벤트 수정하기
+            </Button>
+          </>
         ))}
       </div>
     </div>

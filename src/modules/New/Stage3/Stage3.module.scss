@@ -1,0 +1,73 @@
+@use "/src/styles/textStyle";
+@use "/src/styles/color";
+
+.Stage3 {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.label {
+  @include textStyle.default;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px; /* 155.556% */
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendar {
+  top: 40px;
+  left: 0;
+  width: 196px;
+  position: absolute;
+  background-color: color.$white;
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  > div > div {
+    font-size: 12px !important;
+  }
+}
+
+.calendarButton {
+  @include textStyle.default;
+
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 5px 6px;
+  color: #000;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26.5px; /* 165.625% */
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  > div > div {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 26.5px !important; /* 165.625% */
+  }
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid color.$gray;
+}

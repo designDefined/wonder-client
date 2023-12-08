@@ -10,7 +10,6 @@ export const postNewCreator = (): MutationType<
   mutationFn: (body) =>
     authedApi.post<{ creatorId: number }>(`/creator/new`, body),
 });
-3;
 
 export const getCreator = (
   creatorId?: Creator["id"],

@@ -1,18 +1,19 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
-import Button from "../../../components/Button/Button";
-import DefaultHeader from "../../../components/headers/DefaultHeader/DefaultHeader";
-import { Wonder } from "../../../entity/wonder";
-import { GenreTag } from "../../../entity/wonder/tag";
-import Stage0 from "../../../modules/New/Stage0/Stage0";
-import Stage1 from "../../../modules/New/Stage1/Stage1";
-import Stage2 from "../../../modules/New/Stage2/Stage2";
-import Stage3 from "../../../modules/New/Stage3/Stage3";
-import StageNavigator from "../../../modules/New/StageNavigator/StageNavigator";
+import { useEffect, useState } from "react";
+import Button from "../../components/Button/Button";
+import DefaultHeader from "../../components/headers/DefaultHeader/DefaultHeader";
+import { Wonder } from "../../entity/wonder";
+import { GenreTag } from "../../entity/wonder/tag";
+import Stage0 from "../../modules/New/Stage0/Stage0";
+import Stage1 from "../../modules/New/Stage1/Stage1";
+import Stage2 from "../../modules/New/Stage2/Stage2";
+import Stage3 from "../../modules/New/Stage3/Stage3";
+import StageNavigator from "../../modules/New/StageNavigator/StageNavigator";
 import styles from "./NewWonderPage.module.scss";
-import { navigate } from "../../../libs/Codex";
-import { postNewWonder } from "../../../api/wonder";
-import { useMutation } from "@tanstack/react-query";
+import { navigate, useParams } from "../../libs/Codex";
+import { getWonderDetail, postNewWonder, putNewWonder } from "../../api/wonder";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import Title from "../../components/Title/Title";
 
 const cx = classNames.bind(styles);
 
@@ -59,8 +60,8 @@ const checkIfNextStageIsAvailable = (stage: number, data: NewWonderInput) => {
   return false;
 };
 
-export default function NewWonderPage() {
-  const [stage, setState] = useState(0);
+export default function ModifyWonderPage() {
+  const [stage, setState] = useState(1);
   const [data, setData] = useState<NewWonderInput>({
     title: "",
     summary: "",
@@ -72,18 +73,56 @@ export default function NewWonderPage() {
     isReservationRequired: null,
     reservationProcess: null,
   });
+  const wonderId = useParams()?.wonder_id;
+  const { isLoading, data: wonderData } = useQuery(
+    getWonderDetail(Number(wonderId) ?? -1),
+  );
   const { mutate } = useMutation({
-    ...postNewWonder(),
-    onSuccess: (res) => {
-      navigate(`/view/${res.wonderId}`, "slideNext");
+    ...putNewWonder(),
+    onSuccess: () => {
+      if (wonderId) navigate(`/view/${wonderId}`, "slideNext");
     },
   });
+
+  useEffect(() => {
+    if (wonderData) {
+      setData({
+        title: wonderData.title,
+        summary: wonderData.summary,
+        content: wonderData.content,
+        thumbnail: wonderData.thumbnail,
+        genre: wonderData.tag.genre,
+        schedule: wonderData.schedule.map((s) => new Date(s)),
+        location: wonderData.location,
+        reservationProcess: wonderData.reservationProcess
+          ? {
+              ...wonderData.reservationProcess,
+              startsAt: new Date(wonderData.reservationProcess.startsAt),
+              endsAt: new Date(wonderData.reservationProcess.endsAt),
+            }
+          : null,
+        isReservationRequired: wonderData.reservationProcess !== null,
+      });
+    }
+  }, [wonderData]);
 
   if (!localStorage.getItem("CREATOR_ID")) {
     alert("잘못된 접근입니다.");
     navigate("/", "slidePrevious");
     return <></>;
   }
+
+  if (isLoading)
+    return (
+      <>
+        <DefaultHeader />
+        <main className={cx("View")}>
+          <div className={cx("mainContent")}></div>
+        </main>
+      </>
+    );
+
+  if (!wonderData) return <div>에러!</div>;
 
   return (
     <>
