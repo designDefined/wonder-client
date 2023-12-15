@@ -199,7 +199,7 @@ function ThumbnailZoomed({
             onClick={() => {
               if (containerRef.current) {
                 containerRef.current.scrollLeft =
-                  containerRef.current.offsetWidth * key;
+                  (containerRef.current.offsetWidth * key) / 2;
               }
             }}
           />
