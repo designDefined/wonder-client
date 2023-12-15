@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: 37px;
   height: 100vh;
+  height: -webkit-fill-available;
   overflow-x: hidden;
   overflow-y: auto;
   &.overlay {

@@ -1,6 +1,7 @@
 .RoutexProvider {
   width: 100vw;
   height: 100vh;
+  height: -webkit-fill-available;
   overflow-x: hidden;
   overflow-y: hidden;
 }

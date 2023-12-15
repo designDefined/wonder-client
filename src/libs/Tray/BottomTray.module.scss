@@ -55,6 +55,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
+    height: -webkit-fill-available;
     z-index: -1;
     background-color: color.$white;
   }
