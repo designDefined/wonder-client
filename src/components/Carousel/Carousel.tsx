@@ -162,6 +162,11 @@ function ThumbnailZoomed({
         <div
           className={cx("slider")}
           ref={containerRef}
+          onTouchMove={() => {
+            if (containerRef.current) {
+              setScrollLeft(containerRef.current.scrollLeft);
+            }
+          }}
           onScroll={() => {
             if (containerRef.current) {
               setScrollLeft(containerRef.current.scrollLeft);
